@@ -1,0 +1,70 @@
+@use '../../../../styles/config' as *;
+
+.faqs {
+  background-color: $white-color;
+  padding: 4rem 0;
+  
+  &__container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1.5rem 4rem 0;
+  }
+
+  &__header {
+    @include header;
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  &__title {
+    @include titule($primary-color);
+  }
+
+  &__subtitle {
+    @include description($quinary-color);
+    margin-top: 0.5rem;
+  }
+
+  &__accordion {
+    margin-top: 2rem;
+  }
+}
+
+::ng-deep .p-accordion {
+    
+  .p-accordion-tab {
+    margin-bottom: 0.75rem;
+    //border-radius: 8px !important;
+    // overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    
+    // .p-accordion-header {
+    //   .p-accordion-header-link {
+    //     padding: 1rem 1.5rem;
+    //     //border: none;
+    //     color: $primary-color;
+    //     font-weight: 600;
+    //     transition: all 0.3s ease;
+        
+    //     &:hover {
+    //       background: $secondary-color;
+    //     }
+        
+    //     .p-accordion-header-text {
+    //       flex-grow: 1;
+    //     }
+    //   }
+    // }
+    
+    .p-accordion-content {
+      padding: 1rem 1.5rem;
+      // line-height: 1.6;
+      color: red;
+      // border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+.accordion-content {
+  // padding: 0.5rem 0;
+}

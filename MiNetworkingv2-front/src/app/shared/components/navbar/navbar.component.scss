@@ -1,0 +1,117 @@
+@use "../../../../styles/config" as *;
+
+// nav container
+.navbar {
+  position: fixed;
+  background-color: $primary-color;
+  //background: linear-gradient(to right, $primary-color 50%, $tertiary-color);
+  //opacity: 0.90;
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  max-height: 4rem;
+  width: 100%;
+  z-index: 200;
+}
+
+// logo
+#a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 200px;
+  margin-top: 5rem;
+  padding-left: 40px;
+  transition: all 0.3s ease-in-out;
+}
+
+#a.logo-small {
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  margin-top: -1rem;
+  padding-left: 70px;
+  transition: all 0.3s ease-in-out;
+}
+
+// imagen
+#b {
+  margin-top: 2.5rem;
+  width: 90px;
+  height: 110px;
+}
+
+#b.logo-small {
+  margin-top: 1rem;
+  max-width: 30px;
+  height: 32px;
+  margin-right: 0.5rem;
+}
+
+//titulo
+#c {
+  color: $white-color;
+  font-family: $primary-font-titule;
+  font-weight: 500;
+  font-size: 1.5rem;
+  text-align: center;
+  padding-top: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+#c.logo-small {
+  font-weight: 700;
+  font-size: 1.2rem;
+  text-align: center;
+  margin-top: 0.5rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.no-animation {
+  transition: none !important;
+}
+
+// menu navegation
+.navbar__nav {
+  min-width: 60rem;
+
+  .navbar__nav-list {
+    display: flex;
+    justify-content: space-evenly;
+
+    .navbar__nav-item {
+      list-style: none;
+
+      .navbar__nav-link {
+        color: $white-color;
+        font-family: $primary-font-titule;
+        font-size: 1rem;
+        font-weight: 500;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+// button action
+.navbar__login {
+  margin-right: 3rem;
+
+  .navbar__login-button {
+    padding: 0.5rem 1.5rem;
+    font-weight: 500;
+    transition: all 200ms;
+    @include button(transparent, $white-color);
+  }
+
+  .navbar__login-button:hover {
+    cursor: pointer;
+    color: $primary-color;
+    background-color: $white-color;
+    transform: scale(1.1);
+    transition: all 200ms ease-out;
+  }
+}

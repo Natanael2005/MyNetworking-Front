@@ -1,0 +1,132 @@
+@use '../../../../styles/config' as *;
+
+.hero{
+  width: 100%;
+  min-height: 100vh;
+  background-image: linear-gradient(rgba(28, 19, 193, 0.329), rgba(28, 19, 193, 0.329)),
+   url('/assets/images/1.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  margin-top: -10rem;
+}
+
+.hero__container{
+  margin-top: 14rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  padding: 10rem 40px;
+}
+
+// side left
+.hero__side-left{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+
+   // span
+    .hero__span{
+    text-align: center;
+    width: 40%;
+    font-size: 0.75rem;
+    color: $white-color;
+    background-color: $primary-color;
+    border-radius: 20px;
+    border: 1px solid $secondary-color;
+    padding: 0.8rem;
+    margin-bottom: 8px;
+  }
+
+
+  // titule
+  .hero__titule{
+    margin: 0;
+    text-wrap: balance;
+    color: $white-color;
+    font-family: $font-titule;
+    font-size: 4rem;
+  }
+  
+  // text
+  .hero__text{
+    text-wrap: pretty;
+    font-family: $font-text;
+    color: $white-color;
+    font-size: 1.5rem;
+    padding: 0 2rem 0 0;
+  }
+  
+  // buttons
+  .hero__buttons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 1rem;
+
+    // btn primary
+    .hero__button-primary{
+      font-weight: 700;
+      padding: 0.8rem 2rem;
+      margin-right: 2rem;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      transition: all 200ms;
+
+      @include button($white-color, $primary-color);
+    
+        // icon
+        .pi-arrow-right{
+          font-weight: 700;
+          padding: 0 12px;
+          color: $primary-color;
+        }
+    }
+
+    .hero__button-primary:hover{
+      @include button-hover($primary-color, $secondary-color);
+      cursor: pointer;
+    }
+    
+    // btn secondary
+
+    .hero__button-text{
+      text-decoration: none;
+      
+      .hero__button-secondary{
+        font-weight: 700;
+        padding: 0.8rem 2rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        transition: all 200ms;
+  
+         @include button($white-color, $primary-color);
+         
+          // icon
+          .pi-sparkles{
+          padding: 0 12px;
+          color: $primary-color;
+          }
+      }
+
+      .hero__button-secondary:hover{
+        @include button-hover($primary-color, $secondary-color);
+        cursor: pointer;
+      }
+    }
+
+  }
+}
+
+// side right
+.hero__side-right{
+ width: 50%;
+ //background-color: blueviolet;
+
+ 
+
+}

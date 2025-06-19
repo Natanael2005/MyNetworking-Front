@@ -1,0 +1,157 @@
+@use "../../../../styles/config" as *;
+
+.how-it-works {
+  background-color: $quaternary-color;
+  padding: 4rem 0;
+}
+
+// container
+.how-it-works__container {
+  padding-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+// header section
+.how-it-works__header {
+  @include header;
+
+  // title section
+  .how-it-works__title {
+    @include titule($primary-color);
+  }
+
+  // description section
+  .how-it-works__subtitle {
+    @include description($quinary-color);
+  }
+}
+
+.how-it-works__button-primary {
+  font-weight: 700;
+  padding: 0.8rem 2rem;
+  margin-right: 2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  transition: all 200ms;
+  width: 15%;
+
+  @include button($primary-color, $white-color);
+  border: 1.5px solid $primary-color;
+
+  // icon
+  .pi-arrow-right {
+    transition: all 200ms;
+    font-weight: 700;
+    padding: 0 12px;
+    color: $white-color;
+  }
+}
+
+.how-it-works__button-primary:hover {
+  transform: translateY(-5px);
+  transition: all 200ms ease-out;
+  cursor: pointer;
+
+}
+
+//steps container
+.how-it-works__steps {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  gap: 4.5rem;
+  align-items: center;
+  margin: 2rem 0 4rem 0;
+  max-width: 1450px;
+
+
+  .bg1{
+    background-image: linear-gradient(rgba(80, 79, 133, 0.614), rgba(80, 79, 133, 0.614)),
+   url('/assets/images/s1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .bg2{
+    background-image: linear-gradient(rgba(80, 79, 133, 0.614), rgba(80, 79, 133, 0.614)),
+   url('/assets/images/s2.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .bg3{
+    background-image: linear-gradient(rgba(80, 79, 133, 0.614), rgba(80, 79, 133, 0.614)),
+   url('/assets/images/s3.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  // step
+  .how-it-works__step {
+    @include step;
+
+    .how-it-works__figure {
+      background-color: $secondary-color;
+      margin-top: 0;
+      margin-left: 0rem;
+      margin-bottom: -0.2rem;
+      max-width: 17%;
+      border-radius: 10px;
+      transition: all 200ms;
+
+      .how-it-works__image {
+        color: $primary-color;
+        font-size: 2rem;
+        padding: 1rem;
+      }
+    }
+
+    // title
+    .how-it-works__step-title {
+      font-family: $primary-font-titule;
+      color: $white-color;
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: -0.2rem;
+    }
+
+    // descriptions
+    .how-it-works__step-description {
+      text-wrap: pretty;
+      font-family: $font-text;
+      color: $white-color;
+      font-size: 1rem;
+      margin-bottom: 0.8rem;
+    }
+
+    // span
+    .how-it-works__step-span {
+      font-family: $primary-font-titule;
+      color: $white-color;
+      font-weight: 500;
+      font-size: 0.8rem;
+      transition: all 200ms;
+    }
+  }
+
+  .how-it-works__step:hover {
+    //background-color: $white-color;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.4);
+    transform: translateY(-5px);
+    transition: scale 200ms ease-out;
+
+    .how-it-works__figure {
+      //transform: scale(1.04);
+      box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+      transition: all 200ms ease-out;
+    }
+
+    // .how-it-works__step-span{
+    //       transform: translate(15px, 0);
+    // }
+  }
+}

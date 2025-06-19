@@ -1,0 +1,97 @@
+@use "../../../../styles/config" as *;
+
+.footer {
+  background-color: $black-color;
+  height: 8rem;
+}
+
+.footer__container {
+  background-color: $black-color;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 40px;
+}
+
+.footer__logo {
+  width: 240px;
+  height: 85px;
+}
+
+.footer__text {
+  text-wrap: pretty;
+  font-family: $font-text;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.footer__hr {
+  border: 0.2px solid $white-color;
+}
+
+.footer__link {
+  text-decoration: none;
+  color: $white-color;
+}
+
+.footer__list {
+  display: flex;
+  justify-content: space-around;
+  width: 50vw;
+  margin-bottom: 3rem;
+}
+
+.footer__item {
+  list-style: none;
+  font-weight: 600;
+  font-family: $primary-font-titule;
+  transition: all 200ms ease-out;
+}
+
+.footer__item:hover {
+  transition: all 200ms ease-out;
+  transform: translateY(-5px);
+}
+
+.footer__terms-and-conditions {
+  color: $gray-color;
+  text-align: center;
+  margin-bottom: -0.5rem;
+  font-size: 0.8rem;
+  font-family: $primary-font-titule;
+}
+
+.footer__social {
+}
+.footer__social-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.footer__social-item {
+  list-style: none;
+}
+
+.footer__social-item:hover {
+  transition: all 200ms ease-out;
+  transform: translateY(-5px);
+}
+.footer__social-link {
+}
+.pi-facebook {
+  @include icons;
+}
+.pi-instagram {
+  @include icons;
+}
+.pi-linkedin {
+  @include icons;
+}
+.pi-twitter {
+  @include icons;
+}
+
+.footer__social-icon {
+}

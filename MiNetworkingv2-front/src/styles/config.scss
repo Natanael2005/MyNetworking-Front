@@ -1,0 +1,128 @@
+//* variables
+$primary-color: #2b2f76 ;
+$secondary-color: #e3e7f5 ;
+$tertiary-color: #3c408f;
+$quaternary-color: #fafafa ;
+$quinary-color: #9e9e9e;
+$white-color: #ffffff;
+$black-color: #000000;
+$gray-color: #626262; 
+$font-titule: 'Lora';
+$primary-font-titule: 'Roboto' ;
+$font-text: 'Roboto' ;
+
+
+//*mixins
+@mixin button($bg-color, $color){
+    color: $color;
+    background-color: $bg-color;
+    font-family: $primary-font-titule;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 0.2px solid $white-color;
+}
+
+@mixin button-hover($color-b, $bg){
+    color: $color-b;
+    background-color: $bg;
+    transform: translateY(-5px);
+    transition: all 200ms ease-out;
+}
+
+@mixin cards-hover{
+    background-color: $white-color;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.25);
+    transform: translateY(-5px);
+    transition: all 200ms ease-out;
+}
+
+@mixin cards-hover-price_monthly{
+    background-color: $white-color;
+    box-shadow: 0 6px 20px 0 rgba(21, 21, 21, 0.612);
+    transform: translateY(-5px);
+    transition: all 200ms ease-out;
+}
+
+@mixin cards-hover-price_yearly{
+    box-shadow: 0 6px 20px 0 rgba(21, 21, 21, 0.612);
+    transform: translateY(-5px);
+    transition: all 200ms ease-out;
+}
+
+@mixin header{
+    padding-top: 6rem;
+    text-align: center;
+}
+
+@mixin titule ($color){
+    font-family: $primary-font-titule;
+    font-size: 3rem;
+    color: $color;
+    margin: 0;
+    text-wrap: balance;
+}
+
+@mixin description ($colorText){
+    text-wrap: pretty;
+    font-family: $font-text;
+    color: $colorText;
+    font-size: 1.5rem;
+}
+
+//* mixin for cards
+
+@mixin button-plans($bg-color){
+    color: $white-color;
+    background-color: $bg-color;
+    font-family: $primary-font-titule;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 0.2px solid $white-color;
+    width: 100%;
+    font-weight: 700;
+    padding: 0.8rem 2rem;
+    margin-top: 3rem;
+}
+
+//* mixin for steps
+
+@mixin step{
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 27rem;
+    border-radius: 10px;
+    padding: 1.5rem;
+    transition: all 200ms;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+//* mixing for social icons
+@mixin icons{
+    font-size: 1.5rem;
+    color: $white-color;
+    padding: 0 16px;
+}
+
+@mixin icon-contact{
+    font-size: 1rem;
+    color: $primary-color;
+    padding: 0 4px 0 0px;
+}
+
+/*reset*/
+html, body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*main container*/
+.container{
+    display: grid;
+    min-height: 100vh;
+    grid-template-rows: auto 1fr auto;
+    scroll-behavior: smooth;
+    background-color: $primary-color;
+}

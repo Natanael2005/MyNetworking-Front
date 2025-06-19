@@ -1,0 +1,86 @@
+@use 'config' as *;
+
+.contact__form__row {
+  display: flex;
+  flex-direction: row;
+  margin-left: 1.2rem;
+}
+
+.contact__form__row .contact__form__input-item input {
+  width: 15rem;
+  margin-right: 1.6rem;
+}
+
+.contact__form__body {
+  border-radius: 20px;
+  //background-color: $tertiary-color;
+  background-image: linear-gradient(rgba(100, 105, 255, 0.315), rgba(100, 105, 255, 0.315)),
+   url('/assets/images/a.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 3rem 6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+
+    &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    backdrop-filter: blur(2px);
+    z-index: 0;
+  }
+}
+
+.contact__form__input-item {
+  margin: 1rem 0;
+}
+
+.contact__form__input-item label {
+  color: $quinary-color;
+  font-family: $primary-font-titule;
+}
+
+.contact__form__input-item input {
+  width: 32rem;
+  color: $black-color;
+  font-family: $font-text;
+}
+
+.contact__form__input-item textarea {
+  width: 32rem;
+  color: $black-color;
+  font-family: $font-text;
+}
+
+.contact__form-button {
+  background-color: $white-color;
+  color: $primary-color;
+  font-family: $font-text;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  transition: all 200ms;
+  margin-top: 1rem;
+  border-radius: 5px;
+  z-index: 100;
+
+  &:hover {
+    background-color: $secondary-color;
+    transition: all 200ms ease-out;
+    cursor: pointer;
+  }
+}
+
+
+.f{
+  color: $white-color;
+  z-index: 100;
+}

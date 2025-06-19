@@ -1,0 +1,296 @@
+@use "../../../../styles/config" as *;
+
+.plans {
+  background-color: $secondary-color;
+  padding: 4rem 0;
+  position: relative;
+}
+
+.plans__container {
+  padding-bottom: 4rem;
+
+  .plans__header {
+    @include header;
+
+    .plans__title {
+      @include titule($primary-color);
+    }
+
+    .plans__subtitle {
+      @include description($quinary-color);
+    }
+  }
+
+  .b {
+    text-align: center;
+    margin-top: 5rem;
+    a {
+      color: $gray-color;
+      font-family: $primary-font-titule;
+      font-size: 1rem;
+      
+    }
+  }
+}
+
+.x {
+  position: absolute;
+  bottom: 0;
+  left: 2rem;
+}
+
+.y {
+  position: absolute;
+  top: 20rem;
+  left: 70.5rem;
+  z-index: 100;
+}
+
+.plans__list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+  gap: 4rem;
+}
+
+// monthly plan
+.plans__card__monthly {
+  //background: linear-gradient(130deg, rgba(255, 255, 255), rgba(140, 151, 239, 0.412) );
+  background-color: $white-color;
+  padding: 5px 5rem 2rem 5rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  transition: all 200ms ease-out;
+  border: 1px solid $primary-color;
+}
+
+.plans__card__monthly:hover {
+  @include cards-hover-price_monthly;
+  //background: linear-gradient(130deg, rgba(255, 255, 255), rgba(255, 255, 255, 0.412) );
+
+  .plans__button-month__monthly {
+    transform: translateY(-5px);
+    transition: all 200ms ease-out;
+    cursor: pointer;
+  }
+}
+
+// content card
+.plans__card-header__monthly {
+  //text-align: center;
+  margin-bottom: 2rem;
+}
+
+.wrapper__monthly {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pi-bolt {
+  background: linear-gradient(90deg, rgb(26, 46, 159), rgb(93, 107, 215));
+  border-radius: 10px;
+  padding: 0.8rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: $white-color;
+}
+
+.plans__container__card__monthly {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  padding-left: 15px;
+}
+
+.plans__card-title__monthly {
+  color: $primary-color;
+  font-size: 1.5rem;
+  font-family: $primary-font-titule;
+  margin-bottom: -0.5rem;
+}
+.plans__card-description__monthly {
+  max-width: 200px;
+  color: $primary-color;
+  font-size: 1rem;
+  font-family: $font-text;
+}
+
+.plans__price__monthly {
+  font-family: $font-text;
+}
+.plans__price-amount__monthly {
+  text-align: center;
+  color: $primary-color;
+  font-size: 3rem;
+  font-weight: 800;
+}
+.plans__price-period__monthly {
+  color: $primary-color;
+}
+.divider_month {
+  color: $primary-color;
+}
+
+.plans__features__monthly {
+  font-family: $font-text;
+  color: $primary-color;
+  text-align: center;
+}
+.plans__features-list__monthly {
+  text-align: start;
+}
+
+.plans__feature-item__monthly {
+  list-style: none;
+  margin-bottom: 1.5rem;
+}
+
+.plans__action__monthly {
+  margin: 1rem 0;
+}
+
+.plans__button-month__monthly {
+  color: $white-color;
+  background: linear-gradient(rgb(26, 46, 159), rgb(93, 107, 215));
+  font-family: $primary-font-titule;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+  width: 100%;
+  font-weight: 700;
+  padding: 0.8rem 2rem;
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 200ms ease-out;
+}
+
+//yearly card
+
+.plans__card__yearly {
+  background-color: rgb(26, 46, 159);
+  padding: 5px 5rem 2rem 5rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  transition: all 200ms ease-out;
+}
+
+.plans__card__yearly:hover {
+  @include cards-hover-price_yearly;
+  border: 1px solid $primary-color;
+
+  .plans__button-year__yearly {
+    transform: translateY(-5px);
+    transition: all 200ms ease-out;
+    cursor: pointer;
+  }
+}
+
+// content card
+.plans__card-header__yearly {
+  // text-align: center;
+  margin-bottom: 2rem;
+}
+
+.wrapper__yearly {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pi-crown {
+  background: linear-gradient(10deg, rgb(255, 255, 255), rgb(176, 177, 253));
+  border-radius: 10px;
+  padding: 0.8rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: $primary-color;
+}
+
+.plans__container__card__yearly {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  padding-left: 15px;
+}
+
+.plans__card-title__yearly {
+  color: $white-color;
+  font-size: 1.5rem;
+  font-family: $primary-font-titule;
+  margin-bottom: -0.5rem;
+}
+
+.plans__card-description__yearly {
+  max-width: 200px;
+  color: $white-color;
+  font-size: 1rem;
+  font-family: $font-text;
+}
+
+.plans__price__yearly {
+  font-family: $font-text;
+}
+.plans__price-amount__yearly {
+  color: $white-color;
+  font-size: 3rem;
+  font-weight: 800;
+}
+.plans__price-period__yearly {
+  color: $white-color;
+}
+
+.plans__features__yearly {
+  font-family: $font-text;
+  color: $white-color;
+  text-align: center;
+}
+.plans__features-list__yearly {
+  text-align: start;
+}
+
+.plans__feature-item__yearly {
+  list-style: none;
+  margin-bottom: 1.5rem;
+}
+
+.plans__action__yearly {
+  margin: 1rem 0;
+}
+
+.plans__button-year__yearly {
+  color: $primary-color;
+  background: linear-gradient(
+    10deg,
+    rgb(255, 255, 255),
+    rgba(223, 226, 255, 0.884)
+  );
+  font-family: $primary-font-titule;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+  width: 100%;
+  font-weight: 700;
+  padding: 0.8rem 2rem;
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 200ms ease-out;
+}
+
+.pi-chevron-righ {
+  color: $white-color;
+  padding: 0 12px;
+}
+
+.pi pi-check {
+  color: $primary-color;
+  margin-right: 2rem;
+}
+

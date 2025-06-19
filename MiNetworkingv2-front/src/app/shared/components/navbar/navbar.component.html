@@ -1,0 +1,30 @@
+<div class="navbar">
+
+ <div class="navbar__logo-container" id="a" 
+       [class.logo-small]="isSmall"
+       [class.no-animation]="disableAnimation">
+    <img class="navbar__logo-image" src="assets/public/miNetworking.logo.png" 
+         alt="mi networking logo" id="b" 
+         [class.logo-small]="isSmall"
+         [class.no-animation]="disableAnimation"/>
+    <span class="navbar__logo-titule" id="c" 
+          [class.logo-small]="isSmall"
+          [class.no-animation]="disableAnimation">Networking</span>
+  </div>
+
+  <nav class="navbar__nav" aria-label="navegation bar">
+    <ul class="navbar__nav-list">
+      <li class="navbar__nav-item" (click)="handleMenuClick($event)"><a class="navbar__nav-link" href="#home">Inicio</a></li>
+      <li class="navbar__nav-item" (click)="handleMenuClick($event)"><a class="navbar__nav-link" href="#how-it-works">Cómo funciona</a></li>
+      <li class="navbar__nav-item" (click)="handleMenuClick($event)"><a class="navbar__nav-link" href="#benefits">Beneficios</a></li>
+      <li class="navbar__nav-item" (click)="handleMenuClick($event)"><a class="navbar__nav-link" href="#plans">Planes</a></li>
+      <li class="navbar__nav-item" (click)="handleMenuClick($event)"><a class="navbar__nav-link" href="#faqs">FAQs</a></li>
+      <li class="navbar__nav-item" (click)="handleMenuClick($event)"><a class="navbar__nav-link" href="#contact">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <div class="navbar__login">
+    <button class="navbar__login-button" >Iniciar</button>
+  </div>
+
+</div>
