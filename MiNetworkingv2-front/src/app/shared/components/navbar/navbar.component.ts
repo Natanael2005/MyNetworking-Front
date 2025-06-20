@@ -65,7 +65,7 @@ export class NavbarComponent implements OnInit {
 
   private checkRoute(): void {
     const hash = window.location.hash;
-    this.isHome = !hash || hash === '#home';
+    this.isHome = !hash || hash === '#hero';
   }
 
   private checkHomeSection(): void {
@@ -97,7 +97,7 @@ export class NavbarComponent implements OnInit {
       const hash = link.getAttribute('href') || '';
       
       // Actualizar estado inmediatamente
-      this.isHome = hash === '#home';
+      this.isHome = hash === '#hero';
       this.isSmall = !this.isHome || window.scrollY > 50;
       
       // Navegar después de actualizar el estado

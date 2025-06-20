@@ -33,18 +33,6 @@ export class PortfolioComponent implements OnInit {
         src: 'assets/images/prueba.jpg',
         alt: 'Descripción imagen 1'
       },
-      {
-        src: 'assets/images/prueba2.jpg',
-        alt: 'Descripción imagen 2'
-      },
-      {
-        src: 'assets/images/prueba3.jpg',
-        alt: 'Descripción imagen 3'
-      },
-      {
-        src: 'assets/images/prueba2.jpg',
-        alt: 'Descripción imagen 2'
-      },
     ];
   }
 }
