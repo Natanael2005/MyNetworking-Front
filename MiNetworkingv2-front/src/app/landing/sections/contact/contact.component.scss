@@ -1,99 +1,304 @@
 @use '../../../../styles/config' as *;
 
-.contact {
+.contact{
   background-color: $secondary-color;
-  padding: 2rem 0 2rem 0 ;
+  padding: 0 6rem 6rem 6rem;
+  position: relative;
+}
 
-  &__container {
-    display: flex;
-    text-align: center;
-    padding: 4rem 2.2rem;
-  }
+.contact__header{
+  padding-top: 6rem;
+}
 
-  &__info {
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 1.5rem;
-  }
+.contact__title{
+  @include titule($primary-color);
+  font-weight: 400;
+  margin-bottom: 24px;
+}
 
-  &__title {
-    @include titule($primary-color);
-  }
+.contact__highlight{
+  font-weight: 900;
+}
 
-  &__description {
-    @include description($quinary-color);
-    width: 100%;
-  }
+.contact__subtitle{
+  @include description($quinary-color);
+  max-width: 600px;
+  margin-bottom: 24px;
+}
 
-  &__container__form {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: start;
-  }
+.img{
+  position: absolute;
+  top: 8rem;
+  right: 11rem;
+}
 
-  &__details {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 0 10px;
-  }
 
-  &__details-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: start;
-    margin-top: -2rem;
-  }
 
-  &__details-title {
-    color: $primary-color;
-    font-family: $primary-font-titule;
-    font-size: 1.5rem;
-  }
+.contact__content{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: flex-start;
 
-  .r{
-    text-align: start;
-  }
+  // display: grid;
+  // grid-template-columns: 60% 40%;
+  // width: 100%;
+  // align-items: start;
+}
 
-  .p{
-    display: flex;
-    flex-direction: column;
-    margin-left: -15rem;
-  }
+.contact__form-wrapper{
+  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.25);
+  background-color: $white-color;
+  padding: 48px;
+  border-radius: 15px;
+  width: 60%;
+}
 
-  &__span {
-    width: 100%;
-    max-height: 2rem;
-    background-color: $white-color;
-    border-radius: 20px;
-    border: 0.2px solid $quaternary-color;
-    padding: 1.2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 1rem 0;
-    transition: all 200ms;
+.contact__form{
+  margin: 0;
+  padding: 0;
+}
 
-    &:hover {
-      transition: all 200ms ease-out;
-      box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.25);
-    }
-  }
+.contact__form-group--row{
+  // display: flex;
+  // align-items: center;
+  // margin-bottom: 24px;
 
-  &__link {
-    width: 300px;
-    text-align: start;
-    color: $primary-color;
+  display: grid;
+  grid-template-columns: repeat(2 ,1fr);
+  grid-template-rows: repeat(1, 1fr);
+  gap: 96px;
+}
+
+.contact__form-group{
+  margin: 30px 0 0 0;
+}
+
+.contact__input-group{
+}
+
+.contact__label{
+  color: $primary-color;
+  font-family: $primary-font-titule;
+}
+
+.contact__input{
+  margin-top: 2rem;
+  width: 100%;
+
+  border: none;
+  border-bottom: 2px solid $quinary-color;
+  transition: border-color 0.3s;
+  
+   &::placeholder{
+    font-family: $font-text;
     font-size: 1rem;
-    text-decoration: none;
-
-    i {
-      @include icon-contact;
-    }
   }
+}
+
+.contact__input:focus{
+  border-bottom-color: $primary-color;
+  outline: none;
+
+  
+}
+.contact__textarea{
+  margin-top: 2rem;
+  width: 100%;
+  //resize: none;
+
+  border: none;
+  border-bottom: 2px solid $quinary-color;
+  transition: border-color 0.3s;
+
+  &::placeholder{
+    font-family: $font-text;
+    font-size: 1rem;
+  }
+}
+
+.contact__textarea:focus{
+  border-bottom-color: $primary-color;
+  outline: none;
+}
+
+.contact__form-group{
+  display: flex;
+  flex-direction: column;
+}
+
+.contact__form-action{
+ margin-top: 40px;
+ margin-bottom: 0;
+}
+
+.contact__submit{
+    color: $white-color;
+    background-color: $primary-color;
+    font-family: $primary-font-titule;
+    font-size: 1rem;
+    border-radius: 5px;
+    padding: 0.8rem 2rem;
+    transition: all 200ms ease-out;
+    border: none;
+    font-weight: 700;
+}
+
+.contact__submit:hover{
+  cursor: pointer;
+  transform: translateY(-5px);
+  transition: all 200ms ease-out;
+  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.25);
+}
+
+
+
+
+
+
+
+.contact__info{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40%;
+}
+
+.contact__methods{
+  
+}
+
+.contact__methods-title{
+  color: $primary-color;
+  font-family: $font-text;
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.contact__method{
+  display: flex;
+  background-color: $white-color;
+  padding: 16px;
+  margin-top: 16px;
+  align-items: center;
+  border-radius: 10px;
+  width: 400px;
+  transition: all 200ms ease-out;
+}
+
+.contact__method:hover{
+  cursor: pointer;
+  @include cards-hover;
+}
+
+.pi{
+  color: $primary-color;
+  font-size: 18px;
+  padding: 0 15px 0 0;
+  display: flex;
+}
+
+.contact__method-details{
+  display: flex;
+  flex-direction: column;
+}
+
+.contact__method-label{
+  color: $primary-color;
+  margin-bottom: 5px;
+}
+
+.contact__method-value{
+  color: $gray-color;
+}
+
+
+
+
+
+
+
+
+.contact__office{
+  background-color: $white-color;
+  transition: all 200ms ease-out;
+  width: 400px;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 24px;
+}
+.contact__office-title{
+  color: $primary-color;
+  font-family: $primary-font-titule;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 0;
+  margin: 0;
+}
+.contact__office-detail{
+  display: flex;
+  margin-top: 16px;
+  color: $gray-color;
+}
+
+
+
+
+
+
+
+
+.contact__social{}
+
+.contact__social-title{
+  color: $primary-color;
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+.contact__social-links{
+  
+}
+
+.contact__social-link{
+  padding: 5px 15px;
+  color: $primary-color;
+  text-decoration: none;
+  font-family: $font-text;
+  border: 1px solid $primary-color;
+  margin: 0 4px 0 0;
+  border-radius: 15px;
+  transition: all 200ms ease-out;
+}
+
+.contact__social-link:hover{
+  transition: all 200ms ease-out;
+  background-color: $quaternary-color;
+}
+
+
+
+
+
+
+
+.contact__quote{
+  margin-top: 50px;
+  width: 400px;
+  border-radius: 18px;
+  color: $white-color;
+  font-family: $font-text;
+  background-color: $tertiary-color;
+  font-size: 20px;
+  padding: 15px 10px;
+  font-weight: 300;
+}
+
+.pi-comments{
+  font-weight: 100;
+  color: $white-color;
+  margin-bottom: 10px;
 }

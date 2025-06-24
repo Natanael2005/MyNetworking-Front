@@ -13,5 +13,6 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(),
     BrowserModule,
     BrowserAnimationsModule,
+    provideClientHydration()
   ],
 };

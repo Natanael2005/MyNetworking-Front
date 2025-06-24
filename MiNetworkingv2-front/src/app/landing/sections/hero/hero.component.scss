@@ -2,13 +2,17 @@
 
 .hero{
   width: 100%;
-  min-height: 100vh;
-  background-image: linear-gradient(rgba(28, 19, 193, 0.329), rgba(28, 19, 193, 0.329)),
-   url('/assets/images/hero-background.webp');
+  //min-height: 100vh;
+  //  background-image: linear-gradient(rgba(28, 19, 193, 0.329), rgba(28, 19, 193, 0.329)),
+  //   url('/assets/images/hero-background.webp');
+  background-color: red;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   margin-top: -10rem;
+  //max-width: 100vw;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 .hero__container{
@@ -17,6 +21,9 @@
   display: flex;
   flex-direction: row;
   padding: 10rem 40px;
+  max-width: 100vw;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 // side left
@@ -40,7 +47,7 @@
 
 
   // titule
-  .hero__titule{
+  .hero__titule {
     margin: 0;
     text-wrap: balance;
     color: $white-color;
@@ -49,12 +56,12 @@
   }
   
   // text
-  .hero__text{
+  .hero__text {
     text-wrap: pretty;
     font-family: $font-text;
     color: $white-color;
     font-size: 1.5rem;
-    padding: 0 2rem 0 0;
+    padding-right: 2rem;
   }
   
   // buttons
@@ -122,11 +129,6 @@
   }
 }
 
-// side right
-.hero__side-right{
- width: 50%;
- //background-color: blueviolet;
 
- 
 
-}
+

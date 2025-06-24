@@ -58,7 +58,7 @@
 .plans__card__monthly {
   //background: linear-gradient(130deg, rgba(255, 255, 255), rgba(140, 151, 239, 0.412) );
   background-color: $white-color;
-  padding: 5px 5rem 2rem 5rem;
+  padding: 2rem 5rem 2rem 5rem;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -109,7 +109,7 @@
   color: $primary-color;
   font-size: 1.5rem;
   font-family: $primary-font-titule;
-  margin-bottom: -0.5rem;
+  margin-bottom: 0.5rem;
 }
 .plans__card-description__monthly {
   max-width: 200px;
@@ -173,7 +173,7 @@
 
 .plans__card__yearly {
   background-color: rgb(26, 46, 159);
-  padding: 5px 5rem 2rem 5rem;
+  padding: 2rem 5rem 2rem 5rem;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -223,7 +223,7 @@
   color: $white-color;
   font-size: 1.5rem;
   font-family: $primary-font-titule;
-  margin-bottom: -0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .plans__card-description__yearly {

@@ -1,8 +1,9 @@
 @use '../../../../styles/config' as *;
 
 .benefits {
-   background-image: linear-gradient(rgba(5, 2, 60, 0.655), rgba(28, 19, 193, 0.329)),
-   url('/assets/images/benefits-bg.webp');
+  //  background-image: linear-gradient(rgba(5, 2, 60, 0.655), rgba(28, 19, 193, 0.329)),
+  //  url('/assets/images/benefits-bg.webp');
+   background-color: $primary-color;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -58,7 +59,7 @@
   //background-color: $white-color;
   background-color: $secondary-color;
   border-radius: 10px;
-  // padding: 1.5rem;
+   padding: 1.5rem;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
@@ -90,7 +91,7 @@
 
 .benefits__content {
   flex: 1;
-  padding: 0 40px 0 0;
+  padding: 0 0 0 20px;
 }
 
 .benefits__item-title {

@@ -1,104 +1,91 @@
-<section id="contact" class="contact" aria-labelledby="contact-heading">
-  <div class="contact__container">
-    <div class="contact__container__form">
-      <form action="" class="contact__form">
-        <div class="contact__form__body">
-          <div class="contact__form__row">
-            <span class="p-float-label contact__form__input-item">
-              <input
-                pInputText
-                id="username"
-                styleClass="contact__form-input"
-              />
-              <label for="username" styleClass="contact__form-label">
-                <i class="pi pi-user"></i> Nombre</label
-              >
-            </span>
+<section class="contact" aria-labelledby="contact-heading">
+  <header class="contact__header">
+    <h1 class="contact__title">
+      ¿Tienes algun problema con tu<br />
+      <span class="contact__highlight">Networking?</span>
+    </h1>
+    <p class="contact__subtitle">
+      ¡No estás solo! Si algo no va como esperabas o tienes dudas, estamos aquí para ayudarte. Escríbenos y te responderemos muy pronto.
+    </p>
+  </header>
 
-            <span class="p-float-label contact__form__input-item">
-              <input
-                pInputText
-                id="lastname"
-                styleClass="contact__form-input"
-              />
-              <label for="lastname" styleClass="contact__form-label">
-                <i class="pi pi-user"></i> Apellido</label
-              >
-            </span>
+
+  <!-- <div>
+    <img src="/assets/images/x.png" alt="" class="img">
+  </div> -->
+
+  <div class="contact__content">
+    <div class="contact__form-wrapper">
+      <form class="contact__form">
+
+        <div class="contact__form-group--row">
+          <div class="contact__input-group">
+            <label for="firstName" class="contact__label">Nombre</label>
+            <input id="firstName" name="firstName" type="text" class="contact__input" placeholder="Zurisarai" required />
           </div>
 
-          <span class="p-float-label contact__form__input-item">
-            <input
-              pInputText
-              type="email"
-              id="email"
-              styleClass="contact__form-input"
-            />
-            <label for="email" styleClass="contact__form-label">
-              <i class="pi pi-at"></i> Correo Electrónico</label
-            >
-          </span>
+          <div class="contact__input-group">
+            <label for="lastName" class="contact__label">Apellido</label>
+            <input id="lastName" name="lastName" type="text" class="contact__input" placeholder="Rodriguez" required />
+          </div>
+        </div>
 
-          <span class="p-float-label contact__form__input-item">
-            <textarea
-              id="message"
-              rows="5"
-              cols="30"
-              pInputTextarea
-              styleClass="contact__form-input"
-            ></textarea>
-            <label for="message" styleClass="contact__form-label">
-              <i class="pi pi-comments"></i> Mensaje</label
-            >
-          </span>
+        <div class="contact__form-group">
+          <label for="email" class="contact__label">Correo eléctronico</label>
+          <input id="email" name="email" type="email" class="contact__input" placeholder="sarai@company.com" required />
+        </div>
 
-          <button class="contact__form-button" type="submit">Enviar</button>
+        <div class="contact__form-group">
+          <label for="message" class="contact__label">Cuentanos tu situación</label>
+          <textarea id="message" name="message" class="contact__textarea" placeholder="¿Qué necesitas? ¿Qué error encontraste?" required></textarea>
+        </div>
 
-          <p class="f">
-            <i class="pi pi-lock"></i> Tus datos están seguros con nosotros. No
-            compartimos tu información.
-          </p>
+        <div class="contact__form-action">
+          <button type="submit" class="contact__submit">Enviar</button>
         </div>
       </form>
+    </div>
 
-      <div class="contact__details">
-        <header class="contact__info">
-          <h2 id="contact-heading" class="contact__title">
-            ¿Tienes dudas o quieres comenzar hoy? ¡Hablemos!
-          </h2>
-          <p class="contact__description">
-            Contáctanos como prefieras: usa el formulario o envíanos un email.
-            ¡Responderemos lo antes posible!
-          </p>
-        </header>
+    <aside class="contact__info">
+      <div class="contact__methods">
+        <h3 class="contact__methods-title">¿Prefieres contactarnos directo?</h3>
 
-          
-            <div class="p">
-            <div class="contact__details-header">
-            <h3 class="contact__details-title">
-              ¿Prefieres escribirnos directo?
-            </h3>
+        <div class="contact__method">
+          <div class="contact__method-icon"><i class="pi pi-envelope"></i></div>
+          <div class="contact__method-details">
+            <span class="contact__method-label">Email</span>
+            <span class="contact__method-value">{{email}}</span>
           </div>
-          <span class="contact__span">
-            <a
-              href="mailto:contacto@dappertechnologies.com"
-              class="contact__link"
-            >
-              <i class="pi pi-envelope"></i> {{ email }}
-            </a>
-          </span>
-          <span class="contact__span">
-            <a class="contact__link">
-              <i class="pi pi-phone"></i> +52 0123456789
-            </a>
-          </span>
-          <span class="contact__span">
-            <a class="contact__link">
-              <i class="pi pi-user"></i> otro contacto
-            </a>
-          </span>
+        </div>
+
+        <div class="contact__method">
+          <div class="contact__method-icon"><i class="pi pi-phone"></i></div>
+          <div class="contact__method-details">
+            <span class="contact__method-label">Teléfono</span>
+            <span class="contact__method-value">+52 998 107 3955</span>
           </div>
         </div>
       </div>
+
+      <div class="contact__office">
+        <h4 class="contact__office-title">Horario de atención</h4>
+        <div class="contact__office-detail"><i class="pi pi-map-marker"></i> Cancún Quintana Roo, MX</div>
+        <div class="contact__office-detail"><i class="pi pi-clock"></i> Lun-Vie: 9AM-6PM </div>
+      </div>
+
+      <div class="contact__social">
+        <h4 class="contact__social-title">¿Quieres mantenerte al día?</h4>
+        <div class="contact__social-links">
+          <a href="https://linkedin.com/minetworking" target="_blank" class="contact__social-link">LinkedIn</a>
+          <a href="https://instagram.com/minetworking" target="_blank" class="contact__social-link">Instagram</a>
+          <a href="https://twitter.com/minetworking" target="_blank" class="contact__social-link">Twitter</a>
+           <a href="https://twitter.com/minetworking" target="_blank" class="contact__social-link">Facebook</a>
+        </div>
+      </div>
+
+      <!-- <blockquote class="contact__quote"><i class="pi pi-comments"></i>
+        "Great networking isn't about collecting contacts, it's about building meaningful relationships."
+      </blockquote> -->
+    </aside>
   </div>
 </section>

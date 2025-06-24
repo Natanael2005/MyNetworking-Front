@@ -1,114 +1,120 @@
-import { ChangeDetectionStrategy, Component, HostListener, OnInit, Inject, PLATFORM_ID, NgZone } from '@angular/core';
+import { Component, HostListener, Inject, PLATFORM_ID, OnInit } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { Router, NavigationEnd } from '@angular/router';
-import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  isSmall = false; // Iniciar siempre pequeño por defecto
-  isHome = false;
+  active: string = 'home';
+  isSmall = false;
   disableAnimation = true;
+  isMobileMenuOpen = false;
+  private readonly isBrowser: boolean;
+  private sections = ['home', 'how-it-works', 'benefits', 'plans', 'faqs', 'contact'];
 
-  constructor(
-    @Inject(PLATFORM_ID) private platformId: Object,
-    private router: Router,
-    private ngZone: NgZone
-  ) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+  }
 
   ngOnInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      this.disableAnimation = false;
+    if (this.isBrowser) {
+      const hash = window.location.hash.substring(1);
+
+      if(window.innerHeight>50){
+        this.isSmall= true
+      } else{
+        this.isSmall = false
+      };
       
-      // Verificar la ruta actual inmediatamente
-      this.checkRoute();
-
-      // Escuchar cambios de navegación
-      this.router.events
-        .pipe(filter(event => event instanceof NavigationEnd))
-        .subscribe(() => {
-          this.ngZone.run(() => {
-            this.handleNavigation();
-          });
-        });
-
-      // Manejar scroll después de la navegación
-      setTimeout(() => {
-        this.checkScrollPosition();
-        this.checkHomeSection();
-      }, 100);
+      // 1. Configuración inicial sin transiciones
+      if (hash && this.sections.includes(hash)) {
+        this.disableAnimation = true; // Bloquea transiciones iniciales
+        this.isSmall = true; // Logo pequeño inmediatamente
+        this.active = hash;
+        
+        // 2. Scroll instantáneo y silencioso al recargar
+        setTimeout(() => {
+          const element = document.getElementById(hash);
+          if (element) {
+            const targetPosition = element.getBoundingClientRect().top + window.pageYOffset - 70;
+            window.scrollTo({ top: targetPosition, behavior: 'auto' });
+          }
+          this.disableAnimation = false; // Reactiva animaciones después
+        }, 50);
+      }
     }
   }
 
-  @HostListener('window:scroll', [])
-  onScroll(): void {
-    if (isPlatformBrowser(this.platformId) && this.isHome) {
-      this.checkScrollPosition();
-    }
+  @HostListener('window:scroll')
+  onWindowScroll(): void {
+    if (!this.isBrowser) return;
+    this.isMobileMenuOpen = false;
+    const wasSmall = this.isSmall;
+    this.isSmall = window.scrollY > 50;
+    if (wasSmall !== this.isSmall) this.disableAnimation = false;
+
+    this.detectActiveSection();
   }
 
-  private handleNavigation(): void {
-    this.disableAnimation = true;
-    this.checkRoute();
-    
-    setTimeout(() => {
-      this.checkHomeSection();
-      this.disableAnimation = false;
-    }, 50);
+  scrollTo(id: string): void {
+    if (!this.isBrowser) return;
+    this.active = id;
+    this.smoothScroll(id);
+    history.replaceState(null, '', `#${id}`);
+    this.isMobileMenuOpen = false;
   }
 
-  private checkRoute(): void {
-    const hash = window.location.hash;
-    this.isHome = !hash || hash === '#hero';
-  }
+  private smoothScroll(id: string): void {
+    const element = document.getElementById(id);
+    if (!element) return;
 
-  private checkHomeSection(): void {
-    if (this.isHome) {
-      this.isSmall = window.scrollY > 50;
-    } else {
-      this.isSmall = true;
-    }
-  }
+    const targetPosition = element.getBoundingClientRect().top + window.pageYOffset - (this.isSmall ? 70 : 120);
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+    const duration = 800;
+    let startTime: number | null = null;
 
-  private checkScrollPosition(): void {
-    if (this.isHome) {
-      this.isSmall = window.scrollY > 50;
-    }
-  }
-
-
-
-
-
-  handleMenuClick(event: Event): void {
-  if (isPlatformBrowser(this.platformId)) {
-    event.preventDefault();
-    const target = event.target as HTMLElement;
-    const link = target.closest('a');
-    
-    if (link) {
-      this.disableAnimation = true;
-      const hash = link.getAttribute('href') || '';
+    const animation = (currentTime: number) => {
+      if (!startTime) startTime = currentTime;
+      const timeElapsed = currentTime - startTime;
+      const progress = Math.min(timeElapsed / duration, 1);
+      const ease = this.easeInOutQuad(progress);
+      window.scrollTo(0, startPosition + distance * ease);
       
-      // Actualizar estado inmediatamente
-      this.isHome = hash === '#hero';
-      this.isSmall = !this.isHome || window.scrollY > 50;
-      
-      // Navegar después de actualizar el estado
-      setTimeout(() => {
-        window.location.hash = hash;
-        this.disableAnimation = false;
-      }, 10);
+      if (timeElapsed < duration) {
+        requestAnimationFrame(animation);
+      }
+    };
+
+    requestAnimationFrame(animation);
+  }
+
+  private detectActiveSection(): void {
+    const scrollPosition = window.scrollY + (this.isSmall ? 100 : 150);
+
+    for (const section of this.sections) {
+      const element = document.getElementById(section);
+      if (!element) continue;
+
+      const { offsetTop, offsetHeight } = element;
+      const sectionTop = offsetTop - 100;
+      const sectionBottom = offsetTop + offsetHeight - 100;
+
+      if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+        this.active = section;
+        break;
+      }
     }
   }
-}
 
+  private easeInOutQuad(t: number): number {
+    return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+  }
 
-
+  toggleMobileMenu(): void {
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
+  }
 }

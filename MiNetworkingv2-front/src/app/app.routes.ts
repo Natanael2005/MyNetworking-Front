@@ -4,11 +4,11 @@ import LandingComponent from './landing/landing.component';
 export const routes: Routes = [
 
     {
-        path: 'home',
+        path: '',
         component: LandingComponent
     },
     {
         path: '**',
-        redirectTo: 'home'
+        redirectTo: '' // Pagina no encontradas
     }
 ];

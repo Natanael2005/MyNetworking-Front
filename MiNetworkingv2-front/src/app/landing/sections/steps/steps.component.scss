@@ -66,26 +66,29 @@
   gap: 4.5rem;
   align-items: center;
   margin: 2rem 0 4rem 0;
-  max-width: 1450px;
+  //max-width: 1450px;
 
 
   .bg1{
-    background-image: linear-gradient(rgba(80, 79, 133, 0.614), rgba(80, 79, 133, 0.614)),
-   url('/assets/images/step1-bg.webp');
+  //   background-image: linear-gradient(rgba(80, 79, 133, 0.614), rgba(80, 79, 133, 0.614)),
+  //  url('/assets/images/step1-bg.webp');
+   background-color: $primary-color;
     background-repeat: no-repeat;
     background-size: cover;
   }
 
   .bg2{
-    background-image: linear-gradient(rgba(80, 79, 133, 0.614), rgba(80, 79, 133, 0.614)),
-   url('/assets/images/step2-bg.webp');
+  //   background-image: linear-gradient(rgba(80, 79, 133, 0.614), rgba(80, 79, 133, 0.614)),
+  //  url('/assets/images/step2-bg.webp');
+   background-color: $primary-color;
     background-repeat: no-repeat;
     background-size: cover;
   }
 
   .bg3{
-    background-image: linear-gradient(rgba(80, 79, 133, 0.614), rgba(80, 79, 133, 0.614)),
-   url('/assets/images/step3-bg.webp');
+    // background-image: linear-gradient(rgba(80, 79, 133, 0.614), rgba(80, 79, 133, 0.614)),
+  //  url('/assets/images/step3-bg.webp');
+   background-color: $primary-color;
     background-repeat: no-repeat;
     background-size: cover;
   }
@@ -98,7 +101,7 @@
       background-color: $secondary-color;
       margin-top: 0;
       margin-left: 0rem;
-      margin-bottom: -0.2rem;
+      margin-bottom: 0.4rem;
       max-width: 17%;
       border-radius: 10px;
       transition: all 200ms;
@@ -116,7 +119,7 @@
       color: $white-color;
       font-weight: 700;
       font-size: 1.2rem;
-      margin-bottom: -0.2rem;
+      margin-bottom: 0.3rem;
     }
 
     // descriptions
@@ -155,3 +158,8 @@
     // }
   }
 }
+
+
+
+
+

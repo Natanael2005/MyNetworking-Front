@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 
 import { ButtonModule } from 'primeng/button';
+import { BenefitsComponent } from "../benefits/benefits.component";
 
 @Component({
   selector: 'app-contact',
@@ -12,7 +13,7 @@ import { ButtonModule } from 'primeng/button';
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [InputTextModule, FormsModule, InputTextareaModule, ButtonModule],
+  imports: [InputTextModule, FormsModule, InputTextareaModule, ButtonModule,],
 })
 export class ContactComponent {
   value: string | undefined;
