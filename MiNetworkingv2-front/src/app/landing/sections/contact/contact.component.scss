@@ -1,174 +1,130 @@
-@use '../../../../styles/config' as *;
+@use "../../../../styles/config" as *;
 
-.contact{
+.contact {
   background-color: $secondary-color;
-  padding: 0 6rem 6rem 6rem;
+  padding: 0 6rem 6rem;
   position: relative;
 }
 
-.contact__header{
+.contact__header {
   padding-top: 6rem;
 }
 
-.contact__title{
+.contact__title {
   @include titule($primary-color);
   font-weight: 400;
   margin-bottom: 24px;
+
+  .contact__highlight {
+    font-weight: 900;
+  }
 }
 
-.contact__highlight{
-  font-weight: 900;
-}
-
-.contact__subtitle{
+.contact__subtitle {
   @include description($quinary-color);
   max-width: 600px;
   margin-bottom: 24px;
 }
 
-.img{
-  position: absolute;
-  top: 8rem;
-  right: 11rem;
-}
-
-
-
-.contact__content{
+.contact__content {
   display: flex;
-  flex-direction: row;
+  gap: 2rem;
   width: 100%;
   align-items: flex-start;
-
-  // display: grid;
-  // grid-template-columns: 60% 40%;
-  // width: 100%;
-  // align-items: start;
 }
 
-.contact__form-wrapper{
+// Estilos del Formulario
+.contact__form-wrapper {
   box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.25);
   background-color: $white-color;
-  padding: 48px;
+  padding: 0px 48px 48px 48px;
   border-radius: 15px;
   width: 60%;
 }
 
-.contact__form{
+.contact__form {
   margin: 0;
   padding: 0;
 }
 
-.contact__form-group--row{
-  // display: flex;
-  // align-items: center;
-  // margin-bottom: 24px;
-
+.contact__form-row {
   display: grid;
-  grid-template-columns: repeat(2 ,1fr);
-  grid-template-rows: repeat(1, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 96px;
+  margin-bottom: 24px;
 }
 
-.contact__form-group{
-  margin: 30px 0 0 0;
-}
-
-.contact__input-group{
-}
-
-.contact__label{
-  color: $primary-color;
-  font-family: $primary-font-titule;
-}
-
-.contact__input{
-  margin-top: 2rem;
-  width: 100%;
-
-  border: none;
-  border-bottom: 2px solid $quinary-color;
-  transition: border-color 0.3s;
-  
-   &::placeholder{
-    font-family: $font-text;
-    font-size: 1rem;
-  }
-}
-
-.contact__input:focus{
-  border-bottom-color: $primary-color;
-  outline: none;
-
-  
-}
-.contact__textarea{
-  margin-top: 2rem;
-  width: 100%;
-  //resize: none;
-
-  border: none;
-  border-bottom: 2px solid $quinary-color;
-  transition: border-color 0.3s;
-
-  &::placeholder{
-    font-family: $font-text;
-    font-size: 1rem;
-  }
-}
-
-.contact__textarea:focus{
-  border-bottom-color: $primary-color;
-  outline: none;
-}
-
-.contact__form-group{
+.contact__input-group {
+  margin: 30px 0 0;
   display: flex;
   flex-direction: column;
 }
 
-.contact__form-action{
- margin-top: 40px;
- margin-bottom: 0;
+.contact__label {
+  color: $primary-color;
+  font-family: $primary-font-titule;
 }
 
-.contact__submit{
+.contact__input {
+  margin-top: 2rem;
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid $quinary-color;
+  transition: border-color 0.3s;
+  font-family: $font-text;
+  font-size: 1rem;
+
+  &:focus {
+    border-bottom-color: $primary-color;
+    outline: none;
+  }
+}
+.contact__textarea {
+  margin-top: 2rem;
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid $quinary-color;
+  transition: border-color 0.3s;
+  font-family: $font-text;
+  font-size: 1rem;
+
+  &:focus {
+    border-bottom-color: $primary-color;
+    outline: none;
+  }
+}
+
+::ng-deep .p-button {
+  margin-top: 40px;
+  background-color: $primary-color;
+  border-radius: 5px;
+  padding: 0.8rem 2rem;
+  transition: all 200ms ease-out;
+  border: none;
+
+  .p-button-label {
+    font-weight: 700;
     color: $white-color;
-    background-color: $primary-color;
     font-family: $primary-font-titule;
     font-size: 1rem;
-    border-radius: 5px;
-    padding: 0.8rem 2rem;
-    transition: all 200ms ease-out;
-    border: none;
-    font-weight: 700;
+  }
+
+  &:hover{
+    cursor: pointer;
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.25);
+  }
 }
 
-.contact__submit:hover{
-  cursor: pointer;
-  transform: translateY(-5px);
-  transition: all 200ms ease-out;
-  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.25);
-}
-
-
-
-
-
-
-
-.contact__info{
+// Estilos de la Información de Contacto
+.contact__info {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 40%;
 }
 
-.contact__methods{
-  
-}
-
-.contact__methods-title{
+.contact__methods-title {
   color: $primary-color;
   font-family: $font-text;
   font-size: 24px;
@@ -176,7 +132,7 @@
   margin: 0;
 }
 
-.contact__method{
+.contact__method {
   display: flex;
   background-color: $white-color;
   padding: 16px;
@@ -185,42 +141,51 @@
   border-radius: 10px;
   width: 400px;
   transition: all 200ms ease-out;
+
+  &:hover {
+    cursor: pointer;
+    @include cards-hover;
+  }
 }
 
-.contact__method:hover{
-  cursor: pointer;
-  @include cards-hover;
+.contact__method-mail {
+  display: flex;
+  background-color: $white-color;
+  padding: 16px;
+  margin-top: 16px;
+  align-items: center;
+  border-radius: 10px;
+  width: 400px;
+  transition: all 200ms ease-out;
+  text-decoration: none;
+
+  &:hover {
+    cursor: pointer;
+    @include cards-hover;
+  }
 }
 
-.pi{
+.pi {
   color: $primary-color;
   font-size: 18px;
-  padding: 0 15px 0 0;
-  display: flex;
+  padding-right: 15px;
 }
 
-.contact__method-details{
+.contact__method-details {
   display: flex;
   flex-direction: column;
 }
 
-.contact__method-label{
+.contact__method-label {
   color: $primary-color;
   margin-bottom: 5px;
 }
 
-.contact__method-value{
+.contact__method-value {
   color: $gray-color;
 }
 
-
-
-
-
-
-
-
-.contact__office{
+.contact__office {
   background-color: $white-color;
   transition: all 200ms ease-out;
   width: 400px;
@@ -228,77 +193,72 @@
   padding: 20px;
   margin-top: 24px;
 }
-.contact__office-title{
+
+.contact__office-title {
   color: $primary-color;
   font-family: $primary-font-titule;
   font-size: 18px;
   font-weight: 500;
-  padding: 0;
   margin: 0;
 }
-.contact__office-detail{
+
+.contact__office-detail {
   display: flex;
   margin-top: 16px;
   color: $gray-color;
 }
 
-
-
-
-
-
-
-
-.contact__social{}
-
-.contact__social-title{
+.contact__social-title {
   color: $primary-color;
   font-size: 18px;
   font-weight: 600;
-  margin-top: 24px;
-  margin-bottom: 24px;
+  margin: 24px 0;
 }
 
-.contact__social-links{
-  
+.contact__social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
-.contact__social-link{
+.contact__social-link {
   padding: 5px 15px;
   color: $primary-color;
   text-decoration: none;
   font-family: $font-text;
   border: 1px solid $primary-color;
-  margin: 0 4px 0 0;
   border-radius: 15px;
   transition: all 200ms ease-out;
+
+  &:hover {
+    background-color: $quaternary-color;
+  }
 }
 
-.contact__social-link:hover{
-  transition: all 200ms ease-out;
-  background-color: $quaternary-color;
+
+::ng-deep .p-tooltip{
+
+  .p-tooltip-text{
+    color: $white-color;
+    padding: 5px 10px;
+    font-family: $font-text;
+    font-weight: 400;
+  }
 }
 
+::ng-deep .p-toast{
+  margin-bottom: 2rem;
 
+  .p-toast-detail{
+    padding-left: 0.5rem;
+  }
 
+  .p-toast-summary{
+    padding-left: 0.5rem;
+    margin-bottom: 0.2rem;
+  }
 
-
-
-
-.contact__quote{
-  margin-top: 50px;
-  width: 400px;
-  border-radius: 18px;
-  color: $white-color;
-  font-family: $font-text;
-  background-color: $tertiary-color;
-  font-size: 20px;
-  padding: 15px 10px;
-  font-weight: 300;
-}
-
-.pi-comments{
-  font-weight: 100;
-  color: $white-color;
-  margin-bottom: 10px;
+  .p-toast-message-content{
+    padding: 0.8rem 0.5rem;
+  }
 }

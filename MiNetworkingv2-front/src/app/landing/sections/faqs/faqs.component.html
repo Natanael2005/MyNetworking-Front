@@ -2,29 +2,21 @@
   <div class="faqs__container">
     <header class="faqs__header">
       <h2 id="faqs-heading" class="faqs__title">FAQs</h2>
-      <p class="faqs__subtitle">Respuestas a las preguntas más frecuentes</p>
+      <p class="faqs__subtitle">¿Tienes dudas? Aquí reunimos las preguntas más comunes para ayudarte a encontrar respuestas rápidas y claras. <br>
+      ¡Explora y encuentra justo lo que necesitas!</p>
+      <a href="#contact" class="faqs__cta-button">
+      Contacto <i class="pi pi-arrow-right"></i>
+    </a>
     </header>
 
     <div class="faqs__accordion">
-      <p-accordion>
-        <p-accordionTab header="ncjfnv">
-          <p>algomvkg b</p>
+       <p-accordion [activeIndex]="0">
+        <p-accordionTab [header]="tab.title" *ngFor="let tab of tabs">
+            <p class="m-0">
+                {{ tab.content }}
+            </p>
         </p-accordionTab>
-        <p-accordionTab header="ncjfnv 2">
-          <p>nvintb</p>
-        </p-accordionTab>
-        <p-accordionTab header="ncjfnv 3">
-          <p>nvjgbnghb</p>
-        </p-accordionTab>
-      </p-accordion>
+    </p-accordion>
     </div>
   </div>
 </section>
-
-<!-- <p-accordion>
-        <p-accordionTab *ngFor="let tab of tabs; let i = index" [header]="tab.title">
-          <div class="accordion-content">
-            {{ tab.content }}
-          </div>
-        </p-accordionTab>
-      </p-accordion> -->
