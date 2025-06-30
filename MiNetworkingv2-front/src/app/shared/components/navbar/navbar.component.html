@@ -1,30 +1,59 @@
 <div class="navbar">
+  <div class="navbar__container">
+    <div
+      class="navbar__logo-container"
+      id="a"
+      [class.logo-small]="isSmall"
+      [class.no-animation]="disableAnimation"
+    >
+      <img
+        class="navbar__logo-image"
+        src="assets/public/miNetworking.logo.png"
+        alt="mi networking logo"
+        id="b"
+        [class.logo-small]="isSmall"
+        [class.no-animation]="disableAnimation"
+      />
+      <span
+        class="navbar__logo-titule"
+        id="c"
+        [class.logo-small]="isSmall"
+        [class.no-animation]="disableAnimation"
+        >Networking</span
+      >
+    </div>
 
- <div class="navbar__logo-container" id="a"
-       [class.logo-small]="isSmall"
-       [class.no-animation]="disableAnimation">
-    <img class="navbar__logo-image" src="assets/public/miNetworking.logo.png"
-         alt="mi networking logo" id="b"
-         [class.logo-small]="isSmall"
-         [class.no-animation]="disableAnimation"/>
-    <span class="navbar__logo-titule" id="c"
-          [class.logo-small]="isSmall"
-          [class.no-animation]="disableAnimation">Networking</span>
+    <nav class="navbar__nav" aria-label="navegation bar" [class.mobile-open]="isMobileMenuOpen">
+      <ul class="navbar__nav-list">
+        <!-- <li class="navbar__nav-item" (click)="handleMenuClick($event)"><a class="navbar__nav-link" (click)="scrollTo('hero')">Inicio</a></li> -->
+        <li class="navbar__nav-item" [class.active]="active === 'home'">
+          <a class="navbar__nav-link" (click)="scrollTo('home')">Inicio</a>
+        </li>
+        <li class="navbar__nav-item" [class.active]="active === 'how-it-works'">
+          <a class="navbar__nav-link" (click)="scrollTo('how-it-works')"
+            >Cómo funciona</a
+          >
+        </li>
+        <li class="navbar__nav-item" [class.active]="active === 'benefits'">
+          <a class="navbar__nav-link" (click)="scrollTo('benefits')"
+            >Beneficios</a
+          >
+        </li>
+        <li class="navbar__nav-item" [class.active]="active === 'plans'">
+          <a class="navbar__nav-link" (click)="scrollTo('plans')">Planes</a>
+        </li>
+        <li class="navbar__nav-item" [class.active]="active === 'faqs'">
+          <a class="navbar__nav-link" (click)="scrollTo('faqs')">FAQs</a>
+        </li>
+        <li class="navbar__nav-item" [class.active]="active === 'contact'">
+          <a class="navbar__nav-link" (click)="scrollTo('contact')">Contacto</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="navbar__login">
+      <button class="navbar__login-button">Iniciar</button>
+      <i class="pi pi-bars" id="menu-icon" (click)="toggleMobileMenu()"></i>
+    </div>
   </div>
-
-  <nav class="navbar__nav" aria-label="navegation bar">
-    <ul class="navbar__nav-list">
-      <li class="navbar__nav-item" (click)="handleMenuClick($event)"><a class="navbar__nav-link" href="#hero">Inicio</a></li>
-      <li class="navbar__nav-item" (click)="handleMenuClick($event)"><a class="navbar__nav-link" href="#how-it-works">Cómo funciona</a></li>
-      <li class="navbar__nav-item" (click)="handleMenuClick($event)"><a class="navbar__nav-link" href="#benefits">Beneficios</a></li>
-      <li class="navbar__nav-item" (click)="handleMenuClick($event)"><a class="navbar__nav-link" href="#plans">Planes</a></li>
-      <li class="navbar__nav-item" (click)="handleMenuClick($event)"><a class="navbar__nav-link" href="#faqs">FAQs</a></li>
-      <li class="navbar__nav-item" (click)="handleMenuClick($event)"><a class="navbar__nav-link" href="#contact">Contacto</a></li>
-    </ul>
-  </nav>
-
-  <div class="navbar__login">
-    <button class="navbar__login-button" >Iniciar</button>
-  </div>
-
 </div>

@@ -1,110 +1,101 @@
-@use '../../../../styles/config' as *;
+@use "../../../../styles/config" as *;
 
 .benefits {
-   background-image: linear-gradient(rgba(5, 2, 60, 0.655), rgba(28, 19, 193, 0.329)),
-   url('/assets/images/benefits-bg.webp');
+  position: relative;
+  padding: 4rem 0;
+  background-image: linear-gradient(
+      rgba(5, 2, 60, 0.655),
+      rgba(28, 19, 193, 0.329)
+    ),
+    url("/assets/images/benefits-bg.webp");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  padding: 4rem 0;
-
-  position: relative;
-
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     backdrop-filter: blur(3px);
     z-index: 0;
   }
-}
 
-.benefits__container {
-  max-width: 1450px;
-  margin: 0 auto;
-  padding-bottom: 4rem;
-  position: relative;
-  z-index: 1;
-}
-
-.benefits__header {
-  @include header;
-}
-
-.benefits__title {
-  //@include titule($primary-color);
-  @include titule($white-color);
-}
-
-.benefits__subtitle {
-  @include description($white-color);
-  margin-bottom: 3rem;
-}
-
-.benefits__list {
-  flex-wrap: wrap;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  //grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 3rem;
-}
-
-.benefits__item {
-  //background-color: $white-color;
-  background-color: $secondary-color;
-  border-radius: 10px;
-  // padding: 1.5rem;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: flex;
-  align-items: flex-start;
-  // gap: 1rem;
-
-  
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.80);
+  &__container {
+    max-width: 1450px;
+    margin: 0 auto;
+    padding-bottom: 4rem;
+    position: relative;
+    z-index: 1;
   }
-}
 
-.benefits__image-wrapper {
-  //background-color: $secondary-color;
-  background-color: $white-color;
-  border-radius: 8px;
-  padding: 0.8rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  //margin: 20px 16px 0 16px;
-}
+  &__header {
+    @include header;
+  }
 
-.benefits__icon {
-  color: $primary-color;
-  font-size: 1.5rem;
-}
+  &__title {
+    @include titule($white-color);
+  }
 
-.benefits__content {
-  flex: 1;
-  padding: 0 40px 0 0;
-}
+  &__subtitle {
+    @include description($white-color);
+    margin-bottom: 3rem;
+  }
 
-.benefits__item-title {
-  font-family: $primary-font-titule;
-  color: $primary-color;
-  font-size: 1.25rem;
-  margin-bottom: 0.75rem;
-  font-weight: 600;
-}
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
 
-.benefits__item-description {
-  text-wrap: balance;
-  font-family: $primary-font-titule;
-  color: $gray-color;
-  line-height: 1.5;
-  font-size: 0.95rem;
+  &__item {
+    background-color: $secondary-color;
+    border-radius: 10px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.8);
+    }
+  }
+
+  &__icon-wrapper {
+    background-color: $white-color;
+    border-radius: 8px;
+    padding: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__icon {
+    color: $primary-color;
+    font-size: 1.5rem;
+  }
+
+  &__item-content {
+    flex: 1;
+    padding-left: 20px;
+  }
+
+  &__item-title {
+    font-family: $primary-font-titule;
+    color: $primary-color;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+
+  &__item-description {
+    font-family: $primary-font-titule;
+    color: $gray-color;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    text-wrap: balance;
+  }
 }
