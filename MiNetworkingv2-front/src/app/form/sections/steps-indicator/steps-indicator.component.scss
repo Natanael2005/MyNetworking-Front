@@ -1,0 +1,293 @@
+// Variables
+$primary-color: #24295B;
+$success-color: #10b981;
+$background-white: #ffffff;
+$text-gray: #6b7280;
+$text-light: #9ca3af;
+$border-color: #e5e7eb;
+
+:host {
+  display: block;
+  width: 100%;
+  background-color: $background-white;
+  padding: 2rem 1rem;
+}
+
+.steps-indicator {
+  max-width: 1200px;
+  margin: 0 auto;
+
+  .steps-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    margin-bottom: 4rem;
+
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      flex: 1;
+      position: relative;
+
+      .step-circle {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 1.125rem;
+        margin-bottom: 1rem;
+        transition: all 0.3s ease;
+        border: 2px solid $border-color;
+        background-color: $background-white;
+        position: relative;
+        z-index: 2;
+
+        .step-number {
+          color: $text-gray;
+        }
+
+        i {
+          font-size: 1.25rem;
+          color: $background-white;
+        }
+      }
+
+      .step-content {
+        .step-title {
+          font-size: 0.9rem;
+          font-weight: 600;
+          color: $text-gray;
+          margin: 0 0 0.25rem 0;
+          transition: color 0.3s ease;
+        }
+
+        .step-description {
+          font-size: 0.8rem;
+          color: $text-light;
+          margin: 0;
+          transition: color 0.3s ease;
+        }
+      }
+
+      // Línea conectora
+      .step-connector {
+        position: absolute;
+        top: 1.5rem;
+        left: calc(50% + 1.5rem);
+        right: calc(-50% + 1.5rem);
+        height: 3px;
+        background-color: $border-color;
+        transition: background-color 0.3s ease;
+        z-index: 1;
+        border-radius: 1.5px;
+
+        &.completed {
+          background-color: $primary-color;
+        }
+      }
+
+      // Estados del paso
+      &.completed {
+        .step-circle {
+          background-color: $success-color;
+          border-color: $success-color;
+        }
+
+        .step-content {
+          .step-title {
+            color: $success-color;
+          }
+          .step-description {
+            color: $success-color;
+          }
+        }
+      }
+
+      &.current {
+        .step-circle {
+          background-color: $primary-color;
+          border-color: $primary-color;
+
+          .step-number {
+            color: $background-white;
+          }
+        }
+
+        .step-content {
+          .step-title {
+            color: $primary-color;
+            font-weight: 700;
+          }
+          .step-description {
+            color: $primary-color;
+          }
+        }
+      }
+
+      &.pending {
+        .step-circle {
+          background-color: $background-white;
+          border-color: $border-color;
+        }
+      }
+    }
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: 4px;
+    background-color: $border-color;
+    border-radius: 2px;
+    overflow: hidden;
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, $primary-color 0%, $success-color 100%);
+      border-radius: 2px;
+      transition: width 0.5s ease;
+    }
+  }
+
+  // Tablets - Reducción moderada
+  @media (max-width: 1024px) {
+    padding: 1.5rem 0.75rem;
+
+    .steps-container {
+      .step {
+        .step-circle {
+          width: 2.75rem;
+          height: 2.75rem;
+          font-size: 1rem;
+          margin-bottom: 0.875rem;
+
+          i {
+            font-size: 1.125rem;
+          }
+        }
+
+        .step-content {
+          .step-title {
+            font-size: 0.85rem;
+          }
+
+          .step-description {
+            font-size: 0.75rem;
+          }
+        }
+
+        .step-connector {
+          top: 1.375rem;
+          left: calc(50% + 1.375rem);
+          right: calc(-50% + 1.375rem);
+        }
+      }
+    }
+  }
+
+  // Móviles - OCULTAR TÍTULOS Y DESCRIPCIONES
+  @media (max-width: 590px) {
+    padding: 1.25rem 0.5rem;
+
+    .steps-container {
+      align-items: center; // Centrar solo los círculos
+      margin-bottom: 1.5rem; // Menos margen sin texto
+
+      .step {
+        .step-circle {
+          width: 2.5rem;
+          height: 2.5rem;
+          font-size: 0.95rem;
+          margin-bottom: 0; // Sin margen porque no hay texto debajo
+
+          i {
+            font-size: 1rem;
+          }
+        }
+
+        // OCULTAR TODO EL CONTENIDO DE TEXTO EN MÓVILES
+        .step-content {
+          display: none;
+        }
+
+        .step-connector {
+          top: 1.25rem;
+          left: calc(50% + 1.25rem);
+          right: calc(-50% + 1.25rem);
+          height: 2px;
+        }
+      }
+    }
+  }
+
+  // Móviles pequeños - Solo círculos
+  @media (max-width: 480px) {
+    padding: 1rem 0.25rem;
+
+    .steps-container {
+      margin-bottom: 1.25rem;
+
+      .step {
+        .step-circle {
+          width: 2.25rem;
+          height: 2.25rem;
+          font-size: 0.9rem;
+          margin-bottom: 0;
+
+          i {
+            font-size: 0.95rem;
+          }
+        }
+
+        .step-content {
+          display: none;
+        }
+
+        .step-connector {
+          top: 1.125rem;
+          left: calc(50% + 1.125rem);
+          right: calc(-50% + 1.125rem);
+          height: 2px;
+        }
+      }
+    }
+  }
+
+  // Móviles muy pequeños - Círculos mínimos
+  @media (max-width: 360px) {
+    padding: 0.75rem 0.125rem;
+
+    .steps-container {
+      margin-bottom: 1rem;
+
+      .step {
+        .step-circle {
+          width: 2rem;
+          height: 2rem;
+          font-size: 0.85rem;
+          margin-bottom: 0;
+
+          i {
+            font-size: 0.9rem;
+          }
+        }
+
+        .step-content {
+          display: none;
+        }
+
+        .step-connector {
+          top: 1rem;
+          left: calc(50% + 1rem);
+          right: calc(-50% + 1rem);
+          height: 2px;
+        }
+      }
+    }
+  }
+}

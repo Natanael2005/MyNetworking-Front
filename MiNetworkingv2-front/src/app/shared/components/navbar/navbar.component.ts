@@ -25,7 +25,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       this.disableAnimation = false;
-      
+
       // Verificar la ruta actual inmediatamente
       this.checkRoute();
 
@@ -56,7 +56,7 @@ export class NavbarComponent implements OnInit {
   private handleNavigation(): void {
     this.disableAnimation = true;
     this.checkRoute();
-    
+
     setTimeout(() => {
       this.checkHomeSection();
       this.disableAnimation = false;
@@ -91,15 +91,15 @@ export class NavbarComponent implements OnInit {
     event.preventDefault();
     const target = event.target as HTMLElement;
     const link = target.closest('a');
-    
+
     if (link) {
       this.disableAnimation = true;
       const hash = link.getAttribute('href') || '';
-      
+
       // Actualizar estado inmediatamente
       this.isHome = hash === '#hero';
       this.isSmall = !this.isHome || window.scrollY > 50;
-      
+
       // Navegar después de actualizar el estado
       setTimeout(() => {
         window.location.hash = hash;

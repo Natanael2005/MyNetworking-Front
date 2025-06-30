@@ -1,0 +1,40 @@
+<div class="steps-indicator">
+  <div class="steps-container">
+    <div
+      class="step"
+      *ngFor="let step of steps; let i = index"
+      [ngClass]="getStepClass(step.id)"
+    >
+      <!-- Círculo del paso -->
+      <div class="step-circle">
+        <span class="step-number" *ngIf="!isCompletedStep(step.id)">
+          {{ step.id }}
+        </span>
+        <i class="pi pi-check" *ngIf="isCompletedStep(step.id)"></i>
+      </div>
+
+      <!-- Contenido del paso -->
+      <div class="step-content">
+        <h3 class="step-title">{{ step.title }}</h3>
+        <p class="step-description" *ngIf="step.description">
+          {{ step.description }}
+        </p>
+      </div>
+
+      <!-- Línea conectora (no mostrar en el último paso) -->
+      <div
+        class="step-connector"
+        *ngIf="i < steps.length - 1"
+        [ngClass]="{ 'completed': isCompletedStep(step.id + 1) || isCurrentStep(step.id + 1) }"
+      ></div>
+    </div>
+  </div>
+
+  <!-- Barra de progreso -->
+  <div class="progress-bar">
+    <div
+      class="progress-fill"
+      [style.width.%]="((currentStep - 1) / (totalSteps - 1)) * 100"
+    ></div>
+  </div>
+</div>

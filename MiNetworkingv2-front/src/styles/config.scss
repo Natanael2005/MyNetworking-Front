@@ -6,7 +6,7 @@ $quaternary-color: #fafafa ;
 $quinary-color: #9e9e9e;
 $white-color: #ffffff;
 $black-color: #000000;
-$gray-color: #626262; 
+$gray-color: #626262;
 $font-titule: 'Lora';
 $primary-font-titule: 'Roboto' ;
 $font-text: 'Roboto' ;
@@ -127,5 +127,4 @@ html, body{
     display: grid;
     min-height: 100vh;
     grid-template-rows: auto 1fr auto;
-    background-color: $primary-color;
 }

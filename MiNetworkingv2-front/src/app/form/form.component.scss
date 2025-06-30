@@ -1,0 +1,104 @@
+/* Nav */
+:host ::ng-deep .custom-stepper .p-stepper-nav {
+  display: flex;
+  justify-content: space-between;
+  margin: 7rem 0 3rem 0;
+}
+
+/* Círculos - AUMENTADOS DE TAMAÑO */
+:host ::ng-deep .custom-stepper .p-stepper-head {
+  width: 5rem;           /* Aumentado de 3rem a 5rem */
+  height: 5rem;          /* Aumentado de 3rem a 5rem */
+  border: 4px solid #6B8F71;  /* Aumentado de 3px a 4px */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;    /* Aumentado de 1.25rem a 1.75rem */
+  font-weight: 700;      /* Aumentado de 600 a 700 */
+  background: transparent;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(107, 143, 113, 0.2);
+}
+
+/* Paso activo - MÁS PROMINENTE */
+:host ::ng-deep .custom-stepper .p-stepper-head.p-highlight {
+  background-color: #6B8F71;
+  color: #fff;
+  transform: scale(1.1);  /* Efecto de escala para el paso activo */
+  box-shadow: 0 6px 20px rgba(107, 143, 113, 0.4);
+}
+
+/* Texto bajo cada círculo - MÁS GRANDE */
+:host ::ng-deep .custom-stepper .p-stepper-title {
+  font-size: 1.25rem;    /* Aumentado de 1rem a 1.25rem */
+  color: #292d74;
+  font-weight: 600;
+  margin-top: 1rem;      /* Más espacio entre círculo y texto */
+}
+
+/* Conector entre pasos - MÁS GRUESO */
+:host ::ng-deep .custom-stepper .p-stepper-tail {
+  flex: 1;
+  height: 8px;           /* Aumentado de 6px a 8px */
+  background-color: #EEE;
+  margin: 0 1rem;        /* Más espacio alrededor del conector */
+  border-radius: 4px;
+}
+
+/* Conector activo */
+:host ::ng-deep .custom-stepper .p-stepper-tail.p-highlight {
+  background-color: #6B8F71;
+}
+
+/* Títulos grandes centrados - MÁS PROMINENTES */
+:host ::ng-deep .custom-stepper h2 {
+  font-size: 2.5rem;     /* Aumentado de 2rem a 2.5rem */
+  text-align: center;
+  margin-bottom: 1.5rem; /* Más espacio */
+  color: #24295B;
+  font-weight: 700;      /* Más peso */
+}
+
+/* Subtítulos centrados - MÁS GRANDES */
+:host ::ng-deep .custom-stepper p {
+  font-size: 1.35rem;    /* Aumentado de 1.15rem a 1.35rem */
+  text-align: center;
+  margin-bottom: 8rem;
+  color: #24295B;
+  line-height: 1.5;      /* Mejor espaciado de línea */
+}
+
+/* Responsive - Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+  :host ::ng-deep .custom-stepper .p-stepper-head {
+    width: 4rem;
+    height: 4rem;
+    font-size: 1.5rem;
+  }
+
+  :host ::ng-deep .custom-stepper .p-stepper-title {
+    font-size: 1.1rem;
+  }
+
+  :host ::ng-deep .custom-stepper h2 {
+    font-size: 2rem;
+  }
+
+  :host ::ng-deep .custom-stepper p {
+    font-size: 1.2rem;
+  }
+}
+
+/* Animaciones adicionales */
+:host ::ng-deep .custom-stepper .p-stepper-head:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(107, 143, 113, 0.3);
+}
+
+/* Paso completado */
+:host ::ng-deep .custom-stepper .p-stepper-head.p-disabled {
+  background-color: #f8f9fa;
+  border-color: #dee2e6;
+  color: #6c757d;
+}

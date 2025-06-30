@@ -1,0 +1,760 @@
+// Variables mejoradas con colores más modernos
+$primary: #24295B;
+$primary-light: #3a4176;
+$primary-dark: #1a1e42;
+$error: #ef4444;
+$success: #10b981;
+$warning: #f59e0b;
+$background-blue: #eff6ff;
+$background-white: #ffffff;
+$gray-50: #f9fafb;
+$gray-100: #f3f4f6;
+$gray-200: #e5e7eb;
+$gray-300: #d1d5db;
+$gray-400: #9ca3af;
+$gray-500: #6b7280;
+$gray-600: #4b5563;
+$gray-700: #374151;
+$gray-800: #1f2937;
+$gray-900: #111827;
+
+// Mixins mejorados
+@mixin glass-effect {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+@mixin smooth-transition($properties: all, $duration: 0.2s, $easing: cubic-bezier(0.4, 0, 0.2, 1)) {
+  transition: $properties $duration $easing;
+}
+
+@mixin button-hover-effect {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba($primary, 0.25);
+}
+
+@mixin focus-ring($color: $primary) {
+  box-shadow: 0 0 0 4px rgba($color, 0.15);
+}
+
+:host {
+  display: block;
+  width: 100%;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.form-container {
+  max-width: 1200px;
+  margin: 3rem auto;
+  border-radius: 28px;
+  background: linear-gradient(145deg, $background-blue 0%, rgba(239, 246, 255, 0.8) 100%);
+  border: 1px solid rgba($gray-200, 0.8);
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  @include glass-effect;
+  box-shadow:
+    0 25px 50px rgba($primary, 0.08),
+    0 10px 20px rgba($primary, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+
+  // Efecto de brillo superior
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent);
+  }
+
+  .form-header {
+    padding: 3.5rem;
+    position: relative;
+
+    .header-content {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+
+      .header-icon {
+        color: $primary;
+        background: linear-gradient(145deg, $background-white, $gray-50);
+        padding: 1.5rem;
+        border-radius: 20px;
+        border: 1px solid rgba($gray-200, 0.8);
+        box-shadow:
+          0 6px 16px rgba($primary, 0.1),
+          inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        @include smooth-transition;
+
+        svg {
+          width: 32px;
+          height: 32px;
+        }
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow:
+            0 10px 25px rgba($primary, 0.15),
+            inset 0 1px 0 rgba(255, 255, 255, 1);
+        }
+      }
+
+      .header-text {
+        flex: 1;
+
+        .form-title {
+          font-size: 2.25rem;
+          font-weight: 700;
+          color: $primary;
+          margin: 0 0 0.75rem 0;
+          letter-spacing: -0.025em;
+          line-height: 1.2;
+        }
+
+        .form-subtitle {
+          font-size: 1rem;
+          color: $gray-600;
+          margin: 0;
+          font-weight: 400;
+          opacity: 0.9;
+          text-align: left;
+        }
+      }
+    }
+
+    .title-underline {
+      width: 100px;
+      height: 5px;
+      background: linear-gradient(90deg, $primary, $primary-light);
+      border-radius: 2px;
+      margin-left: 6rem;
+      box-shadow: 0 2px 4px rgba($primary, 0.3);
+    }
+  }
+
+  .form-body {
+    padding: 0 3.5rem 3.5rem;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    // Aumentar un poco el gap entre campos
+    gap: 1.75rem;
+    margin-bottom: 2rem;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+
+  .form-group {
+    position: relative;
+    // Aumentar ligeramente el padding bottom
+    padding-bottom: 0.75rem;
+
+    &.full-width {
+      grid-column: span 2;
+      // Extender el input de puesto para alinearlo con el de teléfono
+      max-width: 100%;
+
+      @media (max-width: 768px) {
+        grid-column: span 1;
+        max-width: 100%;
+      }
+    }
+
+    .field-label {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      margin-bottom: 0.75rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: $gray-700;
+
+      .label-text {
+        color: $gray-700;
+      }
+
+      .required-indicator {
+        color: $error;
+        font-weight: 700;
+      }
+    }
+
+    .input-wrapper {
+      position: relative;
+
+      .form-control {
+        width: 100%;
+        padding: 1.25rem 1.5rem;
+        border: 2px solid $gray-300;
+        border-radius: 16px;
+        font-size: 1rem;
+        font-family: inherit;
+        background: $background-white;
+        color: $gray-800;
+        min-height: 3.5rem;
+        @include smooth-transition;
+        box-shadow:
+          0 2px 8px rgba(0, 0, 0, 0.04),
+          inset 0 1px 0 rgba(255, 255, 255, 0.9);
+
+        // Estilo consistente para campos llenos (simula autocomplete)
+        &.filled,
+        &:-webkit-autofill,
+        &:-webkit-autofill:hover,
+        &:-webkit-autofill:focus,
+        &:-webkit-autofill:active {
+          background: linear-gradient(180deg, #fefefe 0%, #f9fafb 100%) !important;
+          -webkit-box-shadow:
+            0 0 0 30px transparent inset,
+            0 2px 8px rgba(0, 0, 0, 0.04),
+            inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+          box-shadow:
+            0 2px 8px rgba(0, 0, 0, 0.04),
+            inset 0 1px 0 rgba(255, 255, 255, 0.9);
+          -webkit-text-fill-color: $gray-800 !important;
+          border-color: rgba($primary, 0.25) !important;
+        }
+
+        // Para Firefox
+        &:-moz-autofill {
+          background: linear-gradient(180deg, #fefefe 0%, #f9fafb 100%) !important;
+          box-shadow:
+            0 2px 8px rgba(0, 0, 0, 0.04),
+            inset 0 1px 0 rgba(255, 255, 255, 0.9);
+          border-color: rgba($primary, 0.25) !important;
+        }
+
+        &::placeholder {
+          color: $gray-600;
+          font-weight: 400;
+        }
+
+        &:hover {
+          border-color: rgba($primary, 0.4);
+          box-shadow:
+            0 4px 12px rgba(0, 0, 0, 0.08),
+            inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        }
+
+        &:focus,
+        &.focused {
+          outline: none;
+          border-color: $primary;
+          @include focus-ring($primary);
+
+          &::placeholder {
+            color: $gray-400;
+          }
+
+          // Mantener el estilo filled cuando está enfocado
+          &.filled {
+            background: linear-gradient(180deg, #fefefe 0%, #f9fafb 100%);
+          }
+        }
+
+        &.error {
+          border-color: $error;
+          @include focus-ring($error);
+
+          &::placeholder {
+            color: rgba($error, 0.5);
+          }
+        }
+      }
+
+      .input-border {
+        display: none;
+      }
+    }
+
+    .error-message {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      margin-top: 0.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: $error;
+      font-size: 0.8rem;
+      font-weight: 500;
+      opacity: 0;
+      transform: translateY(-4px);
+      @include smooth-transition;
+      pointer-events: none;
+      z-index: 10;
+
+      svg {
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
+      }
+
+      &:not(:empty) {
+        opacity: 1;
+        transform: translateY(0);
+        animation: slideInError 0.3s ease-out;
+        pointer-events: auto;
+      }
+    }
+  }
+
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 1.5rem;
+
+    .btn-submit {
+      background: linear-gradient(135deg, $primary 0%, $primary-light 100%);
+      color: white;
+      border: none;
+      padding: 1.25rem 2.5rem;
+      border-radius: 18px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      min-width: 240px;
+      height: 4rem;
+      box-shadow:
+        0 6px 16px rgba($primary, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      @include smooth-transition;
+
+      .button-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        position: relative;
+        z-index: 2;
+
+        svg {
+          width: 22px;
+          height: 22px;
+          @include smooth-transition(transform);
+        }
+      }
+
+      .button-ripple {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+        opacity: 0;
+        @include smooth-transition(opacity);
+      }
+
+      .spinner {
+        width: 22px;
+        height: 22px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-top: 2px solid white;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      &:hover:not(:disabled) {
+        @include button-hover-effect;
+
+        .button-ripple {
+          opacity: 1;
+        }
+
+        .button-content svg {
+          transform: translateX(2px);
+        }
+      }
+
+      &:active:not(:disabled) {
+        transform: translateY(0);
+        box-shadow: 0 4px 12px rgba($primary, 0.3);
+      }
+
+      &:disabled {
+        background: linear-gradient(135deg, $gray-400, $gray-500);
+        cursor: not-allowed;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        opacity: 0.7;
+      }
+
+      &.loading {
+        .button-content {
+          opacity: 0.9;
+        }
+      }
+
+      &.success {
+        background: $success;
+
+        .button-content svg {
+          animation: checkmark 0.5s ease-in-out;
+        }
+      }
+    }
+  }
+
+  // Responsive mejorado con mejor centrado para móviles
+  @media (max-width: 768px) {
+    margin: 1rem auto;
+    border-radius: 20px;
+    // Centrado perfecto en móviles
+    max-width: calc(100vw - 2rem);
+
+    .form-header {
+      padding: 2rem 1.5rem;
+      // Remover text-align: center
+
+      .header-content {
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        // Mantener justify-content: flex-start (por defecto)
+        flex-direction: row;
+        align-items: flex-start;
+
+        .header-icon {
+          padding: 1rem;
+          border-radius: 14px;
+
+          svg {
+            width: 24px;
+            height: 24px;
+          }
+        }
+
+        .header-text {
+          // Mantener text-align: left (por defecto)
+
+          .form-title {
+            font-size: 1.75rem;
+            line-height: 1.3;
+          }
+
+          .form-subtitle {
+            font-size: 0.875rem;
+            line-height: 1.4;
+          }
+        }
+      }
+
+      .title-underline {
+        width: 70px;
+        height: 3px;
+        margin-left: 3.5rem; // Alineado con el texto después del icono
+      }
+    }
+
+    .form-body {
+      padding: 0 1.5rem 2rem;
+    }
+
+    .form-grid {
+      gap: 1.8rem;
+    }
+
+    .form-group {
+      padding-bottom: 0.5rem;
+
+      .field-label {
+        font-size: 0.875rem;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+      }
+
+      .input-wrapper {
+        .form-control {
+          padding: 1rem 1.25rem;
+          min-height: 3rem;
+          font-size: 1rem;
+          border-radius: 12px;
+
+          &::placeholder {
+            font-size: 0.9rem;
+          }
+        }
+      }
+
+      .error-message {
+        font-size: 0.75rem;
+        margin-top: 0.25rem;
+      }
+    }
+
+    .form-actions {
+      padding-top: 1.5rem;
+      justify-content: center;
+
+      .btn-submit {
+        width: 100%;
+        max-width: 400px;
+        height: 3.5rem;
+        font-size: 1rem;
+        border-radius: 14px;
+        min-width: unset;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    margin: 0.75rem auto;
+    border-radius: 18px;
+    max-width: calc(100vw - 1.5rem);
+
+    .form-header {
+      padding: 1.5rem 1.25rem;
+
+      .header-content {
+        gap: 1rem;
+        margin-bottom: 1.25rem;
+
+        .header-icon {
+          padding: 0.875rem;
+          border-radius: 12px;
+
+          svg {
+            width: 22px;
+            height: 22px;
+          }
+        }
+
+        .header-text {
+          .form-title {
+            font-size: 1.5rem;
+            line-height: 1.25;
+          }
+
+          .form-subtitle {
+            font-size: 0.8rem;
+            line-height: 1.4;
+          }
+        }
+      }
+
+      .title-underline {
+        width: 60px;
+        height: 3px;
+      }
+    }
+
+    .form-body {
+      padding: 0 1.25rem 1.5rem;
+    }
+
+    .form-grid {
+      gap: 1rem;
+    }
+
+    .form-group {
+      padding-bottom: 0.25rem;
+
+      .field-label {
+        font-size: 0.8rem;
+        margin-bottom: 0.4rem;
+      }
+
+      .input-wrapper {
+        .form-control {
+          padding: 0.875rem 1rem;
+          min-height: 2.75rem;
+          font-size: 0.95rem;
+          border-radius: 10px;
+
+          &::placeholder {
+            font-size: 0.85rem;
+          }
+        }
+      }
+
+      .error-message {
+        font-size: 0.7rem;
+        margin-top: 0.2rem;
+
+        svg {
+          width: 12px;
+          height: 12px;
+        }
+      }
+    }
+
+    .form-actions {
+      padding-top: 1.25rem;
+
+      .btn-submit {
+        height: 3.25rem;
+        font-size: 0.95rem;
+        border-radius: 12px;
+        max-width: 100%;
+
+        .button-content {
+          gap: 0.5rem;
+
+          svg {
+            width: 18px;
+            height: 18px;
+          }
+        }
+
+        .spinner {
+          width: 18px;
+          height: 18px;
+        }
+      }
+    }
+  }
+
+  // Mejoras adicionales para móviles muy pequeños
+  @media (max-width: 360px) {
+    .form-container {
+      margin: 0.5rem auto;
+      max-width: calc(100vw - 1rem);
+    }
+
+    .form-header {
+      padding: 1.25rem 1rem;
+
+      .header-content {
+        .header-text {
+          .form-title {
+            font-size: 1.375rem;
+          }
+
+          .form-subtitle {
+            font-size: 0.75rem;
+          }
+        }
+      }
+    }
+
+    .form-body {
+      padding: 0 1rem 1.25rem;
+    }
+
+    .form-group {
+      .input-wrapper {
+        .form-control {
+          padding: 0.75rem 0.875rem;
+          min-height: 2.5rem;
+          font-size: 0.9rem;
+        }
+      }
+    }
+
+    .form-actions {
+      .btn-submit {
+        height: 3rem;
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  // Mejoras para touch targets en móvil
+  @media (max-width: 768px) {
+    .form-control {
+      // Asegurar que los inputs sean fáciles de tocar
+      min-height: 44px !important;
+    }
+
+    .btn-submit {
+      // Botón fácil de tocar
+      min-height: 44px !important;
+    }
+
+    // Mejorar el espaciado entre elementos tocables
+    .form-group + .form-group {
+      margin-top: 0.25rem;
+    }
+  }
+
+  // Optimización para landscape en móvil
+  @media (max-width: 768px) and (orientation: landscape) {
+    .form-container {
+      margin: 0.5rem auto;
+    }
+
+    .form-header {
+      padding: 1.5rem;
+
+      .header-content {
+        margin-bottom: 1rem;
+        flex-direction: row;
+        // Remover text-align: left ya que es por defecto
+
+        .header-text {
+          // Remover text-align: left ya que es por defecto
+
+          .form-title {
+            font-size: 1.5rem;
+          }
+        }
+      }
+
+      .title-underline {
+        margin-left: 4rem;
+      }
+    }
+
+    .form-body {
+      padding: 0 1.5rem 1.5rem;
+    }
+
+    .form-grid {
+      gap: 1rem;
+    }
+  }
+}
+
+// Animaciones mejoradas
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes checkmark {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+@keyframes slideInError {
+  0% {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Mejoras de accesibilidad
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+// Focus visible para navegación por teclado
+.form-control:focus-visible {
+  outline: 2px solid $primary;
+  outline-offset: 2px;
+}
+
+.btn-submit:focus-visible {
+  outline: 2px solid $primary;
+  outline-offset: 2px;
+}

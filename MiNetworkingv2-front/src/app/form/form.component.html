@@ -1,0 +1,43 @@
+<p-stepper [(activeStep)]="step" [linear]="true" class="custom-stepper">
+
+  <!-- Paso 1: Contacto -->
+  <p-stepperPanel header="Contacto">
+    <ng-template pTemplate="content" let-nextCallback="nextCallback">
+      <!-- Título y subtítulo sencillos -->
+      <h2>Formulario de Contacto</h2>
+      <p>Completa los campos para continuar</p>
+
+      <!-- Formulario de contacto -->
+      <app-contact-form
+        (formSubmit)="onStep1Complete($event); nextCallback.emit()">
+      </app-contact-form>
+    </ng-template>
+  </p-stepperPanel>
+
+  <!-- Paso 2: Pago -->
+  <p-stepperPanel header="Pago">
+    <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback">
+      <h2>2. Pago</h2>
+      <p>Revisa y confirma tu método de pago</p>
+
+      <app-payment
+        (completed)="onStep2Complete($event); nextCallback.emit()">
+      </app-payment>
+    </ng-template>
+  </p-stepperPanel>
+
+  <!-- Paso 3: Información personal -->
+  <!-- <p-stepperPanel header="3. Información personal">
+    <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback">
+      <h2>3. Información personal</h2>
+      <p>Cuéntanos sobre ti</p>
+
+      <app-personal-info
+        (completed)="onStep3Complete($event); nextCallback.emit()">
+      </app-personal-info>
+    </ng-template>
+  </p-stepperPanel> -->
+
+  <!-- … y así con los demás pasos … -->
+
+</p-stepper>
