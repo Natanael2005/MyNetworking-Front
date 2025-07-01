@@ -2,196 +2,167 @@
 
 .plans {
   background-color: $secondary-color;
-  padding: 4rem 0;
-  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .plans__container {
-  padding-bottom: 4rem;
+  width: min(1400px, 100%);
+  padding: 4rem 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
 
-  .plans__header {
-    @include header;
+.plans__header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+}
 
-    .plans__title {
-      @include titule($primary-color);
-    }
+.plans__title {
+  font-family: $primary-font-titule;
+  font-size: clamp(2.2rem, 9vw, 3rem);
+  color: $primary-color;
+  text-wrap: balance;
+}
 
-    .plans__subtitle {
-      @include description($quinary-color);
-    }
-  }
+.plans__subtitle {
+  font-size: clamp(1rem, 4.5vw, 1.5rem);
+  color: $quinary-color;
+  text-wrap: balance;
+  font-family: $font-text;
 }
 
 .plans__list {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 3rem;
-  gap: 4rem;
+  gap: 2.5rem;
 }
 
-// Estilos base de la tarjeta
 .plans__card {
-  padding: 2rem 5rem;
+  padding: 1.8rem;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   transition: all 200ms ease-out;
-  
-  &--monthly {
-    background-color: $white-color;
-    border: 1px solid $primary-color;
+}
 
-    &:hover {
-      @include cards-hover-price_monthly;
-      
-      .plans__button {
-        transform: translateY(-5px);
-      }
-    }
-  }
-  
-  &--yearly {
-    background-color: rgb(26, 46, 159);;
-    
-    &:hover {
-      @include cards-hover-price_yearly;
-      border: 1px solid $primary-color;
-      
-      .plans__button {
-        transform: translateY(-5px);
-      }
-    }
+.plans__card--monthly {
+  background-color: $white-color;
+  border: 1px solid $primary-color;
+  color: $primary-color;
+  max-width: 350px;
+}
+
+.plans__card--monthly:hover {
+  box-shadow: 0 6px 20px 0 rgba(21, 21, 21, 0.25);
+  transform: translateY(-5px);
+  transition: all 200ms ease-out;
+
+  .plans__button {
+    transform: translateY(-5px);
   }
 }
 
+.plans__card--yearly {
+  background-color: rgb(26, 46, 159);
+  color: $white-color;
+  max-width: 350px;
+}
 
+.plans__card--yearly:hover {
+  box-shadow: 0 6px 20px 0 rgba(21, 21, 21, 0.25);
+  transform: translateY(-5px);
+  transition: all 200ms ease-out;
+  border: 1px solid $primary-color;
+
+  .plans__button {
+    transform: translateY(-5px);
+  }
+}
+
+.plans__card-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
 
 .plans__card-header {
-  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .plans__card-icon-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  
-  .pi-bolt {
-    background: linear-gradient(90deg, rgb(26, 46, 159), rgb(93, 107, 215));
-    border-radius: 10px;
-    padding: 0.8rem;
-    font-size: 1rem;
-    font-weight: 500;
-    color: $white-color;
-  }
-  
-  .pi-crown {
-    background: linear-gradient(10deg, rgb(255, 255, 255), rgb(176, 177, 253));
-    border-radius: 10px;
-    padding: 0.8rem;
-    font-size: 1rem;
-    font-weight: 500;
-    color: $primary-color;
-  }
+  gap: 1rem;
+}
+
+.pi-bolt {
+  background: linear-gradient(90deg, rgb(26, 46, 159), rgb(93, 107, 215));
+  border-radius: 10px;
+  padding: 0.8rem;
+  font-size: clamp(1.2rem, 1.5vw, 1.5rem);
+  font-weight: 500;
+  color: $white-color;
+}
+
+.pi-crown {
+  background: linear-gradient(10deg, rgb(255, 255, 255), rgb(176, 177, 253));
+  border-radius: 10px;
+  padding: 0.8rem;
+  font-size: clamp(1.2rem, 1.5vw, 1.5rem);
+  font-weight: 500;
+  color: $primary-color;
 }
 
 .plans__card-info {
   display: flex;
   flex-direction: column;
-  justify-content: start;
-  padding-left: 15px;
+  margin-bottom: 1rem;
 }
 
 .plans__card-title {
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 1.5vw, 1.5rem);
   font-family: $primary-font-titule;
-  margin-bottom: 0.5rem;
-  
-  .plans__card--monthly & {
-    color: $primary-color;
-  }
-  
-  .plans__card--yearly & {
-    color: $white-color;
-  }
 }
 
 .plans__card-description {
-  max-width: 200px;
-  font-size: 1rem;
+  font-size: clamp(1rem, 1.2vw, 1.1rem);
   font-family: $font-text;
-  
-  .plans__card--monthly & {
-    color: $primary-color;
-  }
-  
-  .plans__card--yearly & {
-    color: $white-color;
-  }
-}
-
-.plans__price {
-  font-family: $font-text;
-  text-align: center;
 }
 
 .plans__price-amount {
-  font-size: 3rem;
-  font-weight: 800;
-  
-  .plans__card--monthly & {
-    color: $primary-color;
-  }
-  
-  .plans__card--yearly & {
-    color: $white-color;
-  }
-}
-
-.plans__price-period {
-  .plans__card--monthly & {
-    color: $primary-color;
-  }
-  
-  .plans__card--yearly & {
-    color: $white-color;
-  }
+  font-size: clamp(2rem, 6vw, 2rem);
+  font-weight: 700;
 }
 
 .plans__divider {
-  .plans__card--monthly & {
-    border-color: $primary-color;
-  }
-  
-  .plans__card--yearly & {
-    border-color: $white-color;
-  }
+  margin-top: 5px;
+  width: 250px;
 }
 
-.plans__features {
-  font-family: $font-text;
-  text-align: center;
-}
-
-.plans__features-list {
-  text-align: start;
+.plans__features-list{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .plans__feature-item {
+  display: flex;
   list-style: none;
-  margin-bottom: 1.5rem;
-  
-  .plans__card--monthly & {
-    color: $primary-color;
-  }
-  
-  .plans__card--yearly & {
-    color: $white-color;
-  }
-}
-
-.plans__action {
-  margin: 1rem 0;
+  gap: 0.5rem;
 }
 
 .plans__button {
@@ -220,12 +191,22 @@
 }
 
 .plans__terms-link {
-  text-align: center;
-  margin-top: 5rem;
-  
   a {
     color: $gray-color;
-    font-family: $primary-font-titule;
-    font-size: 1rem;
+    font-size: clamp(1rem, 1.2vw, 1.1rem);
+  }
+}
+
+//* Responsive
+
+@media (width > 800px) {
+  .plans__container {
+    padding: 7rem 20px;
+    gap: 4rem;
+  }
+
+  .plans__list {
+    flex-direction: row;
+    gap: 5rem;
   }
 }

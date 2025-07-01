@@ -62,7 +62,7 @@ export class ContactComponent {
       
       if (errorMessage) {
         this.messageService.add({
-          severity: 'warn',
+          severity: 'error',
           summary: 'Dato necesario',
           detail: errorMessage,
           life: 3000

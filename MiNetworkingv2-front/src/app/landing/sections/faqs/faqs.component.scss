@@ -1,80 +1,70 @@
-@use '../../../../styles/config' as *;
+@use "../../../../styles/config" as *;
 
 .faqs {
-  background-color: $white-color;
-  padding: 4rem 0;
-  flex-wrap: wrap;
-  
-  &__container {
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 0 1.5rem 4rem 0;
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  &__header {
-    // @include header;
-    //text-align: center;
-    // // margin-bottom: 2.5rem;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  &__title {
-    @include titule($primary-color);
-    text-align: start;
-  }
-
-  &__subtitle {
-    @include description($quinary-color);
-    margin-top: 1rem;
-    padding: 0 3rem;
-    //text-align: center;
-    text-wrap: balance;
-    //max-width: 800px;
-  }
-
-  &__cta-button {
-    font-weight: 700;
-    padding: 0.8rem 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 200ms ease;
-    max-width: 20%;
-    border: 1.5px solid $primary-color;
-    @include button($primary-color, $white-color);
-    margin-top: 2rem;
-    text-decoration: none;
-
-    .pi-arrow-right {
-      font-weight: 700;
-      padding-left: 12px;
-      color: $white-color;
-      transition: all 200ms;
-    }
-
-    &:hover {
-      transform: translateY(-5px);
-      cursor: pointer;
-    }
-  }
-
-  &__accordion {
-    // margin-top: 2rem;
-    width: 50%;
-  }
+  background-color: $quaternary-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.faqs__container {
+  width: min(1400px, 100%);
+  padding: 4rem 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.faqs__header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.faqs__title {
+  font-family: $primary-font-titule;
+  font-size: clamp(2.2rem, 9vw, 3rem);
+  color: $primary-color;
+  text-wrap: balance;
+}
+
+.faqs__subtitle {
+  font-size: clamp(1rem, 4.5vw, 1.5rem);
+  color: $quinary-color;
+  font-family: $font-text;
+  text-align: center;
+}
+
+.faqs__cta-button {
+  font-weight: 700;
+  padding: 0.8rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 200ms ease;
+  border: 1.5px solid $primary-color;
+  cursor: pointer;
+  @include button($primary-color, $white-color);
+  text-decoration: none;
+}
+
+.pi-arrow-right {
+  padding-left: 12px;
+}
+
+.faqs__cta-button:hover {
+  transform: translateY(-5px);
+}
+
 
 ::ng-deep .p-accordion {
     
   padding: 0 24px 0 0;
 
   .p-accordion-tab {
-    margin-bottom: 0.75rem;
+    margin-bottom: 1rem;
     border-radius: 8px !important;
     overflow: hidden;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
@@ -82,10 +72,11 @@
     .p-accordion-header {
       .p-accordion-header-link {
         padding: 1rem 1.5rem;
-        border: none;
+        // border: 1px solid black;
         color: $primary-color;
         font-weight: 600;
         transition: all 0.3s ease;
+        line-height: 1rem;
         
         &:hover {
           background: $secondary-color;
@@ -93,6 +84,7 @@
         
         .p-accordion-header-text {
           flex-grow: 1;
+          
         }
       }
     }
@@ -102,6 +94,18 @@
       line-height: 1.6;
       color: $black-color;
       border-top: 1px solid rgba(0, 0, 0, 0.1);
+      background: $secondary-color;
     }
   }
+}
+
+
+@media (width > 800px) {
+  .faqs__container {
+    padding: 7rem 20px;
+    gap: 4rem;
+    flex-direction: row;
+    align-items: start;
+  }
+
 }

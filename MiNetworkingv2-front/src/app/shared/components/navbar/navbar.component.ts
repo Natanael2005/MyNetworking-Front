@@ -1,120 +1,114 @@
-import { Component, HostListener, Inject, PLATFORM_ID, OnInit } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+// navbar.component.ts
+import { Component, HostListener, OnInit, Inject, PLATFORM_ID, inject, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
+import { CommonModule, isPlatformBrowser, ViewportScroller } from '@angular/common';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
+  imports: [CommonModule, RouterLink, RouterLinkActive],
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss'],
-})
+  styleUrls: ['./navbar.component.scss']
+})  
 export class NavbarComponent implements OnInit {
-  active: string = 'home';
-  isSmall = false;
-  disableAnimation = true;
-  isMobileMenuOpen = false;
-  private readonly isBrowser: boolean;
-  private sections = ['home', 'how-it-works', 'benefits', 'plans', 'faqs', 'contact'];
+  private viewportScroller = inject(ViewportScroller);
+  private platformId = inject(PLATFORM_ID);
+  private cdRef = inject(ChangeDetectorRef);
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
-    this.isBrowser = isPlatformBrowser(this.platformId);
-  }
+  @ViewChild('navContainer') navContainer!: ElementRef;
 
-  ngOnInit(): void {
-    if (this.isBrowser) {
-      const hash = window.location.hash.substring(1);
+  isMenuOpen = false;
+  isScrolled = false;
+  activeSection = 'home';
+  menuIcon = 'pi pi-bars';
+  indicatorPosition = { left: '0', width: '0' };
 
-      if(window.innerHeight>50){
-        this.isSmall= true
-      } else{
-        this.isSmall = false
-      };
-      
-      // 1. Configuración inicial sin transiciones
-      if (hash && this.sections.includes(hash)) {
-        this.disableAnimation = true; // Bloquea transiciones iniciales
-        this.isSmall = true; // Logo pequeño inmediatamente
-        this.active = hash;
-        
-        // 2. Scroll instantáneo y silencioso al recargar
-        setTimeout(() => {
-          const element = document.getElementById(hash);
-          if (element) {
-            const targetPosition = element.getBoundingClientRect().top + window.pageYOffset - 70;
-            window.scrollTo({ top: targetPosition, behavior: 'auto' });
-          }
-          this.disableAnimation = false; // Reactiva animaciones después
-        }, 50);
-      }
+  sections = [
+    { id: 'home', name: 'Inicio' },
+    { id: 'how-it-works', name: 'Cómo funciona' },
+    { id: 'benefits', name: 'Beneficios' },
+    { id: 'plans', name: 'Planes' },
+    { id: 'faqs', name: 'FAQs' },
+    { id: 'contact', name: 'Contacto' }
+  ];
+
+  ngOnInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      this.setupIntersectionObserver();
+      this.setupSmoothScroll();
     }
   }
 
-  @HostListener('window:scroll')
-  onWindowScroll(): void {
-    if (!this.isBrowser) return;
-    this.isMobileMenuOpen = false;
-    const wasSmall = this.isSmall;
-    this.isSmall = window.scrollY > 50;
-    if (wasSmall !== this.isSmall) this.disableAnimation = false;
-
-    this.detectActiveSection();
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    if (isPlatformBrowser(this.platformId)) {
+      this.isScrolled = window.scrollY > 50;
+    }
   }
 
-  scrollTo(id: string): void {
-    if (!this.isBrowser) return;
-    this.active = id;
-    this.smoothScroll(id);
-    history.replaceState(null, '', `#${id}`);
-    this.isMobileMenuOpen = false;
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+    this.menuIcon = this.isMenuOpen ? 'pi pi-times' : 'pi pi-bars';
+    if (this.isMenuOpen) {
+      setTimeout(() => this.updateActiveIndicator(), 100);
+    }
   }
 
-  private smoothScroll(id: string): void {
-    const element = document.getElementById(id);
-    if (!element) return;
+  closeMenu() {
+    this.isMenuOpen = false;
+    this.menuIcon = 'pi pi-bars';
+  }
 
-    const targetPosition = element.getBoundingClientRect().top + window.pageYOffset - (this.isSmall ? 70 : 120);
-    const startPosition = window.pageYOffset;
-    const distance = targetPosition - startPosition;
-    const duration = 800;
-    let startTime: number | null = null;
+  scrollTo(sectionId: string) {
+    if (isPlatformBrowser(this.platformId)) {
+      this.activeSection = sectionId;
+      this.viewportScroller.scrollToAnchor(sectionId);
+      setTimeout(() => this.updateActiveIndicator(), 300);
+      this.closeMenu();
+    }
+  }
 
-    const animation = (currentTime: number) => {
-      if (!startTime) startTime = currentTime;
-      const timeElapsed = currentTime - startTime;
-      const progress = Math.min(timeElapsed / duration, 1);
-      const ease = this.easeInOutQuad(progress);
-      window.scrollTo(0, startPosition + distance * ease);
-      
-      if (timeElapsed < duration) {
-        requestAnimationFrame(animation);
-      }
+  private updateActiveIndicator() {
+    const activeItem = document.querySelector(`.nav-item[data-section="${this.activeSection}"]`);
+    if (!activeItem || !this.navContainer?.nativeElement) return;
+    
+    const itemRect = activeItem.getBoundingClientRect();
+    const containerRect = this.navContainer.nativeElement.getBoundingClientRect();
+    
+    this.indicatorPosition = {
+      left: `${itemRect.left - containerRect.left}px`,
+      width: `${itemRect.width}px`
+    };
+    this.cdRef.detectChanges();
+  }
+
+  private setupIntersectionObserver() {
+    const options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.5
     };
 
-    requestAnimationFrame(animation);
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          this.activeSection = entry.target.id;
+          this.updateActiveIndicator();
+        }
+      });
+    }, options);
+
+    this.sections.forEach(section => {
+      const element = document.getElementById(section.id);
+      if (element) observer.observe(element);
+    });
   }
 
-  private detectActiveSection(): void {
-    const scrollPosition = window.scrollY + (this.isSmall ? 100 : 150);
-
-    for (const section of this.sections) {
-      const element = document.getElementById(section);
-      if (!element) continue;
-
-      const { offsetTop, offsetHeight } = element;
-      const sectionTop = offsetTop - 100;
-      const sectionBottom = offsetTop + offsetHeight - 100;
-
-      if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-        this.active = section;
-        break;
-      }
+  private setupSmoothScroll() {
+    if ('scrollBehavior' in document.documentElement.style === false) {
+      import('smoothscroll-polyfill').then(module => {
+        module.polyfill();
+      });
     }
-  }
-
-  private easeInOutQuad(t: number): number {
-    return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
-  }
-
-  toggleMobileMenu(): void {
-    this.isMobileMenuOpen = !this.isMobileMenuOpen;
   }
 }

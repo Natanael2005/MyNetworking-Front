@@ -1,168 +1,171 @@
 <section class="contact" aria-labelledby="contact-heading">
-  <header class="contact__header">
-    <h1 id="contact-heading" class="contact__title">
-      ¿Tienes algun problema con tu<br />
-      <span class="contact__highlight">Networking?</span>
-    </h1>
-    <p class="contact__subtitle">
-      ¡No estás solo! Si algo no va como esperabas o tienes dudas, estamos aquí
-      para ayudarte. Escríbenos y te responderemos muy pronto.
-    </p>
-  </header>
+  <div class="contact__container">
+    <header class="contact__header">
+      <h1 id="contact-heading" class="contact__title">
+        ¿Tienes algun problema con tu<br />
+        <span class="contact__highlight">Networking?</span>
+      </h1>
+      <p class="contact__subtitle">
+        ¡No estás solo! Si algo no va como esperabas o tienes dudas, estamos
+        aquí para ayudarte. Escríbenos y te responderemos muy pronto.
+      </p>
+    </header>
 
-  <div class="contact__content">
-    <!-- Formulario de Contacto -->
-    <div class="contact__form-wrapper">
-      <form
-        class="contact__form"
-        [formGroup]="contactForm"
-        (ngSubmit)="handleSubmit()"
-      >
-        <div class="contact__form-row">
-          <div class="contact__input-group">
-            <label for="name" class="contact__label">Nombre</label>
-            <input
-              id="name"
-              name="name"
-              type="text"
-              class="contact__input"
-              placeholder="Zurisarai"
-              formControlName="name"
-              pTooltip="Ingresa tu nombre"
-              tooltipPosition="top"
-              (blur)="onBlur('name')"
-            />
-          </div>
-
-          <div class="contact__input-group">
-            <label for="lastName" class="contact__label">Apellido</label>
-            <input
-              id="lastName"
-              name="lastName"
-              type="text"
-              class="contact__input"
-              placeholder="Rodriguez"
-              formControlName="lastName"
-              pTooltip="Ingresa tu apellido"
-              tooltipPosition="top"
-              (blur)="onBlur('lastName')"
-            />
-          </div>
-        </div>
-
-        <div class="contact__input-group">
-          <label for="email" class="contact__label">Correo eléctronico</label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            class="contact__input"
-            placeholder="sarai@company.com"
-            formControlName="userEmail"
-            pTooltip="Usa un correo válido"
-            tooltipPosition="top"
-            (blur)="onBlur('userEmail')"
-          />
-        </div>
-
-        <div class="contact__input-group">
-          <label for="message" class="contact__label"
-            >Cuentanos tu situación</label
-          >
-          <textarea
-            id="message"
-            name="message"
-            class="contact__textarea"
-            placeholder="¿Qué necesitas? ¿Qué error encontraste?"
-            formControlName="message"
-            pTooltip="Describe el problema con detalles para poder ayudarte mejor"
-            tooltipPosition="top"
-            (blur)="onBlur('message')"
-          ></textarea>
-        </div>
-
-        <div class="contact__action">
-          <p-toast
-            [breakpoints]="{
-              '920px': { width: '100%', right: '0', left: '0' }
-            }"
-          />
-          <!-- <p-button label="Enviar" (onClick)="show()"></p-button> -->
-          <p-button
-            label="Enviar"
-            [disabled]="contactForm.invalid"
-            type="submit"
-          ></p-button>
-        </div>
-      </form>
-    </div>
-
-    <!-- Información de Contacto -->
-    <aside class="contact__info">
-      <div class="contact__methods">
-        <h3 class="contact__methods-title">¿Prefieres contactarnos directo?</h3>
-
-        <div>
-          <a
-            href="mailto:contacto@dappertechnologies"
-            class="contact__method-mail"
-          >
-            <i class="pi pi-envelope contact__method-icon"></i>
-            <div class="contact__method-details">
-              <span class="contact__method-label">Email</span>
-              <span class="contact__method-value">{{ contactEmail }}</span>
+    <div class="contact__content">
+      <!-- Formulario de Contacto -->
+      <div class="contact__form-wrapper">
+        <form
+          class="contact__form"
+          [formGroup]="contactForm"
+          (ngSubmit)="handleSubmit()"
+        >
+          <div class="contact__form-row">
+            <div class="contact__input-group">
+              <label for="name" class="contact__label">Nombre</label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                class="contact__input"
+                placeholder="Zurisarai"
+                formControlName="name"
+                pTooltip="Ingresa tu nombre"
+                tooltipPosition="top"
+                (blur)="onBlur('name')"
+              />
             </div>
-          </a>
-        </div>
 
-        <div class="contact__method">
-          <i class="pi pi-phone contact__method-icon"></i>
-          <div class="contact__method-details">
-            <span class="contact__method-label">Teléfono</span>
-            <span class="contact__method-value">+52 998 107 3955</span>
+            <div class="contact__input-group">
+              <label for="lastName" class="contact__label">Apellido</label>
+              <input
+                id="lastName"
+                name="lastName"
+                type="text"
+                class="contact__input"
+                placeholder="Rodriguez"
+                formControlName="lastName"
+                pTooltip="Ingresa tu apellido"
+                tooltipPosition="top"
+                (blur)="onBlur('lastName')"
+              />
+            </div>
+          </div>
+
+          <div class="contact__input-group">
+            <label for="email" class="contact__label">Correo eléctronico</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              class="contact__input"
+              placeholder="sarai@company.com"
+              formControlName="userEmail"
+              pTooltip="Usa un correo válido"
+              tooltipPosition="top"
+              (blur)="onBlur('userEmail')"
+            />
+          </div>
+
+          <div class="contact__input-group">
+            <label for="message" class="contact__label"
+              >Cuentanos tu situación</label
+            >
+            <textarea
+              id="message"
+              name="message"
+              class="contact__textarea"
+              placeholder="¿Qué necesitas? ¿Qué error encontraste?"
+              formControlName="message"
+              pTooltip="Describe el problema con detalles para poder ayudarte mejor"
+              tooltipPosition="top"
+              (blur)="onBlur('message')"
+            ></textarea>
+          </div>
+
+          <div class="contact__action">
+            <p-toast
+              [breakpoints]="{
+                '920px': { width: '100%', right: '0', left: '0' }
+              }"
+            />
+            <p-button
+              label="Enviar"
+              [disabled]="contactForm.invalid"
+              type="submit"
+            ></p-button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Información de Contacto -->
+      <aside class="contact__info">
+        <div class="contact__methods">
+          <h3 class="contact__methods-title">
+            ¿Prefieres contactarnos directo?
+          </h3>
+
+          <div>
+            <a
+              href="mailto:contacto@dappertechnologies"
+              class="contact__method-mail"
+            >
+              <i class="pi pi-envelope contact__method-icon"></i>
+              <div class="contact__method-details">
+                <span class="contact__method-label">Email</span>
+                <span class="contact__method-value">{{ contactEmail }}</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="contact__method">
+            <i class="pi pi-phone contact__method-icon"></i>
+            <div class="contact__method-details">
+              <span class="contact__method-label">Teléfono</span>
+              <span class="contact__method-value">+52 998 107 3955</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="contact__office">
-        <h4 class="contact__office-title">Horario de atención</h4>
-        <div class="contact__office-detail">
-          <i class="pi pi-map-marker"></i> Cancún Quintana Roo, MX
+        <div class="contact__office">
+          <h4 class="contact__office-title">Horario de atención</h4>
+          <div class="contact__office-detail">
+            <i class="pi pi-map-marker"></i> Cancún Quintana Roo, MX
+          </div>
+          <div class="contact__office-detail">
+            <i class="pi pi-clock"></i> Lun-Vie: 9AM-6PM
+          </div>
         </div>
-        <div class="contact__office-detail">
-          <i class="pi pi-clock"></i> Lun-Vie: 9AM-6PM
-        </div>
-      </div>
 
-      <div class="contact__social">
-        <h4 class="contact__social-title">¿Quieres mantenerte al día?</h4>
-        <div class="contact__social-links">
-          <a
-            href="https://linkedin.com/minetworking"
-            target="_blank"
-            class="contact__social-link"
-            >LinkedIn</a
-          >
-          <a
-            href="https://instagram.com/minetworking"
-            target="_blank"
-            class="contact__social-link"
-            >Instagram</a
-          >
-          <a
-            href="https://twitter.com/minetworking"
-            target="_blank"
-            class="contact__social-link"
-            >Twitter</a
-          >
-          <a
-            href="https://twitter.com/minetworking"
-            target="_blank"
-            class="contact__social-link"
-            >Facebook</a
-          >
+        <div class="contact__social">
+          <h4 class="contact__social-title">¿Quieres mantenerte al día?</h4>
+          <div class="contact__social-links">
+            <a
+              href="https://linkedin.com/minetworking"
+              target="_blank"
+              class="contact__social-link"
+              >LinkedIn</a
+            >
+            <a
+              href="https://instagram.com/minetworking"
+              target="_blank"
+              class="contact__social-link"
+              >Instagram</a
+            >
+            <a
+              href="https://twitter.com/minetworking"
+              target="_blank"
+              class="contact__social-link"
+              >Twitter</a
+            >
+            <a
+              href="https://twitter.com/minetworking"
+              target="_blank"
+              class="contact__social-link"
+              >Facebook</a
+            >
+          </div>
         </div>
-      </div>
-    </aside>
+      </aside>
+    </div>
   </div>
 </section>
