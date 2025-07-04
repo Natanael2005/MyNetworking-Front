@@ -96,6 +96,7 @@
   font-family: $font-text;
   font-size: 1rem;
   box-sizing: border-box; 
+  resize: none;
 
   &:focus {
     border-bottom-color: $primary-color;
@@ -226,6 +227,10 @@
 .pi {
   color: $primary-color;
   font-size: 18px;
+}
+
+.socialIcon{
+  font-size: 14px;
 }
 
 .contact__social {

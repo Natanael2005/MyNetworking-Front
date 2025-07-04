@@ -65,7 +65,7 @@ export class ContactComponent {
           severity: 'error',
           summary: 'Dato necesario',
           detail: errorMessage,
-          life: 3000
+          life: 2000
         });
       }
     }
@@ -94,7 +94,7 @@ export class ContactComponent {
         severity: 'success',
         summary: 'Correo enviado',
         detail: 'Se ha enviado el correo de manera satisfactoria',
-        life: 3000
+        life: 2000
       });
       this.contactForm.reset();
       this.touchedFields = {}; 

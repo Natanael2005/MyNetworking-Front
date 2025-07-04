@@ -21,9 +21,10 @@
         >
           <div class="contact__form-row">
             <div class="contact__input-group">
-              <label for="name" class="contact__label">Nombre</label>
+              <label for="name" class="contact__label">Nombre <span style="color: red;">*</span></label>
               <input
                 id="name"
+                required
                 name="name"
                 type="text"
                 class="contact__input"
@@ -36,9 +37,10 @@
             </div>
 
             <div class="contact__input-group">
-              <label for="lastName" class="contact__label">Apellido</label>
+              <label for="lastName" class="contact__label">Apellido <span style="color: red;">*</span></label>
               <input
                 id="lastName"
+                required
                 name="lastName"
                 type="text"
                 class="contact__input"
@@ -52,9 +54,10 @@
           </div>
 
           <div class="contact__input-group">
-            <label for="email" class="contact__label">Correo eléctronico</label>
+            <label for="email" class="contact__label">Correo eléctronico <span style="color: red;">*</span></label>
             <input
               id="email"
+              required
               name="email"
               type="email"
               class="contact__input"
@@ -68,10 +71,11 @@
 
           <div class="contact__input-group">
             <label for="message" class="contact__label"
-              >Cuentanos tu situación</label
+              >Cuentanos tu situación <span style="color: red;">*</span></label
             >
             <textarea
               id="message"
+              required
               name="message"
               class="contact__textarea"
               placeholder="¿Qué necesitas? ¿Qué error encontraste?"
@@ -143,25 +147,26 @@
               href="https://linkedin.com/minetworking"
               target="_blank"
               class="contact__social-link"
-              >LinkedIn</a
+              ><i class="pi pi-linkedin socialIcon"> </i> LinkedIn</a
             >
             <a
               href="https://instagram.com/minetworking"
               target="_blank"
               class="contact__social-link"
-              >Instagram</a
+              ><i class="pi pi-instagram socialIcon"></i> Instagram</a
             >
             <a
               href="https://twitter.com/minetworking"
               target="_blank"
               class="contact__social-link"
-              >Twitter</a
+              ><i class="pi pi-twitter socialIcon"></i> Twitter</a
             >
             <a
               href="https://twitter.com/minetworking"
               target="_blank"
               class="contact__social-link"
-              >Facebook</a
+            >
+              <i class="pi pi-facebook socialIcon"></i> Facebook</a
             >
           </div>
         </div>

@@ -1,6 +1,5 @@
-// navbar.component.ts
 import { Component, HostListener, OnInit, Inject, PLATFORM_ID, inject, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
-import { CommonModule, isPlatformBrowser, ViewportScroller } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
@@ -9,9 +8,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   imports: [CommonModule, RouterLink, RouterLinkActive],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
-})  
+})
 export class NavbarComponent implements OnInit {
-  private viewportScroller = inject(ViewportScroller);
   private platformId = inject(PLATFORM_ID);
   private cdRef = inject(ChangeDetectorRef);
 
@@ -22,6 +20,7 @@ export class NavbarComponent implements OnInit {
   activeSection = 'home';
   menuIcon = 'pi pi-bars';
   indicatorPosition = { left: '0', width: '0' };
+  disableAnimation = true; // Para animaciones iniciales
 
   sections = [
     { id: 'home', name: 'Inicio' },
@@ -34,8 +33,19 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
+      // Manejo inicial del hash en la URL
+      const hash = window.location.hash.substring(1);
+      if (hash && this.sections.some(s => s.id === hash)) {
+        this.activeSection = hash;
+        this.disableAnimation = true;
+        setTimeout(() => {
+          this.smoothScroll(hash, true); // Scroll instantáneo al inicio
+          this.disableAnimation = false;
+        }, 50);
+      }
+
       this.setupIntersectionObserver();
-      this.setupSmoothScroll();
+      setTimeout(() => this.disableAnimation = false, 1000); // Habilita animaciones después de 1s
     }
   }
 
@@ -62,10 +72,44 @@ export class NavbarComponent implements OnInit {
   scrollTo(sectionId: string) {
     if (isPlatformBrowser(this.platformId)) {
       this.activeSection = sectionId;
-      this.viewportScroller.scrollToAnchor(sectionId);
-      setTimeout(() => this.updateActiveIndicator(), 300);
+      this.smoothScroll(sectionId);
+      history.replaceState(null, '', `#${sectionId}`);
       this.closeMenu();
     }
+  }
+
+  private smoothScroll(id: string, instant: boolean = false) {
+    const element = document.getElementById(id);
+    if (!element) return;
+
+    const targetPosition = element.getBoundingClientRect().top + window.pageYOffset - (this.isScrolled ? 5 : 10);
+    
+    if (instant) {
+      window.scrollTo({ top: targetPosition, behavior: 'auto' });
+      this.updateActiveIndicator();
+      return;
+    }
+
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+    const duration = 800;
+    let startTime: number | null = null;
+
+    const animation = (currentTime: number) => {
+      if (!startTime) startTime = currentTime;
+      const timeElapsed = currentTime - startTime;
+      const progress = Math.min(timeElapsed / duration, 1);
+      const ease = this.easeInOutQuad(progress);
+      window.scrollTo(0, startPosition + distance * ease);
+      
+      if (timeElapsed < duration) {
+        requestAnimationFrame(animation);
+      } else {
+        this.updateActiveIndicator();
+      }
+    };
+
+    requestAnimationFrame(animation);
   }
 
   private updateActiveIndicator() {
@@ -91,7 +135,7 @@ export class NavbarComponent implements OnInit {
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && !this.disableAnimation) {
           this.activeSection = entry.target.id;
           this.updateActiveIndicator();
         }
@@ -104,11 +148,7 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  private setupSmoothScroll() {
-    if ('scrollBehavior' in document.documentElement.style === false) {
-      import('smoothscroll-polyfill').then(module => {
-        module.polyfill();
-      });
-    }
+  private easeInOutQuad(t: number): number {
+    return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
   }
 }

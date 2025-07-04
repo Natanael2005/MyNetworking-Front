@@ -13,11 +13,11 @@
             *ngFor="let section of sections" 
             [attr.data-section]="section.id"
             [class.active]="activeSection === section.id">
-          <a (click)="scrollTo(section.id)">{{ section.name }}</a>
+          <a (click)="scrollTo(section.id); $event.preventDefault()">{{ section.name }}</a>
         </li>
 
         <li class="nav-item mobile-btn">
-          <button class="container-btn mobile">Iniciar</button>
+          <button class="container-btn mobile">Log-In</button>
         </li>
       </ul>
 
@@ -28,7 +28,7 @@
       }"></div>
     </nav>
 
-    <button class="container-btn desktop">Iniciar</button>
+    <button class="container-btn desktop">Log In</button>
 
     <div class="btn-menu" (click)="toggleMenu()">
       <i [class]="menuIcon" id="menu-icon"></i>
