@@ -117,14 +117,15 @@
 
 .container-btn {
   display: none;
-  @include button(transparent, $white-color);
+  @include button($white-color, $primary-color);
   padding: 0.5rem 1.5rem;
+  font-weight: 600;
 
   &:hover {
     cursor: pointer;
-    color: $primary-color;
+    color: $white-color;
     font-weight: 600;
-    background-color: $white-color;
+    background-color: transparent;
     transform: scale(1.1);
   }
 
