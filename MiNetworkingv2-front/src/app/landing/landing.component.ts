@@ -6,6 +6,8 @@ import { PortfolioComponent } from './sections/portfolio/portfolio.component';
 import { PlansComponent } from './sections/plans/plans.component';
 import { ContactComponent } from "./sections/contact/contact.component";
 import { FaqsComponent } from "./sections/faqs/faqs.component";
+import { NavbarComponent } from "../shared/components/navbar/navbar.component";
+import { FooterComponent } from "../shared/components/footer/footer.component";
 
 
 @Component({
@@ -19,6 +21,8 @@ import { FaqsComponent } from "./sections/faqs/faqs.component";
     PlansComponent,
     ContactComponent,
     FaqsComponent,
+    NavbarComponent,
+    FooterComponent
 ],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss',

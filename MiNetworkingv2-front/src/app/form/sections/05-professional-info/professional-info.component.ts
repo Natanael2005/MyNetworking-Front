@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+export interface ProfessionalInfoData {}
+
 @Component({
   selector: 'app-professional-info',
   standalone: true,

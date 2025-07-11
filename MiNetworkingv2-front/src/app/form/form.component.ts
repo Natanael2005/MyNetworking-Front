@@ -4,25 +4,22 @@ import { StepperModule } from 'primeng/stepper';
 
 
 // Indicador y título genérico
-// import { StepsIndicatorComponent } from './sections/steps-indicator/steps-indicator.component';
-// import { StepTitleComponent }      from '../shared/components/step-title/step-title.component';
+import { StepsIndicatorComponent, Step } from './sections/steps-indicator/steps-indicator.component';
 
 // Tus pasos ya creados
-import { StepTitleComponent } from '../shared/components/step-title/step-title.component';
-import { ContactFormComponent, ContactFormData}    from './sections/01-contact-form/contact-form.component';
-import { PaymentComponent, PaymentData}        from './sections/02-payment/payment.component';
-import { PersonalInfoComponent }   from './sections/03-personal-info/personal-info.component';
-import { HighlightsComponent }     from './sections/04-highlights/highlights.component';
-import { ProfessionalInfoComponent } from './sections/05-professional-info/professional-info.component';
-import { InfoReviewComponent }     from './sections/06-info-review/info-review.component';
+import { ContactFormComponent, ContactFormData } from './sections/01-contact-form/contact-form.component';
+import { PaymentComponent, PaymentData } from './sections/02-payment/payment.component';
+import { PersonalInfoComponent, PersonalInfoData } from './sections/03-personal-info/personal-info.component';
+import { HighlightsComponent, HighlightsData } from './sections/04-highlights/highlights.component';
+import { ProfessionalInfoComponent, ProfessionalInfoData } from './sections/05-professional-info/professional-info.component';
+import { InfoReviewComponent } from './sections/06-info-review/info-review.component';
 
 export interface WizardData {
   step1?: ContactFormData;
   step2?: PaymentData;
-  step3?: any;
-  step4?: any;
-  step5?: any;
-  step6?: any;
+  step3?: PersonalInfoData;
+  step4?: HighlightsData;
+  step5?: ProfessionalInfoData;
 }
 
 @Component({
@@ -31,36 +28,64 @@ export interface WizardData {
   imports: [
     CommonModule,
     StepperModule,
-    // StepsIndicatorComponent,
-    StepTitleComponent,
+    StepsIndicatorComponent,
     ContactFormComponent,
     PaymentComponent,
-    // PersonalInfoComponent,
-    // HighlightsComponent,
-    // ProfessionalInfoComponent,
-     InfoReviewComponent
+    PersonalInfoComponent,
+    HighlightsComponent,
+    ProfessionalInfoComponent,
+    InfoReviewComponent
   ],
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss']
+
+
+
+
+
 })
 export default class FormComponent {
+
+  stepList: Step[] = [
+    { id: 1, title: 'Contacto', description: 'Datos de contacto' },
+    { id: 2, title: 'Pago', description: 'Confirmación de pago' },
+    { id: 3, title: 'Información personal', description: 'Tus datos personales' },
+    { id: 4, title: 'Momentos destacados', description: 'Tus logros importantes' },
+    { id: 5, title: 'Información profesional', description: 'Tu experiencia laboral' },
+    { id: 6, title: 'Resumen', description: 'Revisión final y envío' }
+  ];
+
   step = 0;
   wizardData: WizardData = {};
 
   onStep1Complete(data: ContactFormData) {
     this.wizardData.step1 = data;
-    this.step = 1;   // avanzar al paso 2
+    this.step = 1;
   }
   onStep2Complete(data: PaymentData) {
     this.wizardData.step2 = data;
     this.step = 2;
   }
-  // … igual para onStep3Complete … onStep5Complete …
-
-  onStep6Complete(data: any) {
-    this.wizardData.step6 = data;
-    // Aquí terminas el wizard: envías wizardData al servidor, etc.
+  onStep3Complete(data: PersonalInfoData) {
+    this.wizardData.step3 = data;
+    this.step = 3;
   }
+
+  onStep4Complete(data: HighlightsData) {
+    this.wizardData.step4 = data;
+    this.step = 4;
+  }
+
+  onStep5Complete(data: ProfessionalInfoData) {
+    this.wizardData.step5 = data;
+    this.step = 5;
+  }
+
+  onStep6Complete() {
+    console.log("Revisión completa:", this.wizardData);
+    // Aquí puedes enviar wizardData al servidor o mostrar una alerta final
+  }
+
 
   goBack() {
     if (this.step > 0) {
@@ -68,4 +93,5 @@ export default class FormComponent {
     }
   }
 }
+
 

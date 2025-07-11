@@ -1,43 +1,99 @@
-<p-stepper [(activeStep)]="step" [linear]="true" class="custom-stepper">
+<!-- HEADER ------------------------------------------------------------- -->
+<div class="navbar">
+  <div class="navbar__container">
 
-  <!-- Paso 1: Contacto -->
-  <p-stepperPanel header="Contacto">
-    <ng-template pTemplate="content" let-nextCallback="nextCallback">
-      <!-- Título y subtítulo sencillos -->
-      <h2>Formulario de Contacto</h2>
-      <p>Completa los campos para continuar</p>
+    <!-- IZQUIERDA: Logo + texto (solo visible en escritorio) -->
+    <div class="navbar__branding">
+      <img
+        src="assets/public/miNetworking.logo.png"
+        alt="mi networking logo"
+        class="navbar__logo-image"
+      />
+      <span class="navbar__logo-title">Networking</span>
+    </div>
 
-      <!-- Formulario de contacto -->
-      <app-contact-form
-        (formSubmit)="onStep1Complete($event); nextCallback.emit()">
-      </app-contact-form>
-    </ng-template>
-  </p-stepperPanel>
+    <!-- CENTRO: Títulos -->
+    <div class="navbar__titles">
+      <ng-container [ngSwitch]="step">
+        <ng-container *ngSwitchCase="0">
+          <h2>Formulario de Contacto</h2>
+          <p>Completa los campos para continuar</p>
+        </ng-container>
+        <ng-container *ngSwitchCase="1">
+          <h2>Pago</h2>
+          <p>Revisa y confirma tu método de pago</p>
+        </ng-container>
+        <ng-container *ngSwitchCase="2">
+          <h2>Información personal</h2>
+          <p>Cuéntanos sobre ti</p>
+        </ng-container>
+        <ng-container *ngSwitchCase="3">
+          <h2>Momentos destacados</h2>
+          <p>Cuéntanos sobre ti</p>
+        </ng-container>
+        <ng-container *ngSwitchCase="4">
+          <h2>Información profesional</h2>
+          <p>Queremos conocer tu perfil laboral</p>
+        </ng-container>
+        <ng-container *ngSwitchCase="5">
+          <h2>Resumen</h2>
+          <p>Revisa la información antes de enviar</p>
+        </ng-container>
+      </ng-container>
+    </div>
 
-  <!-- Paso 2: Pago -->
-  <p-stepperPanel header="Pago">
-    <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback">
-      <h2>2. Pago</h2>
-      <p>Revisa y confirma tu método de pago</p>
+    <!-- DERECHA: Botón de iniciar sesión (solo escritorio) -->
+    <div class="navbar__login">
+      <button class="login-button">Iniciar sesión</button>
+    </div>
 
-      <app-payment
-        (completed)="onStep2Complete($event); nextCallback.emit()">
-      </app-payment>
-    </ng-template>
-  </p-stepperPanel>
+  </div>
+</div>
 
-  <!-- Paso 3: Información personal -->
-  <!-- <p-stepperPanel header="3. Información personal">
-    <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback">
-      <h2>3. Información personal</h2>
-      <p>Cuéntanos sobre ti</p>
+<!-- STEPPER PRINCIPAL ---------------------------------------------- -->
+<app-steps-indicator
+  [steps]="stepList"
+  [currentStep]="step + 1"
+  [totalSteps]="stepList.length"
+></app-steps-indicator>
 
-      <app-personal-info
-        (completed)="onStep3Complete($event); nextCallback.emit()">
-      </app-personal-info>
-    </ng-template>
-  </p-stepperPanel> -->
 
-  <!-- … y así con los demás pasos … -->
 
-</p-stepper>
+<!-- Paso 0 -->
+<app-contact-form
+  *ngIf="step === 0"
+  (formSubmit)="onStep1Complete($event); step = 1"
+></app-contact-form>
+
+<!-- Paso 1 -->
+<app-payment
+  *ngIf="step === 1"
+  (completed)="onStep2Complete($event); step = 2"
+></app-payment>
+
+<!-- Paso 2 -->
+<app-personal-info
+  *ngIf="step === 2"
+  (completed)="onStep3Complete($event); step = 3"
+></app-personal-info>
+
+<!-- Paso 3 -->
+<app-highlights
+  *ngIf="step === 3"
+  (completed)="onStep4Complete($event); step = 4"
+></app-highlights>
+
+<!-- Paso 4 -->
+<app-professional-info
+  *ngIf="step === 4"
+  (completed)="onStep5Complete($event); step = 5"
+></app-professional-info>
+
+<!-- Paso 5 -->
+<app-info-review
+  *ngIf="step === 5"
+  [data]="wizardData"
+  (confirm)="onStep6Complete();"
+></app-info-review>
+
+

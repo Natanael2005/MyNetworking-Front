@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+export interface HighlightsData {}
+
 @Component({
   selector: 'app-highlights',
   standalone: true,

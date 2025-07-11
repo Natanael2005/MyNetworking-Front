@@ -1,92 +1,45 @@
-import { Component, Input } from "@angular/core"
-import { CommonModule } from "@angular/common"
+import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
+
+/** Interfaz que define la estructura de cada paso */
 export interface Step {
-  id: number
-  title: string
-  description?: string
-  completed: boolean
+  id: number;
+  title: string;
+  description?: string;
 }
 
 @Component({
-  selector: "app-steps-indicator",
+  selector: 'app-steps-indicator',
+  templateUrl: './steps-indicator.component.html',
+  styleUrls: ['./steps-indicator.component.scss'],
   standalone: true,
-  imports: [CommonModule],
-  templateUrl: "./steps-indicator.component.html",
-  styleUrl: "./steps-indicator.component.scss",
+  imports: [CommonModule]
 })
 export class StepsIndicatorComponent {
-  @Input() currentStep = 1
-  @Input() totalSteps = 6
+  /** Lista completa de pasos con estructura clara */
+  @Input() steps: Step[] = [];
 
-  steps: Step[] = [
-    {
-      id: 1,
-      title: "Registro",
-      description: "Informacion de contacto",
-      completed: false,
-    },
-    {
-      id: 2,
-      title: "Pago",
-      description: "Informacion de pago",
-      completed: false,
-    },
-    {
-      id: 3,
-      title: "Paso 3",
-      description: "Pendiente",
-      completed: false,
-    },
-    {
-      id: 4,
-      title: "Paso 4",
-      description: "Pendiente",
-      completed: false,
-    },
-    {
-      id: 5,
-      title: "Paso 5",
-      description: "Pendiente",
-      completed: false,
-    },
-    {
-      id: 6,
-      title: "Paso 6",
-      description: "Pendiente",
-      completed: false,
-    },
-  ]
+  /** Paso actual (ej. 1 para el primer paso) */
+  @Input() currentStep: number = 1;
 
-  ngOnInit() {
-    this.updateStepsStatus()
-  }
+  /** Total de pasos (ej. 6) */
+  @Input() totalSteps: number = 6;
 
-  ngOnChanges() {
-    this.updateStepsStatus()
-  }
-
-  private updateStepsStatus() {
-    this.steps.forEach((step) => {
-      step.completed = step.id < this.currentStep
-    })
-  }
-
-  isCurrentStep(stepId: number): boolean {
-    return stepId === this.currentStep
-  }
-
+  /** Indica si un paso ya fue completado */
   isCompletedStep(stepId: number): boolean {
-    return stepId < this.currentStep
+    return this.currentStep > stepId;
   }
 
+  /** Indica si es el paso actual */
+  isCurrentStep(stepId: number): boolean {
+    return this.currentStep === stepId;
+  }
+
+  /** Devuelve la clase CSS según el estado del paso */
   getStepClass(stepId: number): string {
-    if (this.isCompletedStep(stepId)) {
-      return "completed"
-    } else if (this.isCurrentStep(stepId)) {
-      return "current"
-    } else {
-      return "pending"
-    }
+    if (this.isCompletedStep(stepId)) return 'completed';
+    if (this.isCurrentStep(stepId)) return 'active';
+    return '';
   }
 }
