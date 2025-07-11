@@ -1,14 +1,18 @@
 <section class="portfolio" aria-labelledby="portfolio-heading">
   <div class="portfolio__container">
-    <h2 id="portfolio-heading" class="portfolio__title">Portafolio</h2>
-    <p class="portfolio__description">Explora ejemplos de hojas Horly</p>
+    <header class="portfolio__header">
+      <h2 id="portfolio-heading" class="portfolio__title">Visualmente diferente y atractivo</h2>
+      <p class="portfolio__description">Explora ejemplos de hojas Horly</p>
+    </header>
+
 
     <p-galleria
       [value]="images"
       [responsiveOptions]="responsiveOptions"
       [containerStyle]="{
-        width: '800px',
-        height: '500px',
+        'max-width': '100%',
+        width: '100%',
+        height: 'auto',
         margin: '0 auto'
       }"
       [numVisible]="3"
@@ -26,5 +30,6 @@
         </div>
       </ng-template>
     </p-galleria>
+
   </div>
 </section>

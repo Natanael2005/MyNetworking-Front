@@ -2,28 +2,43 @@
 
 .portfolio {
   background: $white-color;
-  padding: 4rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &__container {
-    padding-bottom: 4rem;
-    @include header;
+    width: min(1400px, 100%);
+    padding: 4rem 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 2rem;
+  }
+
+  &__header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 19px;
   }
 
   &__title {
-    @include titule($primary-color);
+    font-family: $primary-font-titule;
+    font-size: clamp(2.2rem, 9vw, 3rem);
+    color: $primary-color;
+    text-wrap: balance;
   }
 
   &__description {
-    @include description($quinary-color);
+    font-size: clamp(1rem, 4.5vw, 1.5rem);
+    color: $quinary-color;
+    text-wrap: balance;
+    font-family: $font-text;
   }
 
   &__image {
     width: 100%;
     height: auto;
-    display: block;
     border-radius: 5px 5px 0 0;
     object-fit: cover;
     max-height: 400px;
@@ -36,8 +51,8 @@
   }
 
   &__thumbnail {
-    width: 80px;
-    height: 60px;
+    width: 60px;
+    height: 45px;
     object-fit: cover;
     border-radius: 4px;
     cursor: pointer;
@@ -48,38 +63,89 @@
     }
   }
 
-  //
+  
   ::ng-deep .p-galleria {
+    width: 100% !important;
+    max-width: 100%;
+
     &-content {
       display: flex;
       flex-direction: column;
     }
 
     &-thumbnail-container {
-      display: flex;
+      display: flex !important;
       align-items: center;
       justify-content: center;
       border-radius: 0 0 5px 5px;
-      padding: 1rem 0;
-    }
-
-    &-thumbnail-container {
-      height: 100px !important;
-      padding: 10px 0 !important;
+      padding: 1rem 0 !important;
       background: #f8f9fa !important;
+      height: auto !important;
+      overflow-x: auto;
+      overflow-y: hidden;
+      white-space: nowrap;
     }
 
     &-thumbnail-items {
-      height: 80px !important;
-      display: flex;
-      align-items: center;
+      display: inline-flex !important;
+      height: auto !important;
+      flex-wrap: nowrap !important;
+      gap: 8px;
+      padding: 0 10px;
     }
 
     &-thumbnail-item {
+      display: inline-block !important;
+      flex: 0 0 auto !important;
+      
       img {
-        height: 80px !important;
+        height: 60px !important;
         width: auto !important;
         object-fit: cover !important;
+      }
+    }
+
+    &-item-container {
+      width: 100% !important;
+      height: auto !important;
+    }
+
+    &-item-wrapper {
+      width: 100% !important;
+      height: auto !important;
+    }
+  }
+}
+
+@media (width > 800px) {
+  .portfolio {
+    &__container {
+      padding: 7rem 20px;
+      gap: 4rem;
+    }
+
+    &__thumbnail {
+      width: 80px;
+      height: 60px;
+    }
+
+  
+    ::ng-deep .p-galleria {
+      width: 800px !important;
+      
+      &-thumbnail-container {
+        overflow-x: hidden;
+      }
+      
+      &-thumbnail-items {
+        flex-wrap: wrap !important;
+        justify-content: center;
+      }
+
+      &-thumbnail-item {
+        img {
+          height: 80px !important;
+        }
       }
     }
   }

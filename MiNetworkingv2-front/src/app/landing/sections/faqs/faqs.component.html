@@ -2,21 +2,23 @@
   <div class="faqs__container">
     <header class="faqs__header">
       <h2 id="faqs-heading" class="faqs__title">FAQs</h2>
-      <p class="faqs__subtitle">¿Tienes dudas? Aquí reunimos las preguntas más comunes para ayudarte a encontrar respuestas rápidas y claras. <br>
-      ¡Explora y encuentra justo lo que necesitas!</p>
+      <p class="faqs__subtitle">
+        ¿Tienes dudas? Aquí reunimos las preguntas más comunes para ayudarte a
+        encontrar respuestas rápidas y claras.
+      </p>
       <a href="#contact" class="faqs__cta-button">
-      Contacto <i class="pi pi-arrow-right"></i>
-    </a>
+        Contacto <i class="pi pi-arrow-right"></i>
+      </a>
     </header>
 
     <div class="faqs__accordion">
-       <p-accordion [activeIndex]="0">
+      <p-accordion [activeIndex]="0">
         <p-accordionTab [header]="tab.title" *ngFor="let tab of tabs">
-            <p class="m-0">
-                {{ tab.content }}
-            </p>
+          <p class="m-0">
+            {{ tab.content }}
+          </p>
         </p-accordionTab>
-    </p-accordion>
+      </p-accordion>
     </div>
   </div>
 </section>

@@ -1,59 +1,37 @@
-<div class="navbar">
-  <div class="navbar__container">
-    <div
-      class="navbar__logo-container"
-      id="a"
-      [class.logo-small]="isSmall"
-      [class.no-animation]="disableAnimation"
-    >
-      <img
-        class="navbar__logo-image"
-        src="assets/public/miNetworking.logo.png"
-        alt="mi networking logo"
-        id="b"
-        [class.logo-small]="isSmall"
-        [class.no-animation]="disableAnimation"
-      />
-      <span
-        class="navbar__logo-titule"
-        id="c"
-        [class.logo-small]="isSmall"
-        [class.no-animation]="disableAnimation"
-        >Networking</span
-      >
+<header class="header" [class.scrolled]="isScrolled">
+  <div class="nav-container">
+    <div class="container-logo" [class.scrolled]="isScrolled">
+      <div class="container-img">
+        <img src="assets/public/miNetworking.logo.png" alt="mi networking" />
+      </div>
+      <p class="container-text">Networking</p>
     </div>
 
-    <nav class="navbar__nav" aria-label="navegation bar" [class.mobile-open]="isMobileMenuOpen">
-      <ul class="navbar__nav-list">
-        <!-- <li class="navbar__nav-item" (click)="handleMenuClick($event)"><a class="navbar__nav-link" (click)="scrollTo('hero')">Inicio</a></li> -->
-        <li class="navbar__nav-item" [class.active]="active === 'home'">
-          <a class="navbar__nav-link" (click)="scrollTo('home')">Inicio</a>
+    <nav class="nav" #navContainer>
+      <ul class="nav-list" [class.active]="isMenuOpen">
+        <li class="nav-item" 
+            *ngFor="let section of sections" 
+            [attr.data-section]="section.id"
+            [class.active]="activeSection === section.id">
+          <a (click)="scrollTo(section.id); $event.preventDefault()">{{ section.name }}</a>
         </li>
-        <li class="navbar__nav-item" [class.active]="active === 'how-it-works'">
-          <a class="navbar__nav-link" (click)="scrollTo('how-it-works')"
-            >Cómo funciona</a
-          >
-        </li>
-        <li class="navbar__nav-item" [class.active]="active === 'benefits'">
-          <a class="navbar__nav-link" (click)="scrollTo('benefits')"
-            >Beneficios</a
-          >
-        </li>
-        <li class="navbar__nav-item" [class.active]="active === 'plans'">
-          <a class="navbar__nav-link" (click)="scrollTo('plans')">Planes</a>
-        </li>
-        <li class="navbar__nav-item" [class.active]="active === 'faqs'">
-          <a class="navbar__nav-link" (click)="scrollTo('faqs')">FAQs</a>
-        </li>
-        <li class="navbar__nav-item" [class.active]="active === 'contact'">
-          <a class="navbar__nav-link" (click)="scrollTo('contact')">Contacto</a>
+
+        <li class="nav-item mobile-btn">
+          <button class="container-btn mobile">Log-In</button>
         </li>
       </ul>
+
+      <!-- Indicador visual -->
+      <div class="nav-indicator" [ngStyle]="{
+        'left': indicatorPosition.left,
+        'width': indicatorPosition.width
+      }"></div>
     </nav>
 
-    <div class="navbar__login">
-      <button class="navbar__login-button">Iniciar</button>
-      <i class="pi pi-bars" id="menu-icon" (click)="toggleMobileMenu()"></i>
+    <button class="container-btn desktop">Log In</button>
+
+    <div class="btn-menu" (click)="toggleMenu()">
+      <i [class]="menuIcon" id="menu-icon"></i>
     </div>
   </div>
-</div>
+</header>
