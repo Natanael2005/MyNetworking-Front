@@ -1,0 +1,214 @@
+@use "../../../../styles/config" as *;
+
+.plans {
+  background-color: $secondary-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.plans__container {
+  width: min(1400px, 100%);
+  padding: 4rem 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.plans__header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+}
+
+.plans__title {
+  font-family: $primary-font-titule;
+  font-size: clamp(2.2rem, 9vw, 3rem);
+  color: $primary-color;
+  text-wrap: balance;
+}
+
+.plans__subtitle {
+  font-size: clamp(1rem, 4.5vw, 1.5rem);
+  color: $quinary-color;
+  text-wrap: balance;
+  font-family: $font-text;
+}
+
+.plans__list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.plans__card {
+  padding: 1.8rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  transition: all 200ms ease-out;
+}
+
+.plans__card--monthly {
+  background-color: $white-color;
+  border: 1px solid $primary-color;
+  color: $primary-color;
+  max-width: 350px;
+}
+
+.plans__card--monthly:hover {
+  box-shadow: 0 6px 20px 0 rgba(21, 21, 21, 0.25);
+  transform: translateY(-5px);
+  transition: all 200ms ease-out;
+
+  .plans__button {
+    transform: translateY(-5px);
+    cursor: pointer;
+  }
+}
+
+.plans__card--yearly {
+  background-color: rgb(26, 46, 159);
+  color: $white-color;
+  max-width: 350px;
+}
+
+.plans__card--yearly:hover {
+  box-shadow: 0 6px 20px 0 rgba(21, 21, 21, 0.25);
+  transform: translateY(-5px);
+  transition: all 200ms ease-out;
+  border: 1px solid $primary-color;
+
+  .plans__button {
+    transform: translateY(-5px);
+    cursor: pointer;
+  }
+}
+
+.plans__card-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.plans__card-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.plans__card-icon-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.pi-bolt {
+  background: linear-gradient(90deg, rgb(26, 46, 159), rgb(93, 107, 215));
+  border-radius: 10px;
+  padding: 0.8rem;
+  font-size: clamp(1.2rem, 1.5vw, 1.5rem);
+  font-weight: 500;
+  color: $white-color;
+}
+
+.pi-crown {
+  background: linear-gradient(10deg, rgb(255, 255, 255), rgb(176, 177, 253));
+  border-radius: 10px;
+  padding: 0.8rem;
+  font-size: clamp(1.2rem, 1.5vw, 1.5rem);
+  font-weight: 500;
+  color: $primary-color;
+}
+
+.plans__card-info {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.plans__card-title {
+  font-size: clamp(1.2rem, 1.5vw, 1.5rem);
+  font-family: $primary-font-titule;
+}
+
+.plans__card-description {
+  font-size: clamp(1rem, 1.2vw, 1.1rem);
+  font-family: $font-text;
+}
+
+.plans__price-amount {
+  font-size: clamp(2rem, 6vw, 2rem);
+  font-weight: 700;
+}
+
+.plans__divider {
+  margin-top: 5px;
+  width: 250px;
+}
+
+.plans__features-list{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.plans__feature-item {
+  display: flex;
+  list-style: none;
+  gap: 0.5rem;
+}
+
+.plans__button {
+  font-family: $primary-font-titule;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+  width: 100%;
+  font-weight: 700;
+  padding: 0.8rem 2rem;
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 200ms ease-out;
+  
+  .plans__card--monthly & {
+    color: $white-color;
+    background: linear-gradient(rgb(26, 46, 159), rgb(93, 107, 215));
+  }
+  
+  .plans__card--yearly & {
+    color: $primary-color;
+    background: linear-gradient(10deg, rgb(255, 255, 255), rgba(223, 226, 255, 0.884));
+  }
+}
+
+.plans__terms-link {
+  a {
+    color: $gray-color;
+    font-size: clamp(1rem, 1.2vw, 1.1rem);
+  }
+}
+
+//* Responsive
+
+@media (width > 800px) {
+  .plans__container {
+    padding: 7rem 20px;
+    gap: 4rem;
+  }
+
+  .plans__list {
+    flex-direction: row;
+    gap: 5rem;
+  }
+}

@@ -1,0 +1,35 @@
+<section class="portfolio" aria-labelledby="portfolio-heading">
+  <div class="portfolio__container">
+    <header class="portfolio__header">
+      <h2 id="portfolio-heading" class="portfolio__title">Visualmente diferente y atractivo</h2>
+      <p class="portfolio__description">Explora ejemplos de hojas Horly</p>
+    </header>
+
+
+    <p-galleria
+      [value]="images"
+      [responsiveOptions]="responsiveOptions"
+      [containerStyle]="{
+        'max-width': '100%',
+        width: '100%',
+        height: 'auto',
+        margin: '0 auto'
+      }"
+      [numVisible]="3"
+      [circular]="true"
+      [showItemNavigators]="true"
+      [showThumbnailNavigators]="false"
+    >
+      <ng-template pTemplate="item" let-item>
+        <img [src]="item.src" [alt]="item.alt" class="portfolio__image" />
+      </ng-template>
+
+      <ng-template pTemplate="thumbnail" let-item>
+        <div class="portfolio__thumbnail-container">
+          <img [src]="item.src" [alt]="item.alt" class="portfolio__thumbnail" />
+        </div>
+      </ng-template>
+    </p-galleria>
+
+  </div>
+</section>
