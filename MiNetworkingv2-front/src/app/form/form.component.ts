@@ -8,7 +8,7 @@ import { StepsIndicatorComponent, Step } from './sections/steps-indicator/steps-
 
 // Tus pasos ya creados
 import { ContactFormComponent, ContactFormData } from './sections/01-contact-form/contact-form.component';
-import { PaymentComponent, PaymentData } from './sections/02-payment/payment.component';
+import { PaymentComponent } from './sections/02-payment/payment.component';
 import { PersonalInfoComponent, PersonalInfoData } from './sections/03-personal-info/personal-info.component';
 import { HighlightsComponent, HighlightsData } from './sections/04-highlights/highlights.component';
 import { ProfessionalInfoComponent, ProfessionalInfoData } from './sections/05-professional-info/professional-info.component';
@@ -16,7 +16,7 @@ import { InfoReviewComponent } from './sections/06-info-review/info-review.compo
 
 export interface WizardData {
   step1?: ContactFormData;
-  step2?: PaymentData;
+  step2?: any;
   step3?: PersonalInfoData;
   step4?: HighlightsData;
   step5?: ProfessionalInfoData;
@@ -62,7 +62,7 @@ export default class FormComponent {
     this.wizardData.step1 = data;
     this.step = 1;
   }
-  onStep2Complete(data: PaymentData) {
+  onStep2Complete(data: any) {
     this.wizardData.step2 = data;
     this.step = 2;
   }
@@ -83,6 +83,7 @@ export default class FormComponent {
 
   onStep6Complete() {
     console.log("Revisión completa:", this.wizardData);
+    print
     // Aquí puedes enviar wizardData al servidor o mostrar una alerta final
   }
 
