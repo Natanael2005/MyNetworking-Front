@@ -80,7 +80,7 @@
   transition: border-color 0.3s;
   font-family: $font-text;
   font-size: 1rem;
-  box-sizing: border-box; 
+  box-sizing: border-box;
 
   &:focus {
     border-bottom-color: $primary-color;
@@ -95,7 +95,7 @@
   transition: border-color 0.3s;
   font-family: $font-text;
   font-size: 1rem;
-  box-sizing: border-box; 
+  box-sizing: border-box;
   resize: none;
 
   &:focus {

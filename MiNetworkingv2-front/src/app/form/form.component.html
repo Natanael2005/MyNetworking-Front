@@ -1,8 +1,6 @@
-<!-- HEADER ------------------------------------------------------------- -->
+<!-- HEADER PERSONALIZADO (se mantiene sin cambios) -->
 <div class="navbar">
   <div class="navbar__container">
-
-    <!-- IZQUIERDA: Logo + texto (solo visible en escritorio) -->
     <div class="navbar__branding">
       <img
         src="assets/public/miNetworking.logo.png"
@@ -11,8 +9,6 @@
       />
       <span class="navbar__logo-title">Networking</span>
     </div>
-
-    <!-- CENTRO: Títulos -->
     <div class="navbar__titles">
       <ng-container [ngSwitch]="step">
         <ng-container *ngSwitchCase="0">
@@ -41,59 +37,52 @@
         </ng-container>
       </ng-container>
     </div>
-
-    <!-- DERECHA: Botón de iniciar sesión (solo escritorio) -->
     <div class="navbar__login">
       <button class="login-button">Iniciar sesión</button>
     </div>
-
   </div>
 </div>
 
-<!-- STEPPER PRINCIPAL ---------------------------------------------- -->
+<!-- STEP INDICATOR (se mantiene) -->
 <app-steps-indicator
   [steps]="stepList"
   [currentStep]="step + 1"
-  [totalSteps]="stepList.length"
-></app-steps-indicator>
+  [totalSteps]="stepList.length">
+</app-steps-indicator>
 
-
-
-<!-- Paso 0 -->
+<!-- PASOS RENDERIZADOS con *ngIf según `step` sincronizado con la URL -->
 <app-contact-form
   *ngIf="step === 0"
-  (formSubmit)="onStep1Complete($event); step = 1"
-></app-contact-form>
+  (formSubmit)="onStep1Complete($event)">
+</app-contact-form>
 
-<!-- Paso 1 -->
 <app-payment
   *ngIf="step === 1"
-  (completed)="onStep2Complete($event); step = 2"
-></app-payment>
+  (completed)="onStep2Complete($event)"
+  (goBack)="goBack()">
+</app-payment>
 
-<!-- Paso 2 -->
 <app-personal-info
   *ngIf="step === 2"
-  (completed)="onStep3Complete($event); step = 3"
-></app-personal-info>
+  (completed)="onStep3Complete($event)"
+  (back)="goBack()">
+</app-personal-info>
 
-<!-- Paso 3 -->
 <app-highlights
   *ngIf="step === 3"
-  (completed)="onStep4Complete($event); step = 4"
-></app-highlights>
+  (completed)="onStep4Complete($event)"
+  (back)="goBack()">
+</app-highlights>
 
-<!-- Paso 4 -->
 <app-professional-info
   *ngIf="step === 4"
-  (completed)="onStep5Complete($event); step = 5"
-></app-professional-info>
+  (completed)="onStep5Complete($event)"
+  (back)="goBack()">
+</app-professional-info>
 
-<!-- Paso 5 -->
 <app-info-review
   *ngIf="step === 5"
   [data]="wizardData"
-  (confirm)="onStep6Complete();"
-></app-info-review>
-
-
+  (completed)="onStep6Complete()"
+  (back)="goBack()">
+</app-info-review>

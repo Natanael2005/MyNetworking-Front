@@ -9,8 +9,8 @@
 
     <nav class="nav" #navContainer>
       <ul class="nav-list" [class.active]="isMenuOpen">
-        <li class="nav-item" 
-            *ngFor="let section of sections" 
+        <li class="nav-item"
+            *ngFor="let section of sections"
             [attr.data-section]="section.id"
             [class.active]="activeSection === section.id">
           <a (click)="scrollTo(section.id); $event.preventDefault()">{{ section.name }}</a>
@@ -28,7 +28,7 @@
       }"></div>
     </nav>
 
-    <button class="container-btn desktop">Log In</button>
+    <button class="container-btn desktop" routerLink="/Log-In">Log In</button>
 
     <div class="btn-menu" (click)="toggleMenu()">
       <i [class]="menuIcon" id="menu-icon"></i>
