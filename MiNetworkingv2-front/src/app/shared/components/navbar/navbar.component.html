@@ -15,9 +15,10 @@
             [class.active]="activeSection === section.id">
           <a (click)="scrollTo(section.id); $event.preventDefault()">{{ section.name }}</a>
         </li>
-
-        <li class="nav-item mobile-btn">
-          <button class="container-btn mobile">Log-In</button>
+        <!-- Botón login solo visible en móvil -->
+        <li class="nav-item mobile-only">
+        <!-- <li class="nav-item mobile-btn mobile-only"> -->
+          <app-login-btn></app-login-btn>
         </li>
       </ul>
 
@@ -28,7 +29,10 @@
       }"></div>
     </nav>
 
-    <button class="container-btn desktop">Log In</button>
+    <!-- Botón login solo visible en escritorio -->
+    <div class="desktop-only">
+      <app-login-btn></app-login-btn>
+    </div>
 
     <div class="btn-menu" (click)="toggleMenu()">
       <i [class]="menuIcon" id="menu-icon"></i>

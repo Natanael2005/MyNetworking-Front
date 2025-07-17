@@ -1,0 +1,75 @@
+<!-- login-btn.component.html -->
+<p-button
+  (click)="showDialog()"
+  label="Log-In"
+  styleClass="p-button-outlined p-button-secondary"
+  [class.mobile]="isMobile"
+>
+</p-button>
+
+<p-toast
+  [breakpoints]="{
+    '920px': { width: '100%', right: '0', left: '0' }
+  }"
+/>
+
+<p-dialog
+  header="Iniciar Sesión"
+  [modal]="true"
+  [(visible)]="visible"
+  [style]="{ width: '25rem' }"
+  [breakpoints]="{ '960px': '75vw', '640px': '90vw' }"
+>
+  <div class="login-dialog-content">
+    <form
+      class="contact__form"
+      [formGroup]="loginForm"
+      (ngSubmit)="handleSubmit()"
+    >
+      <div class="p-field contact__input-group">
+        <label for="email" class="contact__label">Correo electrónico</label>
+        <input
+          pInputText
+          id="email"
+          type="email"
+          required
+          name="email"
+          class="contact__input"
+          placeholder="sarai@company.com"
+          formControlName="email"
+          (blur)="onBlur('email')"
+        />
+      </div>
+
+      <div class="p-field contact__input-group">
+        <label for="password" class="contact__label">Contraseña</label>
+        <input
+          pInputText
+          id="password"
+          type="password"
+          required
+          name="password"
+          class="contact__input"
+          formControlName="password"
+          (blur)="onBlur('password')"
+          placeholder="********"
+        />
+      </div>
+    </form>
+
+    <div class="flex justify-content-end gap-2 mt-4 container-btn">
+      <p-button
+        label="Cancelar"
+        (onClick)="visible = false"
+        class="modal-btn cancel"
+      />
+      <p-button
+        label="Ingresar"
+        (onClick)="visible = false"
+        class="modal-btn enter"
+        type="submit"
+        [disabled]="loginForm.invalid"
+      />
+    </div>
+  </div>
+</p-dialog>

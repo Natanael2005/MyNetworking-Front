@@ -105,24 +105,32 @@
 }
 
 ::ng-deep .p-button {
-  background-color: $primary-color;
+  background-color: $primary-color !important;
   border-radius: 5px;
   padding: 0.8rem 2rem;
   transition: all 200ms ease-out;
-  border: none;
+  border: 1px solid $white-color;
   margin-top: 20px;
 
   .p-button-label {
     font-weight: 700;
-    color: $white-color;
+    color: $white-color !important;
     font-family: $primary-font-titule;
     font-size: 1rem;
   }
 
   &:hover {
     cursor: pointer;
-    transform: translateY(-5px);
+    transform: translateY(-3px);
     box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.25);
+    border: none;
+
+    .p-button-label {
+    font-weight: 700;
+    color: red;
+    font-family: $primary-font-titule;
+    font-size: 1rem;
+  }
   }
 }
 

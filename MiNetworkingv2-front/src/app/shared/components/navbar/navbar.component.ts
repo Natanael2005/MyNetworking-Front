@@ -1,11 +1,12 @@
 import { Component, HostListener, OnInit, Inject, PLATFORM_ID, inject, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { LoginBtnComponent } from "./login-btn/login-btn.component";
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, RouterLink, RouterLinkActive],
+  imports: [CommonModule, RouterLink, RouterLinkActive, LoginBtnComponent],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
@@ -53,6 +54,16 @@ export class NavbarComponent implements OnInit {
   onWindowScroll() {
     if (isPlatformBrowser(this.platformId)) {
       this.isScrolled = window.scrollY > 50;
+    }
+  }
+
+  @HostListener('window:resize', [])
+  onResize() {
+    if (isPlatformBrowser(this.platformId)) {
+      if (window.innerWidth > 800 && this.isMenuOpen) {
+        this.isMenuOpen = false;
+        this.menuIcon = 'pi pi-bars';
+      }
     }
   }
 

@@ -1,0 +1,120 @@
+// login-btn.component.scss
+@use "../../../../../styles/config" as *;
+
+  ::ng-deep .p-button {
+    background-color: $white-color;
+    font-family: $primary-font-titule;
+    font-size: 1rem;
+    border-radius: 5px;
+    padding: 0.5rem 1.5rem;
+    font-weight: 600;
+    
+    .p-button-label{
+      color: $primary-color; 
+    }
+
+    &:hover {
+      cursor: pointer;
+      border: 1px solid $white-color;
+      font-weight: 600;
+      background-color: transparent;
+      transform: scale(1.08);
+
+      .p-button-label{
+      color: $white-color;
+    }
+    }
+
+    &.mobile {
+      display: block;
+      margin: 10px auto 0;
+    }
+  }
+
+.login-dialog-content {
+  padding: 1rem;
+  .p-field {
+    margin-bottom: 1rem;
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      font-family: $font-text;
+    }
+
+    input {
+      width: 100%;
+    }
+  }
+}
+
+
+.contact__input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact__label {
+  color: $primary-color;
+  font-family: $primary-font-titule;
+  font-weight: 700;
+}
+
+.contact__input {
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid $quinary-color;
+  transition: border-color 0.3s;
+  font-family: $font-text;
+  font-size: 1rem;
+  box-sizing: border-box; 
+  border-radius: 0;
+
+  &:focus {
+    border-bottom-color: $primary-color;
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+.container-btn{
+  display: flex;
+  gap: 1rem;
+}
+
+::ng-deep .p-dialog .p-dialog-header {
+  font-family: $primary-font-titule;
+  font-weight: 800;
+  color: $primary-color;
+  padding: 1rem !important;
+}
+
+
+::ng-deep .p-dialog .enter .p-button {
+  background-color: $primary-color !important;
+  border: none !important;
+  color: $white-color !important;
+}
+::ng-deep .p-dialog .enter .p-button-label {
+  color: $white-color !important;
+}
+
+
+::ng-deep .p-dialog .cancel .p-button {
+  background-color: transparent !important;
+  border: 1px solid $primary-color !important;
+  color: $primary-color !important;
+}
+::ng-deep .p-dialog .cancel .p-button-label {
+  color: $primary-color !important;
+}
+
+
+::ng-deep .p-dialog .enter .p-button:hover {
+  background-color: darken($primary-color, 5%) !important;
+  color: $white-color !important;
+}
+
+
+
