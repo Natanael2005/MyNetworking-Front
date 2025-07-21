@@ -156,6 +156,7 @@
 @media (min-width: 800px) {
   .desktop-only {
     display: block;
+    margin-top: -20px;
   }
   .mobile-only {
     display: none;
