@@ -1,0 +1,190 @@
+@use "../../../../styles/config" as *;
+
+.header {
+  background-color: $primary-color;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  transition: all 0.3s ease;
+
+  &.scrolled {
+    height: 50px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+    .container-logo {
+      flex-direction: row;
+      gap: 10px;
+      margin-top: 0px;
+
+      .container-img {
+        width: 40px;
+      }
+
+      .container-text {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+.nav-container {
+  width: min(1400px, 100%);
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: inherit;
+}
+
+.container-logo {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.container-img img {
+  width: 100%;
+  height: auto;
+  transition: all 0.3s ease;
+}
+.container-img {
+  width: 50px;
+  transition: all 0.3s ease;
+}
+.container-text {
+  color: $white-color;
+  font-family: $primary-font-titule;
+  transition: all 0.3s ease;
+}
+
+.nav {
+  position: relative;
+
+  .nav-list {
+    display: none;
+
+    &.active {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 50px;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      background: rgba(3, 0, 58, 0.877);
+      padding: 30px;
+      gap: 20px;
+      z-index: 998;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      text-align: start;
+    }
+
+    .nav-item {
+      list-style: none;
+      font-family: $primary-font-titule;
+      color: $white-color;
+      font-size: clamp(1rem, 1vw, 1.5rem);
+      cursor: pointer;
+      position: relative;
+      padding: 5px 0;
+    }
+  }
+
+  .nav-indicator {
+    position: absolute;
+    bottom: 0;
+    height: 3px;
+    background-color: $secondary-color;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    z-index: 10;
+    display: none;
+  }
+
+  &.active .nav-indicator {
+    display: block;
+  }
+}
+
+.container-btn {
+  display: none;
+  @include button($white-color, $primary-color);
+  padding: 0.5rem 1.5rem;
+  font-weight: 600;
+
+  &:hover {
+    cursor: pointer;
+    color: $white-color;
+    font-weight: 600;
+    background-color: transparent;
+    transform: scale(1.1);
+  }
+
+  &.desktop {
+    display: none;
+  }
+
+  &.mobile {
+    display: block;
+    margin: 10px auto 0;
+  }
+}
+
+.btn-menu {
+  align-self: center;
+  color: $white-color;
+  cursor: pointer;
+}
+
+@media (width > 800px) {
+  .header {
+    &.scrolled {
+      height: 60px;
+    }
+  }
+
+  .nav {
+    .nav-list {
+      display: flex;
+      position: static;
+      justify-content: center;
+      align-items: center;
+      background-color: transparent;
+      box-shadow: none;
+      padding: 0;
+      width: auto;
+      gap: 30px;
+    }
+
+    .nav-indicator {
+      display: block !important;
+      bottom: -8px;
+    }
+  }
+
+  .btn-menu {
+    display: none;
+  }
+  
+  .container-btn {
+    display: block;
+    transition: all 200ms ease-out;
+    
+    &.desktop {
+      display: block;
+    }
+    
+    &.mobile {
+      display: none;
+    }
+  }
+}

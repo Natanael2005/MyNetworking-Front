@@ -1,0 +1,153 @@
+@use "../../../../styles/config" as *;
+
+.footer {
+  background-color: $black-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer__container {
+  width: min(1400px, 100%);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer__brand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer__logo img {
+  width: 100%;
+  height: auto;
+}
+
+.footer__logo {
+  width: 150px;
+}
+
+.footer__copy {
+  color: $white-color;
+  font-size: $primary-font-titule;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 20px;
+}
+
+.footer__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.footer__item {
+  list-style: none;
+  transition: all 200ms ease-out;
+}
+
+.footer__item:hover {
+  transition: all 200ms ease-out;
+  transform: translateY(-5px);
+}
+
+.footer__link {
+  text-align: center;
+  text-decoration: none;
+  color: $white-color;
+  font-family: $primary-font-titule;
+  font-weight: 500;
+  font-size: clamp(1rem, 1vw, 1.5rem);
+}
+
+.footer__info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px 0;
+}
+
+.footer__text {
+  font-weight: 700;
+  font-size: clamp(0.9rem, 1vw, 1.5rem);
+}
+
+.footer__terms-and-conditions {
+  font-size: clamp(0.9rem, 1vw, 1.5rem);
+}
+
+.footer__social {
+  padding: 10px 0 0 0;
+}
+
+.footer__social-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer__social-item {
+  list-style: none;
+}
+
+.pi {
+  transition: all 200ms ease-out;
+  color: $white-color;
+  font-size: clamp(1.2rem, 1vw, 1.5rem);
+}
+
+.pi:hover {
+  transition: all 200ms ease-out;
+  transform: translateY(-5px);
+}
+
+//* Responsive
+
+@media (width > 800px) {
+  .footer__container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: start;
+  }
+
+  .footer__brand {
+    align-self: center;
+  }
+
+  .footer__logo {
+    width: 150px;
+  }
+
+  .footer__copy {
+    gap: 20px;
+  }
+
+  .footer__list {
+    padding: 0px;
+    gap: 30px;
+  }
+
+  .footer__info {
+    gap: 5px;
+  }
+
+  .footer__text {
+    font-size: 1rem;
+  }
+
+  .footer__social {
+    padding: 0;
+    align-self: center;
+  }
+}

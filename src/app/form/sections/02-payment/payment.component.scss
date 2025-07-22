@@ -1,0 +1,976 @@
+// Variables consistentes con tu diseño
+$primary: #24295B;
+$primary-light: #3a4176;
+$primary-dark: #1a1e42;
+$secondary: #e3e7f5;
+$success: #10b981;
+$warning: #f59e0b;
+$error: #ef4444;
+$background-blue: #eff6ff;
+$background-white: #ffffff;
+$gray-50: #f9fafb;
+$gray-100: #f3f4f6;
+$gray-200: #e5e7eb;
+$gray-300: #d1d5db;
+$gray-400: #9ca3af;
+$gray-500: #6b7280;
+$gray-600: #4b5563;
+$gray-700: #374151;
+$gray-800: #1f2937;
+
+// Mixins avanzados
+@mixin glass-effect {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+@mixin smooth-transition($properties: all, $duration: 0.3s, $easing: cubic-bezier(0.4, 0, 0.2, 1)) {
+  transition: $properties $duration $easing;
+}
+
+@mixin button-hover-effect {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba($primary, 0.3);
+}
+
+@mixin focus-ring($color: $primary) {
+  box-shadow: 0 0 0 4px rgba($color, 0.15);
+}
+
+:host {
+  display: block;
+  width: 100%;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  min-height: 100vh;
+  background: $background-white;
+}
+
+// ===== PASO 1: SELECCIÓN DE PLANES =====
+.planes-step {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  animation: fadeInUp 0.6s ease-out;
+
+  h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: $primary;
+    margin-bottom: 3rem;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, $primary, $primary-light);
+      border-radius: 2px;
+      animation: slideInFromBottom 0.8s ease-out 0.3s both;
+    }
+  }
+
+  .plan-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    .plan-card {
+      background: $background-white;
+      border-radius: 24px;
+      padding: 2.5rem;
+      border: 2px solid transparent;
+      position: relative;
+      @include smooth-transition;
+      @include glass-effect;
+      box-shadow:
+        0 10px 30px rgba($primary, 0.08),
+        0 4px 12px rgba($primary, 0.04),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      overflow: hidden;
+      animation: fadeInUp 0.6s ease-out;
+      animation-fill-mode: both;
+
+      // Stagger animation for multiple cards
+      @for $i from 1 through 6 {
+        &:nth-child(#{$i}) {
+          animation-delay: #{$i * 0.1}s;
+        }
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        @include smooth-transition(left, 0.6s);
+      }
+
+      h3 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: $primary;
+        margin: 0 0 1rem 0;
+        @include smooth-transition;
+        position: relative;
+        z-index: 2;
+      }
+
+      p {
+        color: $gray-600;
+        font-size: 1rem;
+        line-height: 1.6;
+        margin: 0 0 1.5rem 0;
+        position: relative;
+        z-index: 2;
+
+        &:first-of-type {
+          font-size: 1.25rem;
+          font-weight: 600;
+          color: $primary;
+          margin-bottom: 0.75rem;
+        }
+      }
+
+      button {
+        width: 100%;
+        padding: 1rem 2rem;
+        background: linear-gradient(135deg, $primary, $primary-dark);
+        color: white;
+        border: none;
+        border-radius: 16px;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        @include smooth-transition;
+        box-shadow: 0 6px 20px rgba($primary, 0.25);
+        z-index: 2;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
+          opacity: 0;
+          @include smooth-transition(opacity);
+        }
+
+        // HOVER SOLO EN EL BOTÓN
+        &:hover {
+          @include button-hover-effect;
+          background: linear-gradient(135deg, $primary-light, $primary);
+
+          &::before {
+            opacity: 1;
+          }
+        }
+
+        &:active {
+          transform: translateY(-1px);
+          box-shadow: 0 4px 12px rgba($primary, 0.3);
+        }
+      }
+
+      // Efecto en la card cuando se hace hover en el botón
+      &:has(button:hover) {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 25px 50px rgba($primary, 0.2);
+        border-color: rgba($primary, 0.3);
+
+        &::before {
+          left: 100%;
+        }
+
+        h3 {
+          color: $primary-light;
+          transform: translateY(-2px);
+        }
+      }
+    }
+  }
+}
+
+// ===== PASO 2: PAGO =====
+.payment-page {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  gap: 3rem;
+  align-items: flex-start;
+  animation: fadeInUp 0.6s ease-out;
+
+  .payment-left {
+    flex: 1;
+    min-width: 0;
+    background: $background-white;
+    border-radius: 28px;
+    padding: 3rem;
+    @include glass-effect;
+    box-shadow:
+      0 20px 40px rgba($primary, 0.08),
+      0 8px 16px rgba($primary, 0.04),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba($gray-200, 0.6);
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent);
+    }
+
+    .back-btn {
+      background: none;
+      border: none;
+      color: $primary;
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      cursor: pointer;
+      @include smooth-transition;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba($primary, 0.05);
+        border-radius: 12px;
+        opacity: 0;
+        @include smooth-transition;
+      }
+
+      &:hover {
+        color: $primary-dark;
+        transform: translateX(-4px);
+
+        &::before {
+          opacity: 1;
+        }
+      }
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: $primary;
+      margin: 0 0 1.5rem 0;
+      position: relative;
+      padding-bottom: 0.75rem;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(90deg, $primary, $primary-light);
+        border-radius: 2px;
+      }
+    }
+
+    hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, $gray-200, transparent);
+      margin: 2.5rem 0;
+    }
+
+    // MEJORAR ESPACIADO EN BILLING FORM
+    form {
+      // Espaciado general entre elementos del formulario
+      > div {
+        margin-bottom: 2rem; // Aumentar espaciado entre campos
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    .billing-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem; // Aumentar espaciado después de billing-row
+
+      > div {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 0; // Quitar margin-bottom individual en billing-row
+      }
+    }
+
+    label {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: $gray-700;
+      margin: 0 0 0.75rem 0; // Aumentar espaciado entre label e input
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+
+      &::after {
+        content: '*';
+        color: $error;
+        font-weight: 700;
+      }
+    }
+
+    input, select {
+      width: 100%;
+      padding: 1rem 1.25rem;
+      border: 2px solid $gray-300;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-family: inherit;
+      background: $background-white;
+      color: $gray-800;
+      @include smooth-transition;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      margin-bottom: 0.5rem; // Pequeño espaciado después del input
+
+      &::placeholder {
+        color: $gray-500;
+      }
+
+      &:hover {
+        border-color: rgba($primary, 0.4);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+
+      &:focus {
+        outline: none;
+        border-color: $primary;
+        @include focus-ring($primary);
+        box-shadow: 0 4px 12px rgba($primary, 0.1);
+      }
+    }
+
+    select {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+      background-position: right 0.75rem center;
+      background-repeat: no-repeat;
+      background-size: 1.5em 1.5em;
+      padding-right: 3rem;
+      appearance: none;
+    }
+  }
+
+  .payment-right {
+    flex: 0 0 380px;
+    background: linear-gradient(145deg, $background-white 0%, $gray-50 100%);
+    border-radius: 24px;
+    padding: 2.5rem;
+    @include glass-effect;
+    box-shadow:
+      0 15px 35px rgba($primary, 0.1),
+      0 6px 12px rgba($primary, 0.05),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba($gray-200, 0.6);
+    position: sticky;
+    top: 2rem;
+    animation: slideInFromRight 0.6s ease-out 0.2s both;
+
+    h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: $primary;
+      margin: 0 0 1.5rem 0;
+      text-align: center;
+    }
+
+    .plan-summary {
+      background: linear-gradient(145deg, $secondary 0%, rgba(227, 231, 245, 0.6) 100%);
+      padding: 1.5rem;
+      border-radius: 16px;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba($primary, 0.1);
+      position: relative;
+      overflow: hidden;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+      }
+
+      b {
+        display: block;
+        font-size: 1.1rem;
+        color: $primary;
+        margin-bottom: 0.5rem;
+      }
+
+      div {
+        color: $gray-700;
+        font-size: 0.95rem;
+        line-height: 1.5;
+        margin-bottom: 0.5rem;
+
+        &:first-of-type {
+          font-weight: 600;
+          color: $primary;
+          font-size: 1rem;
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+// ===== TARJETA DE PAGO - REESTRUCTURADA =====
+.card-box {
+  background: linear-gradient(145deg, $background-white 0%, $gray-50 100%);
+  border: 2px solid rgba($primary, 0.1);
+  border-radius: 20px;
+  padding: 2rem;
+  margin-top: 1.5rem;
+  @include glass-effect;
+  box-shadow:
+    0 12px 28px rgba($primary, 0.08),
+    0 4px 8px rgba($primary, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent);
+  }
+
+  // REESTRUCTURAR LABELS Y INPUTS
+  .card-field {
+    margin-bottom: 1.5rem; // Espaciado consistente entre campos
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: $gray-700;
+    margin: 0 0 0.5rem 0;
+    display: block;
+  }
+
+  // INPUTS NORMALES (nombre, email)
+  input[type="text"],
+  input[type="email"] {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border: 2px solid $gray-300;
+    border-radius: 12px;
+    background: $background-white;
+    font-size: 1rem;
+    font-family: inherit;
+    color: $gray-800;
+    @include smooth-transition;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+
+    &::placeholder {
+      color: $gray-500;
+    }
+
+    &:hover {
+      border-color: rgba($primary, 0.4);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $primary;
+      @include focus-ring($primary);
+      box-shadow: 0 4px 12px rgba($primary, 0.1);
+    }
+  }
+
+  // CONTENEDORES PARA STRIPE ELEMENTS
+  .card-input {
+    position: relative;
+    width: 100%;
+    min-height: 48px;
+    padding: 1rem 1.25rem;
+    border: 2px solid $gray-300;
+    border-radius: 12px;
+    background: $background-white;
+    @include smooth-transition;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+
+    // ESTILOS PARA LOS IFRAMES DE STRIPE
+    iframe {
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      border: none !important;
+      background: transparent !important;
+      padding: 1rem 1.25rem !important;
+      box-sizing: border-box !important;
+    }
+
+    // Estados hover y focus para los contenedores de Stripe
+    &:hover {
+      border-color: rgba($primary, 0.4);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    &:focus-within {
+      border-color: $primary;
+      @include focus-ring($primary);
+      box-shadow: 0 4px 12px rgba($primary, 0.1);
+    }
+
+    // Estados de Stripe
+    &.StripeElement--focus {
+      border-color: $primary;
+      @include focus-ring($primary);
+      box-shadow: 0 4px 12px rgba($primary, 0.1);
+    }
+
+    &.StripeElement--invalid {
+      border-color: $error;
+      @include focus-ring($error);
+      box-shadow: 0 4px 12px rgba($error, 0.1);
+    }
+
+    &.StripeElement--complete {
+      border-color: $success;
+      box-shadow: 0 4px 12px rgba($success, 0.1);
+    }
+  }
+
+  .card-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+
+    .card-col {
+      display: flex;
+      flex-direction: column;
+
+      label {
+        margin: 0 0 0.5rem 0;
+        font-size: 0.85rem;
+      }
+    }
+  }
+
+  .card-result {
+    min-height: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: $error;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: rgba($error, 0.05);
+    border-radius: 8px;
+    border-left: 4px solid $error;
+    @include smooth-transition;
+    opacity: 0;
+    transform: translateY(-10px);
+
+    &:not(:empty) {
+      opacity: 1;
+      transform: translateY(0);
+      animation: slideInError 0.3s ease-out;
+    }
+
+    &::before {
+      content: '⚠';
+      font-size: 1rem;
+    }
+  }
+
+  .payment-button {
+    width: 100%;
+    padding: 1.25rem 2rem;
+    background: linear-gradient(135deg, $primary 0%, $primary-light 100%);
+    color: white;
+    border: none;
+    border-radius: 16px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    @include smooth-transition;
+    box-shadow:
+      0 8px 20px rgba($primary, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    margin-top: 1rem;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      @include smooth-transition(left, 0.6s);
+    }
+
+    &:hover:not(:disabled) {
+      @include button-hover-effect;
+
+      &::before {
+        left: 100%;
+      }
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 15px rgba($primary, 0.4);
+    }
+
+    &:disabled {
+      background: linear-gradient(135deg, $gray-400, $gray-500);
+      cursor: not-allowed;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      opacity: 0.7;
+
+      &:hover {
+        transform: none;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    // CORREGIR ANIMACIÓN DEL BOTÓN - QUITAR EL SPINNER DUPLICADO
+    // Eliminar el ::after que causaba el spinner duplicado
+    // &.loading::after {
+    //   // COMENTADO PARA EVITAR DUPLICACIÓN
+    // }
+  }
+}
+
+// ===== ANIMACIONES =====
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromBottom {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInError {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ===== RESPONSIVE =====
+@media (max-width: 1200px) {
+  .payment-page {
+    flex-direction: column;
+    gap: 2rem;
+
+    .payment-right {
+      flex: none;
+      position: static;
+      order: -1;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .planes-step {
+    padding: 1rem;
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .plan-list {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+
+      .plan-card {
+        padding: 2rem;
+        border-radius: 18px;
+
+        h3 {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+
+  .payment-page {
+    padding: 1rem;
+    gap: 1.5rem;
+
+    .payment-left {
+      padding: 2rem;
+      border-radius: 20px;
+
+      .billing-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+
+    .payment-right {
+      padding: 2rem;
+      border-radius: 18px;
+    }
+  }
+
+  .card-box {
+    padding: 1.5rem;
+    border-radius: 16px;
+
+    .card-row {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .planes-step {
+    padding: 0.75rem;
+
+    h2 {
+      font-size: 1.75rem;
+    }
+
+    .plan-list {
+      .plan-card {
+        padding: 1.5rem;
+
+        h3 {
+          font-size: 1.25rem;
+        }
+
+        p {
+          font-size: 0.9rem;
+
+          &:first-of-type {
+            font-size: 1.1rem;
+          }
+        }
+      }
+    }
+  }
+
+  .payment-page {
+    padding: 0.75rem;
+
+    .payment-left {
+      padding: 1.5rem;
+
+      h3 {
+        font-size: 1.25rem;
+      }
+    }
+
+    .payment-right {
+      padding: 1.5rem;
+
+      h3 {
+        font-size: 1.1rem;
+      }
+    }
+  }
+
+  .card-box {
+    padding: 1.25rem;
+
+    .payment-button {
+      padding: 1rem 1.5rem;
+      font-size: 1rem;
+    }
+  }
+}
+
+// ===== MEJORAS DE ACCESIBILIDAD =====
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+// Focus visible para navegación por teclado
+input:focus-visible,
+select:focus-visible,
+button:focus-visible {
+  outline: 2px solid $primary;
+  outline-offset: 2px;
+}
+
+// CORREGIR ESTADOS DE CARGA - ELIMINAR EL SPINNER DUPLICADO
+// Comentar o eliminar esta sección que causaba el problema
+// .loading {
+//   position: relative;
+//   pointer-events: none;
+
+//   &::after {
+//     content: '';
+//     position: absolute;
+//     top: 50%;
+//     left: 50%;
+//     width: 20px;
+//     height: 20px;
+//     margin: -10px 0 0 -10px;
+//     border: 2px solid rgba(255, 255, 255, 0.3);
+//     border-top: 2px solid white;
+//     border-radius: 50%;
+//     animation: spin 1s linear infinite;
+//   }
+// }
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// Estilos para la información de seguridad
+.security-info {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba($gray-200, 0.6);
+
+  .security-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    color: $gray-600;
+    font-size: 0.85rem;
+
+    svg {
+      color: $success;
+      flex-shrink: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Estilos para el contenido del botón
+.button-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  position: relative;
+  z-index: 2;
+
+  svg {
+    width: 20px;
+    height: 20px;
+    @include smooth-transition(transform);
+  }
+}
+
+// Spinner para el estado de carga (SOLO ESTE, NO EL DUPLICADO)
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+// Mejoras para los placeholders
+input::placeholder {
+  color: $gray-500;
+  opacity: 1;
+}
+
+// Estados de validación para inputs normales
+input:invalid:not(:focus):not(:placeholder-shown) {
+  border-color: $error;
+  box-shadow: 0 0 0 4px rgba($error, 0.15);
+}
+
+input:valid:not(:focus):not(:placeholder-shown) {
+  border-color: $success;
+  box-shadow: 0 0 0 4px rgba($success, 0.15);
+}

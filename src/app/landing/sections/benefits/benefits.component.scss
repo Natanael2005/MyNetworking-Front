@@ -1,0 +1,118 @@
+@use "../../../../styles/config" as *;
+
+.benefits {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(
+      rgba(5, 2, 60, 0.655),
+      rgba(28, 19, 193, 0.329)
+    ),
+    url("/assets/images/benefits-bg.webp");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.benefits__container {
+  width: min(1400px, 100%);
+  padding: 4rem 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.benefits__header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+}
+
+.benefits__title {
+  font-family: $primary-font-titule;
+  font-size: clamp(2.2rem, 9vw, 3rem);
+  color: $white-color;
+  text-wrap: balance;
+}
+
+.benefits__subtitle {
+  font-size: clamp(1rem, 4.5vw, 1.5rem);
+  color: $white-color;
+  text-wrap: balance;
+  font-family: $font-text;
+}
+
+.benefits__list {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  gap: 2rem;
+}
+
+.benefits__item {
+  background-color: $secondary-color;
+  border-radius: 10px;
+  padding: 1.8rem;
+  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  gap: 1rem;
+}
+
+.benefits__item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.511);
+}
+
+.benefits__icon-wrapper {
+  background-color: $white-color;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-self: flex-start;
+}
+
+.benefits__icon {
+  color: $primary-color;
+  font-size: clamp(1.2rem, 1.5vw, 1.5rem);
+  padding: 0.8rem;
+  font-weight: 500;
+}
+
+.benefits__item-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 1rem;
+}
+
+.benefits__item-title {
+  font-family: $primary-font-titule;
+  color: $primary-color;
+  font-weight: 600;
+  font-size: clamp(1.2rem, 1.5vw, 1.5rem);
+  text-wrap: pretty;
+}
+
+.benefits__item-description {
+  font-family: $font-text;
+  color: $gray-color;
+  font-size: clamp(1rem, 1.2vw, 1.1rem);
+  text-wrap: pretty;
+}
+
+//* Responsive
+@media (width > 800px) {
+  .benefits__container {
+    padding: 7rem 20px;
+    gap: 4rem;
+  }
+
+  .benefits__list {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+}

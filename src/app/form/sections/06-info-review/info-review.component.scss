@@ -1,0 +1,14 @@
+.review-container {
+  padding: 1rem;
+  pre {
+    background: #f5f5f5;
+    padding: 0.5rem;
+    overflow: auto;
+  }
+  .buttons {
+    margin-top: 1rem;
+    button {
+      margin-right: 0.5rem;
+    }
+  }
+}

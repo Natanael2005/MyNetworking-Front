@@ -1,0 +1,199 @@
+<div class="form-container">
+  <div class="form-header">
+    <div class="header-content">
+      <div class="header-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="header-text">
+        <h1 class="form-title">Información de contacto</h1>
+        <p class="form-subtitle">Complete los siguientes campos para continuar</p>
+      </div>
+    </div>
+    <div class="title-underline"></div>
+  </div>
+
+  <div class="form-body">
+
+    <!-- Banner de éxito -->
+    <div *ngIf="submitSuccess" class="form-success">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+        <polyline points="20,6 9,17 4,12" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      ¡Tus datos fueron enviados correctamente!
+    </div>
+
+    <!-- Formulario solo si NO es éxito -->
+    <form *ngIf="!submitSuccess" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+      <div class="form-grid">
+
+        <!-- Nombres -->
+        <div class="form-group">
+          <label for="nombres" class="field-label">
+            <span class="label-text">Nombre(s)</span>
+            <span class="required-indicator">*</span>
+          </label>
+          <div [class]="getWrapperClasses('nombres')">
+            <input
+              type="text"
+              id="nombres"
+              [class]="getInputClasses('nombres')"
+              formControlName="nombres"
+              placeholder="Ingrese su nombre completo"
+              (focus)="onFieldFocus('nombres')"
+              (blur)="onFieldBlur('nombres')"
+              autocomplete="given-name">
+            <div class="input-border"></div>
+          </div>
+          <div class="error-message" *ngIf="getFieldError('nombres')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+              <line x1="12" y1="8" x2="12" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <line x1="12" y1="16" x2="12.01" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            {{ getFieldError('nombres') }}
+          </div>
+        </div>
+
+        <!-- Apellidos -->
+        <div class="form-group">
+          <label for="apellidos" class="field-label">
+            <span class="label-text">Apellidos</span>
+            <span class="required-indicator">*</span>
+          </label>
+          <div [class]="getWrapperClasses('apellidos')">
+            <input
+              type="text"
+              id="apellidos"
+              [class]="getInputClasses('apellidos')"
+              formControlName="apellidos"
+              placeholder="Ingrese sus apellidos completos"
+              (focus)="onFieldFocus('apellidos')"
+              (blur)="onFieldBlur('apellidos')"
+              autocomplete="family-name">
+            <div class="input-border"></div>
+          </div>
+          <div class="error-message" *ngIf="getFieldError('apellidos')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+              <line x1="12" y1="8" x2="12" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <line x1="12" y1="16" x2="12.01" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            {{ getFieldError('apellidos') }}
+          </div>
+        </div>
+
+        <!-- Correo electrónico -->
+        <div class="form-group">
+          <label for="correo" class="field-label">
+            <span class="label-text">Correo electrónico</span>
+            <span class="required-indicator">*</span>
+          </label>
+          <div [class]="getWrapperClasses('correo')">
+            <input
+              type="email"
+              id="correo"
+              [class]="getInputClasses('correo')"
+              formControlName="correo"
+              placeholder="ejemplo@empresa.com"
+              (focus)="onFieldFocus('correo')"
+              (blur)="onFieldBlur('correo')"
+              autocomplete="email">
+            <div class="input-border"></div>
+          </div>
+          <div class="error-message" *ngIf="getFieldError('correo')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+              <line x1="12" y1="8" x2="12" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <line x1="12" y1="16" x2="12.01" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            {{ getFieldError('correo') }}
+          </div>
+        </div>
+
+        <!-- Teléfono -->
+        <div class="form-group">
+          <label for="telefono" class="field-label">
+            <span class="label-text">Teléfono</span>
+            <span class="required-indicator">*</span>
+          </label>
+          <div [class]="getWrapperClasses('telefono')">
+            <input
+              type="tel"
+              id="telefono"
+              [class]="getInputClasses('telefono')"
+              formControlName="telefono"
+              placeholder="Ej: 5512345678"
+              (focus)="onFieldFocus('telefono')"
+              (blur)="onFieldBlur('telefono')"
+              autocomplete="tel">
+            <div class="input-border"></div>
+          </div>
+          <div class="error-message" *ngIf="getFieldError('telefono')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+              <line x1="12" y1="8" x2="12" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <line x1="12" y1="16" x2="12.01" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            {{ getFieldError('telefono') }}
+          </div>
+        </div>
+
+        <!-- Puesto -->
+        <div class="form-group full-width">
+          <label for="puesto" class="field-label">
+            <span class="label-text">Puesto</span>
+            <span class="required-indicator">*</span>
+          </label>
+          <div [class]="getWrapperClasses('puesto')">
+            <input
+              type="text"
+              id="puesto"
+              [class]="getInputClasses('puesto')"
+              formControlName="puesto"
+              placeholder="Ej: Gerente de Ventas, Desarrollador Senior"
+              (focus)="onFieldFocus('puesto')"
+              (blur)="onFieldBlur('puesto')"
+              autocomplete="organization-title">
+            <div class="input-border"></div>
+          </div>
+          <div class="error-message" *ngIf="getFieldError('puesto')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+              <line x1="12" y1="8" x2="12" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <line x1="12" y1="16" x2="12.01" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            {{ getFieldError('puesto') }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Botón de envío -->
+      <div class="form-actions">
+        <button
+          type="submit"
+          class="btn-submit"
+          [disabled]="contactForm.invalid || isSubmitting"
+          [class.loading]="isSubmitting">
+
+          <span class="button-content" *ngIf="!isSubmitting">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <line x1="22" y1="2" x2="11" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <polygon points="22,2 15,22 11,13 2,9 22,2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Enviar información
+          </span>
+
+          <span class="button-content" *ngIf="isSubmitting">
+            <div class="spinner"></div>
+            Enviando...
+          </span>
+
+          <div class="button-ripple"></div>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

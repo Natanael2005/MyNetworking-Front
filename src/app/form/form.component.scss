@@ -1,0 +1,234 @@
+.navbar {
+  background-color: #24295B;
+  padding: 0.8rem 1rem;
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+
+  &__branding {
+    display: flex;
+    align-items: center;
+    flex: 1;
+  }
+
+  &__logo-image {
+    height: 2rem;
+    margin-right: 0.5rem;
+  }
+
+  &__logo-title {
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+
+  &__titles {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+
+    h2, p {
+      color: white;
+      margin: 0;
+    }
+
+    h2 {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    p {
+      font-size: 0.9rem;
+    }
+  }
+
+  &__login {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+  }
+
+  .login-button {
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+  }
+}
+
+
+
+@media (max-width: 768px) {
+  .navbar__container {
+    justify-content: center;
+  }
+
+  .navbar__branding {
+    justify-content: flex-end;
+  }
+
+  .navbar__logo-title,
+  .navbar__login {
+    display: none;
+  }
+
+  .navbar__titles {
+    position: static;
+    transform: none;
+    text-align: center;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .navbar__container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .navbar__title {
+    position: static;
+    transform: none;
+    margin-top: 0.5rem;
+  }
+
+  .navbar__login {
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
+}
+
+
+/* === NAV DEL STEPPER === */
+:host ::ng-deep .custom-stepper .p-stepper-nav {
+  display: flex;
+  justify-content: center;
+  margin-top: 5rem;
+  margin-bottom: 6rem;
+  margin-left: 6rem;
+  margin-right: 6rem;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+/* === PASO EN COLUMNA: CÍRCULO + TEXTO DEBAJO === */
+:host ::ng-deep .custom-stepper .p-stepper-action {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 1rem;
+  padding: 0.25rem;
+}
+
+/* CÍRCULO MÁS PEQUEÑO */
+:host ::ng-deep .custom-stepper .p-stepper-number {
+  width: 2.5rem;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  border-radius: 50%;
+  background-color: #24295B;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* TEXTO DEBAJO MÁS PEQUEÑO */
+:host ::ng-deep .custom-stepper .p-stepper-title {
+  font-size: 0.85rem;
+  color: #24295B;
+  text-align: center;
+  font-weight: 600;
+  display: block;
+}
+
+/* PASO ACTIVO */
+:host ::ng-deep .custom-stepper .p-stepper-head.p-highlight {
+  background-color: transparent;
+  transform: scale(1.05);
+}
+
+/* PASO DESHABILITADO */
+:host ::ng-deep .custom-stepper .p-stepper-head.p-disabled {
+  background-color: transparent;
+  color: #999;
+}
+
+
+
+/* ===== CONECTOR DE UN SOLO COLOR ===== */
+:host ::ng-deep .custom-stepper .p-stepper-separator {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 4px;
+  background-color: #e2e8f0;
+  flex: 1;
+  max-width: 120px;
+  margin: 0 0.5rem;
+  border-radius: 8px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* CONECTOR ACTIVO - Color sólido */
+:host ::ng-deep .custom-stepper .p-stepper-separator[ng-reflect-highlighted="true"] {
+  background-color: #24295B;
+  transform: translateY(-50%) scaleY(1.2);
+}
+
+
+/* Adaptar tamaños para pantallas pequeñas */
+@media (max-width: 768px) {
+  :host ::ng-deep .custom-stepper .p-stepper-number {
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+    font-size: 0.85rem;
+  }
+
+  :host ::ng-deep .custom-stepper .p-stepper-title {
+    font-size: 0.75rem;
+  }
+
+  :host ::ng-deep .custom-stepper .p-stepper-separator {
+    max-width: 80px;
+    height: 3px;
+  }
+
+  .form-title h2 {
+    font-size: 1.75rem;
+  }
+
+  .form-title p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+
+  :host ::ng-deep .custom-stepper .p-stepper-title {
+    display: none; /* Solo mostrar número */
+  }
+
+}
+
+
+
+
+
+
